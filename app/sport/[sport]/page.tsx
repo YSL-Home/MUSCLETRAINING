@@ -194,15 +194,34 @@ export default async function SportPage({ params }: { params: Promise<{ sport: s
 
 function normalizeMuscle(m: string): MuscleId {
   const map: Record<string, MuscleId> = {
-    'obliques': 'abdominaux', 'grand dorsal': 'dos', 'grand droit': 'abdominaux',
-    'transverse': 'abdominaux', 'piriforme': 'fessiers', 'psoas': 'fessiers',
-    'grand fessier': 'fessiers', 'gastrocnémiens': 'mollets', 'soléaire': 'mollets',
-    'adducteurs': 'quadriceps', 'coiffe des rotateurs': 'epaules',
-    'grand dentelé': 'epaules', 'rhomboïdes': 'dos', 'infra-épineux': 'epaules',
-    'petit rond': 'epaules', 'deltoïde postérieur': 'epaules', 'deltoïdes': 'epaules',
-    'stabilisateurs lombaires': 'lombaires', 'dos complet': 'dos',
-    'corps entier': 'abdominaux', 'cardiovasculaire': 'abdominaux',
+    // Abdominaux
+    'obliques': 'abdominaux', 'grand droit': 'abdominaux', 'transverse': 'abdominaux',
+    'abdominaux': 'abdominaux', 'corps entier': 'abdominaux', 'cardiovasculaire': 'abdominaux',
+    // Dos
+    'grand dorsal': 'dos', 'rhomboïdes': 'dos', 'dos complet': 'dos',
+    // Épaules
+    'épaules': 'epaules', 'deltoïdes': 'epaules', 'deltoïde postérieur': 'epaules',
+    'coiffe des rotateurs': 'epaules', 'grand dentelé': 'epaules',
+    'infra-épineux': 'epaules', 'petit rond': 'epaules',
+    // Fessiers
+    'grand fessier': 'fessiers', 'piriforme': 'fessiers', 'psoas': 'fessiers',
+    'hanche': 'fessiers',
+    // Mollets
+    'gastrocnémiens': 'mollets', 'soléaire': 'mollets',
+    // Quadriceps / Adducteurs
+    'adducteurs': 'quadriceps',
+    // Ischio-jambiers
+    'ischio-jambiers': 'ischio-jambiers',
+    // Lombaires
+    'stabilisateurs lombaires': 'lombaires', 'quadratus lumborum': 'lombaires',
+    // Trapèzes (sans accent dans l'id)
+    'trapèzes': 'trapezes',
   }
   const key = m.toLowerCase()
-  return map[key] ?? (key.split(' ')[0] as MuscleId)
+  if (map[key]) return map[key]
+  // fallback : premiers mots pour les cas composés
+  const valid: MuscleId[] = ['pectoraux','dos','epaules','biceps','triceps','avant-bras',
+    'abdominaux','quadriceps','ischio-jambiers','fessiers','mollets','trapezes','lombaires']
+  const first = key.split(' ')[0]
+  return (valid.find(v => v === first) ?? 'abdominaux') as MuscleId
 }

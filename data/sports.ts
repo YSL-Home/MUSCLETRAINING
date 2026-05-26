@@ -38,7 +38,7 @@ export const SPORTS: Sport[] = [
         slug: 'rotation-tronc-padel',
         nom: 'Rotation du tronc avec élastique',
         description: 'Simule le mouvement de frappe au padel. Renforce les muscles obliques et la chaîne cinétique de rotation.',
-        videoYoutube: 'feWp7jZopI8',
+        videoYoutube: 'fEnPhJINepA',
         benefice: 'Augmente la puissance de vos frappes de 20 à 30%',
         instructions: [
           'Fixez l\'élastique à mi-hauteur sur un poteau.',
@@ -55,7 +55,7 @@ export const SPORTS: Sport[] = [
         slug: 'fentes-laterales-padel',
         nom: 'Fentes latérales (Lateral Lunge)',
         description: 'Reproduit le déplacement latéral typique du padel. Renforce adducteurs, abducteurs et quadriceps.',
-        videoYoutube: 'Dr41gZwfTfM',
+        videoYoutube: 'kVY0fXtrrs0',
         benefice: 'Améliore votre vitesse de déplacement sur le court',
         instructions: [
           'Debout, pieds joints, mains devant la poitrine.',
@@ -72,7 +72,7 @@ export const SPORTS: Sport[] = [
         slug: 'rotation-externe-epaule',
         nom: 'Rotation externe épaule (élastique)',
         description: 'Renforce les rotateurs externes de l\'épaule, très sollicités dans les frappes et les smashes au padel.',
-        videoYoutube: 'feWp7jZopI8',
+        videoYoutube: 'xE5782I38WU',
         benefice: 'Prévient les blessures d\'épaule, les plus fréquentes au padel',
         instructions: [
           'Fixez l\'élastique à la hauteur du coude.',
@@ -89,7 +89,7 @@ export const SPORTS: Sport[] = [
         slug: 'sauts-lateraux-padel',
         nom: 'Sauts latéraux (Lateral Hops)',
         description: 'Entraîne l\'explosivité et la réactivité latérale indispensables pour couvrir le court rapidement.',
-        videoYoutube: '-lkv4E8Aymk',
+        videoYoutube: 'v4fiGPXLMW4',
         benefice: 'Réactivité + 40% pour les balles difficiles',
         instructions: [
           'Placez un scotch au sol ou imaginez une ligne.',
@@ -106,7 +106,7 @@ export const SPORTS: Sport[] = [
         slug: 'gainage-oblique-padel',
         nom: 'Planche latérale dynamique',
         description: 'Renforce le gainage latéral et les obliques, essentiels pour la stabilité lors des frappes.',
-        videoYoutube: '-lkv4E8Aymk',
+        videoYoutube: '4Aoo7IUAeg8',
         benefice: 'Stabilité du buste pour des frappes plus précises',
         instructions: [
           'Position de planche latérale sur l\'avant-bras.',
@@ -123,7 +123,7 @@ export const SPORTS: Sport[] = [
         slug: 'shoulder-press-padel',
         nom: 'Développé haltères épaules (unilatéral)',
         description: 'Renforce la puissance et la stabilité de l\'épaule dominante pour un smash plus puissant.',
-        videoYoutube: 'feWp7jZopI8',
+        videoYoutube: 'Ap7texwO3Nk',
         benefice: 'Puissance de smash augmentée',
         instructions: [
           'Assis, un haltère dans la main dominante.',
@@ -152,7 +152,7 @@ export const SPORTS: Sport[] = [
         slug: 'rotation-hanche-golf',
         nom: 'Rotation de hanche avec bâton',
         description: 'Améliore l\'amplitude et la fluidité de votre rotation de hanche, clé d\'un swing puissant.',
-        videoYoutube: 'Dr41gZwfTfM',
+        videoYoutube: 'pykIOE1L2EU',
         benefice: 'Augmente la distance de frappe en optimisant la rotation',
         instructions: [
           'Bâton ou club derrière les épaules en position debout.',
@@ -186,7 +186,7 @@ export const SPORTS: Sport[] = [
         slug: 'planche-golf',
         nom: 'Planche avec rotation de hanche',
         description: 'Renforce le gainage profond tout en travaillant la mobilité thoracique indispensable au swing.',
-        videoYoutube: '-lkv4E8Aymk',
+        videoYoutube: 'R3ombmg7tv4',
         benefice: 'Swing plus stable et reproductible',
         instructions: [
           'Position de planche haute, bras tendus.',
@@ -203,7 +203,7 @@ export const SPORTS: Sport[] = [
         slug: 'squat-gobelet-golf',
         nom: 'Squat gobelet lent (tempo 4-1-4)',
         description: 'Améliore la mobilité des hanches et chevilles nécessaire à une bonne posture d\'adresse.',
-        videoYoutube: 'Dr41gZwfTfM',
+        videoYoutube: 'qdfyNNXX8l0',
         benefice: 'Posture d\'adresse plus stable et naturelle',
         instructions: [
           'Haltère tenu contre la poitrine.',
@@ -220,7 +220,7 @@ export const SPORTS: Sport[] = [
         slug: 'face-pull-golf',
         nom: 'Face Pull (élastique ou poulie)',
         description: 'Renforce les rotateurs externes et prévient les douleurs d\'épaule fréquentes chez les golfeurs.',
-        videoYoutube: 'feWp7jZopI8',
+        videoYoutube: 'AsJXJA5cby0',
         benefice: 'Prévention blessures épaule + meilleur contrôle du club',
         instructions: [
           'Fixez un élastique à hauteur du visage.',
@@ -249,7 +249,7 @@ export const SPORTS: Sport[] = [
         slug: 'split-step-tennis',
         nom: 'Split Step + sprint (départ réactif)',
         description: 'Entraîne le split step du tennis — le saut de préparation — et le premier pas explosif vers la balle.',
-        videoYoutube: '-lkv4E8Aymk',
+        videoYoutube: 'bnF714dXN20',
         benefice: 'Gagner 0,3 à 0,5 seconde sur chaque départ',
         instructions: [
           'Debout, légèrement fléchi, sur la pointe des pieds.',
@@ -266,7 +266,7 @@ export const SPORTS: Sport[] = [
         slug: 'rotation-service-tennis',
         nom: 'Rotation + élévation épaule (Sword Draw)',
         description: 'Reproduit la chaîne cinétique du service. Renforce les muscles impliqués dans la montée du bras.',
-        videoYoutube: 'feWp7jZopI8',
+        videoYoutube: 'Y23_aPv_1Ac',
         benefice: 'Service plus puissant et moins de douleurs d\'épaule',
         instructions: [
           'Élastique fixé bas, tenant les deux mains.',
@@ -283,7 +283,7 @@ export const SPORTS: Sport[] = [
         slug: 'bulgarian-split-tennis',
         nom: 'Squat bulgare (explosif)',
         description: 'Construit la puissance unijambiste nécessaire pour les changements de direction et les accélérations.',
-        videoYoutube: 'Dr41gZwfTfM',
+        videoYoutube: 'eCJxHKDXBqk',
         benefice: 'Puissance et stabilité pour les déplacements difficiles',
         instructions: [
           'Pied arrière sur banc, pied avant à 60 cm.',
@@ -300,7 +300,7 @@ export const SPORTS: Sport[] = [
         slug: 'nordic-curl-tennis',
         nom: 'Nordic Curl (ischio-jambiers)',
         description: 'Renforce les ischio-jambiers excentriques — protection clé contre les élongations fréquentes au tennis.',
-        videoYoutube: 'gNdZuaYZz7E',
+        videoYoutube: '8Xtt8zQGNls',
         benefice: 'Réduit de 50% le risque d\'élongation des ischios',
         instructions: [
           'À genoux, partenaire ou banc qui bloque les chevilles.',
@@ -317,7 +317,7 @@ export const SPORTS: Sport[] = [
         slug: 'gainage-rotation-tennis',
         nom: 'Pallof Press (anti-rotation)',
         description: 'Renforce la résistance à la rotation du tronc — stabilité indispensable lors des frappes en déséquilibre.',
-        videoYoutube: '-lkv4E8Aymk',
+        videoYoutube: 'ZVVglfF01zA',
         benefice: 'Frappes précises même en position déséquilibrée',
         instructions: [
           'Élastique fixé au niveau du nombril sur le côté.',
@@ -346,7 +346,7 @@ export const SPORTS: Sport[] = [
         slug: 'squat-jump-football',
         nom: 'Squat sauté (Jump Squat)',
         description: 'Développe la puissance explosive des jambes pour les sprints, duels et sauts de la tête.',
-        videoYoutube: 'Dr41gZwfTfM',
+        videoYoutube: '18WlJ2Df22Q',
         benefice: 'Sprint plus rapide, saut plus haut',
         instructions: [
           'Pieds à largeur d\'épaules, mains derrière la tête.',
@@ -363,7 +363,7 @@ export const SPORTS: Sport[] = [
         slug: 'nordic-curl-football',
         nom: 'Nordic Curl (prévention ischio)',
         description: 'Le meilleur exercice scientifiquement prouvé pour prévenir les élongations des ischio-jambiers au foot.',
-        videoYoutube: 'gNdZuaYZz7E',
+        videoYoutube: 'Re3Ibrqq7gQ',
         benefice: '-50% de risque d\'élongation ischio',
         instructions: [
           'À genoux, partenaire tient les chevilles.',
@@ -380,7 +380,7 @@ export const SPORTS: Sport[] = [
         slug: 'hip-thrust-football',
         nom: 'Hip Thrust unilatéral',
         description: 'Renforce le grand fessier qui génère la puissance dans le tir et le sprint. Version unilatérale pour corriger les déséquilibres.',
-        videoYoutube: '_BokfgTywBw',
+        videoYoutube: '34xR5kn02xY',
         benefice: 'Tir plus puissant, sprint plus explosif',
         instructions: [
           'Dos sur banc, pied d\'appui à plat, l\'autre jambe tendue.',
@@ -397,7 +397,7 @@ export const SPORTS: Sport[] = [
         slug: 'calf-raise-football',
         nom: 'Mollets unijambiste (pliométrique)',
         description: 'Les mollets puissants sont essentiels pour le démarrage, le dribble et la frappe. Version explosive pour le foot.',
-        videoYoutube: 'Dr41gZwfTfM',
+        videoYoutube: 'K9YJG74jWZE',
         benefice: 'Accélération et démarrage améliorés',
         instructions: [
           'Sur une marche, sur un pied.',
@@ -414,7 +414,7 @@ export const SPORTS: Sport[] = [
         slug: 'planche-football',
         nom: 'Planche + toucher épaules',
         description: 'Gainage dynamique anti-rotation essentiel pour protéger les duels et maintenir l\'équilibre lors des contacts.',
-        videoYoutube: '-lkv4E8Aymk',
+        videoYoutube: 'XI69V50B1C0',
         benefice: 'Meilleure résistance aux contacts et duels',
         instructions: [
           'Position de planche haute, bras tendus.',
@@ -431,7 +431,7 @@ export const SPORTS: Sport[] = [
         slug: 'copenhagen-football',
         nom: 'Copenhagen Plank (adducteurs)',
         description: 'Renforce les adducteurs, muscle très souvent blessé au football. Prévient les pubalgie et étirements inguinaux.',
-        videoYoutube: '-lkv4E8Aymk',
+        videoYoutube: 'cqehV0kVvjM',
         benefice: 'Prévient les pubalgies et blessures inguinales',
         instructions: [
           'Position de planche latérale, pied haut posé sur un banc.',
@@ -460,7 +460,7 @@ export const SPORTS: Sport[] = [
         slug: 'box-jump-basket',
         nom: 'Box Jump (saut sur caisse)',
         description: 'Développe la détente verticale explosive indispensable pour les rebonds, dunks et contres.',
-        videoYoutube: '-lkv4E8Aymk',
+        videoYoutube: 'hLFw24pSiog',
         benefice: 'Augmente la détente verticale de 5 à 10 cm',
         instructions: [
           'Face à une caisse stable (30-60 cm).',
@@ -477,7 +477,7 @@ export const SPORTS: Sport[] = [
         slug: 'wall-sit-basket',
         nom: 'Chaise au mur (Wall Sit)',
         description: 'Renforce les quadriceps en isométrie pour mieux défendre en position basse et résister aux contacts.',
-        videoYoutube: 'Dr41gZwfTfM',
+        videoYoutube: 'OTMZp8KrRc8',
         benefice: 'Position défensive plus solide et durable',
         instructions: [
           'Dos au mur, descendez jusqu\'à cuisses parallèles.',
@@ -494,7 +494,7 @@ export const SPORTS: Sport[] = [
         slug: 'calf-jumps-basket',
         nom: 'Sauts de mollets rapides',
         description: 'Entraîne le ressort des mollets pour des sauts rapides répétés (rebonds offensifs, second effort).',
-        videoYoutube: 'Dr41gZwfTfM',
+        videoYoutube: '71k3HuO-kKw',
         benefice: 'Sauts répétés plus rapides et moins fatigants',
         instructions: [
           'Pieds à largeur de hanches.',
@@ -511,7 +511,7 @@ export const SPORTS: Sport[] = [
         slug: 'dips-basket',
         nom: 'Dips (force bras défense/attaque)',
         description: 'Renforce triceps et pectoraux pour les contacts en attaque et les actions défensives avec les bras.',
-        videoYoutube: '-lkv4E8Aymk',
+        videoYoutube: 'x-EFQ1BIYlc',
         benefice: 'Plus de force pour les contacts et lay-ups',
         instructions: [
           'Barres parallèles ou chaise robuste.',
@@ -540,7 +540,7 @@ export const SPORTS: Sport[] = [
         slug: 'souleve-terre-rugby',
         nom: 'Soulevé de terre lourd',
         description: 'L\'exercice roi pour développer la force globale nécessaire en mêlée, plaquages et rucks.',
-        videoYoutube: 'gNdZuaYZz7E',
+        videoYoutube: 'nkzKGyk8U0k',
         benefice: 'Force de mêlée et résistance aux plaquages',
         instructions: [
           'Barre au sol, pieds à largeur de hanches.',
@@ -557,7 +557,7 @@ export const SPORTS: Sport[] = [
         slug: 'squat-rugby',
         nom: 'Back Squat lourd',
         description: 'Construit la force des membres inférieurs essentielle pour les poussées en mêlée et les accélérations.',
-        videoYoutube: 'Dr41gZwfTfM',
+        videoYoutube: 'OWjyAaX5xmY',
         benefice: 'Puissance de mêlée et vitesse de sprint',
         instructions: [
           'Barre sur les trapèzes, dos neutre.',
@@ -574,7 +574,7 @@ export const SPORTS: Sport[] = [
         slug: 'bench-rugby',
         nom: 'Développé couché barre (explosif)',
         description: 'Force de poussée des bras pour les placages, rucks et passes puissantes.',
-        videoYoutube: 'pxls2vBxFVs',
+        videoYoutube: 'h--woXuXXmk',
         benefice: 'Puissance de placage et de bras',
         instructions: [
           'Descente contrôlée en 2 secondes.',
@@ -590,7 +590,7 @@ export const SPORTS: Sport[] = [
         slug: 'tractions-rugby',
         nom: 'Tractions lestées',
         description: 'Force de traction pour les plaquages, rucks et récupérations de ballon.',
-        videoYoutube: '7FvO7zKB43o',
+        videoYoutube: 'TjnfetbGNGs',
         benefice: 'Force de traction et résistance aux rucks',
         instructions: [
           'Barre de traction avec ceinture lestée.',
@@ -607,7 +607,7 @@ export const SPORTS: Sport[] = [
         slug: 'burpees-rugby',
         nom: 'Burpees avec sprint 10m',
         description: 'Entraîne la capacité à se relever rapidement après un plaquage et accélérer immédiatement.',
-        videoYoutube: '-lkv4E8Aymk',
+        videoYoutube: 'i81QzMpFnj4',
         benefice: 'Se relever vite après un plaquage',
         instructions: [
           'Burpee complet (au sol + remontée).',
@@ -636,7 +636,7 @@ export const SPORTS: Sport[] = [
         slug: 'tractions-natation',
         nom: 'Tractions (pronation large)',
         description: 'Reproduit le mouvement de crawl hors de l\'eau. Développe la puissance de traction essentielle à la natation.',
-        videoYoutube: '7FvO7zKB43o',
+        videoYoutube: 'rDNYmS_1Cjs',
         benefice: 'Propulsion plus puissante et efficace',
         instructions: [
           'Prise large en pronation, bras tendus.',
@@ -653,7 +653,7 @@ export const SPORTS: Sport[] = [
         slug: 'rotation-epaule-natation',
         nom: 'Rotation épaule 360° (élastique)',
         description: 'Maintient la mobilité complète de l\'épaule pour prévenir le fameux "shoulder du nageur".',
-        videoYoutube: 'feWp7jZopI8',
+        videoYoutube: 'NmlY4BuXKng',
         benefice: 'Prévient les tendinites d\'épaule du nageur',
         instructions: [
           'Élastique léger, bras tendu.',
@@ -670,7 +670,7 @@ export const SPORTS: Sport[] = [
         slug: 'superman-natation',
         nom: 'Superman avec balancement de bras',
         description: 'Renforce les lombaires et améliore la position horizontale dans l\'eau (gainage arrière).',
-        videoYoutube: 'gNdZuaYZz7E',
+        videoYoutube: 'DUuh5wrkLIY',
         benefice: 'Position horizontale dans l\'eau = moins de résistance',
         instructions: [
           'Face au sol, bras tendus devant.',
@@ -687,7 +687,7 @@ export const SPORTS: Sport[] = [
         slug: 'pompes-natation',
         nom: 'Pompes prise large (push de crawl)',
         description: 'Renforce la poussée finale du crawl et le passage au-dessus de l\'eau.',
-        videoYoutube: '-lkv4E8Aymk',
+        videoYoutube: 'tunVzHcch-w',
         benefice: 'Phase de poussée finale du crawl plus efficace',
         instructions: [
           'Prise plus large que les épaules.',
@@ -715,7 +715,7 @@ export const SPORTS: Sport[] = [
         slug: 'leg-press-cyclisme',
         nom: 'Presse à jambes unilatérale',
         description: 'Développe la puissance de pédalage de chaque jambe indépendamment pour corriger les déséquilibres.',
-        videoYoutube: 'Dr41gZwfTfM',
+        videoYoutube: 'vp5UYo-kN8w',
         benefice: 'Plus de watts et correction des asymétries de pédalage',
         instructions: [
           'Pied à mi-hauteur sur la plateforme (angle pédalage).',
@@ -732,7 +732,7 @@ export const SPORTS: Sport[] = [
         slug: 'mollets-debout-cyclisme',
         nom: 'Mollets debout unilatéral (lents)',
         description: 'Les mollets interviennent à chaque coup de pédale. Cette version lente les renforce sans les raidir.',
-        videoYoutube: 'Dr41gZwfTfM',
+        videoYoutube: 'kFVs2AlERGo',
         benefice: 'Plus de puissance en fin de coup de pédale',
         instructions: [
           'Un pied sur une marche, autre en l\'air.',
@@ -748,7 +748,7 @@ export const SPORTS: Sport[] = [
         slug: 'gainage-cycliste',
         nom: 'Planche + extension de bras alternée',
         description: 'Le dos douloureux après 3 heures de selle est un problème classique. Cet exercice le prévient efficacement.',
-        videoYoutube: '-lkv4E8Aymk',
+        videoYoutube: 'ceOIzA6bVOE',
         benefice: 'Prévention des douleurs lombaires du cycliste',
         instructions: [
           'Planche haute, bras tendus.',
@@ -765,7 +765,7 @@ export const SPORTS: Sport[] = [
         slug: 'hip-thrust-cyclisme',
         nom: 'Hip Thrust (activation fessiers)',
         description: 'Beaucoup de cyclistes sous-utilisent leurs fessiers. Cet exercice réactive le grand fessier pour +15% de puissance.',
-        videoYoutube: '_BokfgTywBw',
+        videoYoutube: 'IMPB5EMTcqI',
         benefice: '+15% de puissance de pédalage en côte',
         instructions: [
           'Dos sur banc, barre sur les hanches.',
