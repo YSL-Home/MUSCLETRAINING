@@ -3,7 +3,7 @@ import { MUSCLES } from '@/data/muscles'
 import { EXERCISES } from '@/data/exercises'
 import { PROGRAMMES } from '@/data/programmes'
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.vertlime.fr'
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sportit.fr'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()

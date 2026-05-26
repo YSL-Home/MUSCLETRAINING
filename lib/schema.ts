@@ -1,7 +1,7 @@
 import type { Exercise } from '@/data/exercises'
 import type { Programme } from '@/data/programmes'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.vertlime.fr'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sportit.fr'
 
 export function exerciseSchema(exercise: Exercise, muscleNom: string) {
   return {
@@ -58,7 +58,7 @@ export function programmeSchema(programme: Programme) {
     description: programme.descriptionSeo,
     provider: {
       '@type': 'Organization',
-      name: 'Vert Lime',
+      name: 'Sport It',
       url: SITE_URL,
     },
     courseMode: programme.mode === 'salle' ? 'onsite' : 'online',
@@ -72,7 +72,7 @@ export function websiteSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Vert Lime',
+    name: 'Sport It',
     url: SITE_URL,
     description: 'Bibliothèque complète d\'exercices de musculation avec vidéos YouTube, programmes salle et maison, pour tous les niveaux.',
     potentialAction: {

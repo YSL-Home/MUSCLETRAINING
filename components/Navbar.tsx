@@ -29,7 +29,7 @@ export default function Navbar() {
             <div className="w-9 h-9 relative flex-shrink-0">
               <Image
                 src="/logo.png"
-                alt="Vert Lime"
+                alt="Sport It"
                 width={36}
                 height={36}
                 className="object-contain"
@@ -37,7 +37,7 @@ export default function Navbar() {
               />
             </div>
             <span className="font-black text-lg tracking-widest hidden sm:block" style={{ color: '#b8d400' }}>
-              VERT LIME
+              SPORT IT
             </span>
           </Link>
 

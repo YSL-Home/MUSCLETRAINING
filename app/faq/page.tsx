@@ -157,7 +157,7 @@ const CATEGORIES: Categorie[] = [
     emoji: '💻',
     questions: [
       {
-        q: 'Vert Lime est-il gratuit ?',
+        q: 'Sport It est-il gratuit ?',
         r: 'Oui, entièrement et définitivement gratuit. Aucune inscription, aucun abonnement, aucune fonctionnalité payante. L\'accès à tous les exercices, programmes, calculateurs et guides est libre.',
       },
       {
@@ -174,7 +174,7 @@ const CATEGORIES: Categorie[] = [
       },
       {
         q: 'Les informations sont-elles vérifiées scientifiquement ?',
-        r: 'Nous nous efforçons de baser nos contenus sur des données probantes et des études en sciences du sport. Cependant, Vert Lime n\'est pas un site médical. En cas de doute, consultez un professionnel de santé ou un coach certifié. Voyez nos CGU pour plus d\'informations sur les limites de nos conseils.',
+        r: 'Nous nous efforçons de baser nos contenus sur des données probantes et des études en sciences du sport. Cependant, Sport It n\'est pas un site médical. En cas de doute, consultez un professionnel de santé ou un coach certifié. Voyez nos CGU pour plus d\'informations sur les limites de nos conseils.',
       },
     ],
   },

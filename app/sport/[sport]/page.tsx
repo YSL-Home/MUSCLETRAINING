@@ -36,7 +36,7 @@ export default async function SportPage({ params }: { params: Promise<{ sport: s
   const sport = getSportBySlug(slug)
   if (!sport) notFound()
 
-  const pageUrl = `https://www.vertlime.fr/sport/${sport.slug}`
+  const pageUrl = `https://www.sportit.fr/sport/${sport.slug}`
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -77,7 +77,7 @@ export default async function SportPage({ params }: { params: Promise<{ sport: s
       <div className="space-y-10">
         {sport.exercices.map((ex, i) => {
           const diff = DIFF[ex.difficulte]
-          const exUrl = `https://www.vertlime.fr/sport/${sport.slug}#${ex.slug}`
+          const exUrl = `https://www.sportit.fr/sport/${sport.slug}#${ex.slug}`
           const muscleIds = ex.muscles.map(m =>
             m.toLowerCase().replace(/[éèê]/g, 'e').replace(/[àâ]/g, 'a').replace(/ .*/,'') as MuscleId
           )

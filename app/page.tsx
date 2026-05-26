@@ -9,7 +9,7 @@ import { PROGRAMMES } from '@/data/programmes'
 import { SPORTS } from '@/data/sports'
 
 export const metadata: Metadata = {
-  title: 'Vert Lime — Exercices, Programmes Salle & Maison avec Vidéos',
+  title: 'Sport It — Exercices, Programmes Salle & Maison avec Vidéos',
   description: 'Cliquez sur un muscle pour découvrir tous les exercices avec vidéos YouTube en français. Programmes salle et maison pour débutants et avancés. 100% gratuit.',
 }
 

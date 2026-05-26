@@ -8,7 +8,7 @@ interface ShareButtonsProps {
 
 export default function ShareButtons({ url, title, compact = false }: ShareButtonsProps) {
   const encoded = encodeURIComponent(url)
-  const text = encodeURIComponent(`${title} — Vert Lime`)
+  const text = encodeURIComponent(`${title} — Sport It`)
 
   const share = (platform: string) => {
     const urls: Record<string, string> = {
