@@ -13,9 +13,12 @@ export const metadata: Metadata = {
   authors: [{ name: 'Sport It' }],
   creator: 'Sport It',
   icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
-    apple: '/favicon.svg',
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/logo.png', sizes: '192x192', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/logo.png',
   },
   openGraph: {
     type: 'website',
