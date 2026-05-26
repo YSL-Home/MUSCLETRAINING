@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { useState, useEffect } from 'react'
 
 export default function Navbar() {
@@ -25,26 +24,14 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
 
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-12 h-12 relative flex-shrink-0">
-              <Image
-                src="/logo.png"
-                alt="Sport It"
-                width={48}
-                height={48}
-                className="object-contain w-full h-full"
-                priority
-              />
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="font-black text-xl tracking-widest hidden sm:block" style={{ color: '#b8d400' }}>
-                SPORT IT
-              </span>
-              <span className="text-[10px] tracking-[0.2em] font-semibold hidden sm:block" style={{ color: '#38bdf8' }}>
-                ENTRAÎNEMENT
-              </span>
-            </div>
+          {/* Logo texte uniquement */}
+          <Link href="/" className="flex flex-col leading-none">
+            <span className="font-black text-2xl tracking-widest" style={{ color: '#b8d400' }}>
+              SPORT IT
+            </span>
+            <span className="text-[9px] tracking-[0.25em] font-semibold" style={{ color: '#38bdf8' }}>
+              ENTRAÎNEMENT
+            </span>
           </Link>
 
           {/* Nav links — desktop */}
