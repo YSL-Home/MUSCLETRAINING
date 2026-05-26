@@ -5,6 +5,7 @@ import Breadcrumb from '@/components/Breadcrumb'
 import YouTubeEmbed from '@/components/YouTubeEmbed'
 import ExerciseCard from '@/components/ExerciseCard'
 import MuscleIllustration from '@/components/MuscleIllustration'
+import ExerciseIllustration from '@/components/ExerciseIllustration'
 import { getExerciseBySlug, EXERCISES } from '@/data/exercises'
 import { getMuscleById } from '@/data/muscles'
 import { exerciseSchema, breadcrumbSchema } from '@/lib/schema'
@@ -172,12 +173,16 @@ export default async function ExercisePage({ params }: { params: Promise<{ slug:
               {/* Muscles ciblés */}
               <div className="bg-white rounded-2xl border border-slate-200 p-5">
                 <h3 className="font-bold text-slate-900 mb-4">Muscles ciblés</h3>
-                {/* Illustration SVG */}
+                {/* Illustration exercice */}
+                <div className="mb-4 rounded-xl overflow-hidden">
+                  <ExerciseIllustration slug={exercise.slug} />
+                </div>
+                {/* Schéma muscles */}
                 <div className="flex justify-center mb-4 bg-slate-50 rounded-xl p-3">
                   <MuscleIllustration
                     primaires={exercise.musclesPrimaires}
                     secondaires={exercise.musclesSecondaires}
-                    size={90}
+                    size={80}
                   />
                 </div>
                 {musclePrincipal && (

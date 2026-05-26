@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Breadcrumb from '@/components/Breadcrumb'
 import YouTubeEmbed from '@/components/YouTubeEmbed'
 import MuscleIllustration from '@/components/MuscleIllustration'
+import ExerciseIllustration from '@/components/ExerciseIllustration'
 import ShareButtons from '@/components/ShareButtons'
 import { SPORTS, getSportBySlug } from '@/data/sports'
 import type { MuscleId } from '@/data/muscles'
@@ -120,25 +121,33 @@ export default async function SportPage({ params }: { params: Promise<{ sport: s
                     <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Vidéo technique</p>
                     <YouTubeEmbed videoId={ex.videoYoutube} title={ex.nom} />
                   </div>
-                  <div className="flex flex-col items-center">
-                    <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Muscles ciblés</p>
-                    <div className="bg-slate-50 rounded-xl p-3 flex items-center justify-center w-full">
-                      <MuscleIllustration
-                        primaires={ex.muscles.slice(0,2).map(m => normalizeMuscle(m))}
-                        secondaires={ex.muscles.slice(2).map(m => normalizeMuscle(m))}
-                        size={90}
-                      />
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="w-full">
+                      <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Illustration</p>
+                      <div className="rounded-xl overflow-hidden bg-slate-50">
+                        <ExerciseIllustration slug={ex.slug} />
+                      </div>
                     </div>
-                    <div className="mt-3 flex flex-wrap gap-1 justify-center">
-                      {ex.muscles.map((m, mi) => (
-                        <span key={m} className="text-xs px-2 py-0.5 rounded-full font-medium"
-                          style={{
-                            background: mi === 0 ? sport.couleur + '20' : '#f1f5f9',
-                            color: mi === 0 ? sport.couleur : '#64748b',
-                          }}>
-                          {m}
-                        </span>
-                      ))}
+                    <div className="w-full">
+                      <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Muscles</p>
+                      <div className="bg-slate-50 rounded-xl p-2 flex items-center justify-center w-full">
+                        <MuscleIllustration
+                          primaires={ex.muscles.slice(0,2).map(m => normalizeMuscle(m))}
+                          secondaires={ex.muscles.slice(2).map(m => normalizeMuscle(m))}
+                          size={70}
+                        />
+                      </div>
+                      <div className="mt-2 flex flex-wrap gap-1 justify-center">
+                        {ex.muscles.map((m, mi) => (
+                          <span key={m} className="text-xs px-2 py-0.5 rounded-full font-medium"
+                            style={{
+                              background: mi === 0 ? sport.couleur + '20' : '#f1f5f9',
+                              color: mi === 0 ? sport.couleur : '#64748b',
+                            }}>
+                            {m}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
