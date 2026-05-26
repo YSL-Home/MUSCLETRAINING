@@ -3,9 +3,10 @@
 :root {
   --background: #f8fafc;
   --foreground: #0f172a;
-  --nav-bg: #0a0a0a;
+  --nav-bg: #0f172a;
   --accent: #b8d400;
   --accent-dark: #95ae00;
+  --accent2: #38bdf8;
   --card-bg: #ffffff;
   --card-border: #e2e8f0;
   --muted: #64748b;
@@ -32,8 +33,8 @@ body {
 
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #f1f5f9; }
-::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+::-webkit-scrollbar-thumb { background: #b8d400; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #95ae00; }
 
 .muscle-region {
   transition: fill 0.2s, opacity 0.2s;
@@ -47,5 +48,5 @@ body {
 }
 .exercise-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.09);
+  box-shadow: 0 10px 25px rgba(184,212,0,0.12);
 }

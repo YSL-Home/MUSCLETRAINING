@@ -12,6 +12,11 @@ export const metadata: Metadata = {
   keywords: ['musculation', 'exercices', 'programme', 'salle de sport', 'maison', 'sans matériel', 'pectoraux', 'dos', 'jambes', 'débutant'],
   authors: [{ name: 'Sport It' }],
   creator: 'Sport It',
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
@@ -38,11 +43,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Navbar />
         <main>{children}</main>
-        <footer style={{ background: '#0a0a0a', borderTop: '1px solid #1f1f1f' }} className="mt-16 py-10">
+        <footer style={{ background: '#0f172a', borderTop: '1px solid #1e293b' }} className="mt-16 py-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-slate-400 text-sm">
               <div>
-                <div className="font-black text-lg mb-2 tracking-widest" style={{ color: '#b8d400' }}>SPORT IT</div>
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center text-lg"
+                    style={{ background: 'linear-gradient(135deg, #b8d400 0%, #38bdf8 100%)' }}>
+                    ⚡
+                  </div>
+                  <span className="font-black text-lg tracking-widest" style={{ color: '#b8d400' }}>SPORT IT</span>
+                </div>
                 <p>La référence francophone pour la musculation. Exercices, programmes et vidéos pour tous les niveaux.</p>
               </div>
               <div>
@@ -65,7 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </ul>
               </div>
             </div>
-            <div className="border-t border-zinc-800 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-500 text-xs">
+            <div className="border-t border-slate-700 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-500 text-xs">
               <span>© {new Date().getFullYear()} Sport It — Tous droits réservés</span>
               <div className="flex gap-4">
                 <a href="/faq" className="hover:text-slate-300 transition-colors">FAQ</a>
