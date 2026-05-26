@@ -3,9 +3,9 @@
 :root {
   --background: #f8fafc;
   --foreground: #0f172a;
-  --nav-bg: #0f172a;
-  --accent: #f97316;
-  --accent-dark: #ea580c;
+  --nav-bg: #0a0a0a;
+  --accent: #b8d400;
+  --accent-dark: #95ae00;
   --card-bg: #ffffff;
   --card-border: #e2e8f0;
   --muted: #64748b;

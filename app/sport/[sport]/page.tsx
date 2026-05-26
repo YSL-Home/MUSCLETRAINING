@@ -36,7 +36,7 @@ export default async function SportPage({ params }: { params: Promise<{ sport: s
   const sport = getSportBySlug(slug)
   if (!sport) notFound()
 
-  const pageUrl = `https://www.musclegym.fr/sport/${sport.slug}`
+  const pageUrl = `https://www.vertlime.fr/sport/${sport.slug}`
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -77,7 +77,7 @@ export default async function SportPage({ params }: { params: Promise<{ sport: s
       <div className="space-y-10">
         {sport.exercices.map((ex, i) => {
           const diff = DIFF[ex.difficulte]
-          const exUrl = `https://www.musclegym.fr/sport/${sport.slug}#${ex.slug}`
+          const exUrl = `https://www.vertlime.fr/sport/${sport.slug}#${ex.slug}`
           const muscleIds = ex.muscles.map(m =>
             m.toLowerCase().replace(/[éèê]/g, 'e').replace(/[àâ]/g, 'a').replace(/ .*/,'') as MuscleId
           )
@@ -181,7 +181,7 @@ export default async function SportPage({ params }: { params: Promise<{ sport: s
         <div className="flex flex-wrap gap-3">
           {SPORTS.filter(s => s.id !== sport.id).map(s => (
             <Link key={s.id} href={`/sport/${s.slug}`}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200 hover:border-orange-300 text-sm font-medium text-slate-700 hover:text-orange-600 transition-all">
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200 hover:border-lime-300 text-sm font-medium text-slate-700 hover:text-lime-500 transition-all">
               <span>{s.emoji}</span>
               {s.nom}
             </Link>

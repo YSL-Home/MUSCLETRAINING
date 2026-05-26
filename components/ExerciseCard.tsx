@@ -19,7 +19,7 @@ export default function ExerciseCard({ exercise }: { exercise: Exercise }) {
 
   return (
     <Link href={`/exercice/${exercise.slug}`} className="block exercise-card">
-      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden hover:border-orange-300 transition-all" style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
+      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden hover:border-lime-300 transition-all" style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
         {/* Thumbnail YouTube */}
         <div className="relative aspect-video bg-slate-100 overflow-hidden">
           <img

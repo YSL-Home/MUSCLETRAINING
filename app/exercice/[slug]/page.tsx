@@ -118,7 +118,7 @@ export default async function ExercisePage({ params }: { params: Promise<{ slug:
             {/* Instructions */}
             <div className="mb-10">
               <h2 className="text-xl font-bold text-slate-900 mb-5 flex items-center gap-2">
-                <span className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold" style={{ background: '#f97316' }}>1</span>
+                <span className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold" style={{ background: '#b8d400' }}>1</span>
                 Instructions étape par étape
               </h2>
               <ol className="space-y-4">

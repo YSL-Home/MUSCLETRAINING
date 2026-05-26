@@ -26,7 +26,7 @@ const MUSCLE_LABELS: Record<MuscleId, string> = {
 const MUSCLE_COLORS: Record<MuscleId, string> = {
   pectoraux: '#ef4444', dos: '#3b82f6', epaules: '#8b5cf6',
   biceps: '#06b6d4', triceps: '#f59e0b', 'avant-bras': '#84cc16',
-  abdominaux: '#f97316', lombaires: '#a78bfa', quadriceps: '#10b981',
+  abdominaux: '#b8d400', lombaires: '#a78bfa', quadriceps: '#10b981',
   'ischio-jambiers': '#0ea5e9', fessiers: '#ec4899', mollets: '#14b8a6',
   trapezes: '#64748b',
 }
@@ -99,7 +99,7 @@ function MachineCard({ machine }: { machine: Machine }) {
               <div key={i} className="p-4 rounded-xl border border-slate-100 bg-slate-50">
                 <div className="flex items-start justify-between gap-3 mb-1">
                   <p className="font-semibold text-slate-800 text-sm">{ex.nom}</p>
-                  <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-orange-100 text-orange-700 whitespace-nowrap flex-shrink-0">
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-lime-100 text-lime-700 whitespace-nowrap flex-shrink-0">
                     {ex.seriesReps}
                   </span>
                 </div>
@@ -145,7 +145,7 @@ export default function MachinesPage() {
           value={query}
           onChange={e => setQuery(e.target.value)}
           placeholder='Ex : "presse cuisses", "lat pulldown", "leg curl"…'
-          className="w-full pl-12 pr-4 py-4 text-base rounded-2xl border-2 border-slate-200 focus:border-orange-400 focus:outline-none transition-colors bg-white shadow-sm"
+          className="w-full pl-12 pr-4 py-4 text-base rounded-2xl border-2 border-slate-200 focus:border-lime-300 focus:outline-none transition-colors bg-white shadow-sm"
         />
         {query && (
           <button
@@ -190,7 +190,7 @@ export default function MachinesPage() {
               <button
                 key={tag}
                 onClick={() => setQuery(tag)}
-                className="px-3 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-orange-100 hover:text-orange-700 transition-colors"
+                className="px-3 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-lime-100 hover:text-lime-700 transition-colors"
               >
                 {tag}
               </button>

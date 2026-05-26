@@ -9,7 +9,7 @@ import { PROGRAMMES } from '@/data/programmes'
 import { SPORTS } from '@/data/sports'
 
 export const metadata: Metadata = {
-  title: 'MuscleGym — Exercices, Programmes Salle & Maison avec Vidéos',
+  title: 'Vert Lime — Exercices, Programmes Salle & Maison avec Vidéos',
   description: 'Cliquez sur un muscle pour découvrir tous les exercices avec vidéos YouTube en français. Programmes salle et maison pour débutants et avancés. 100% gratuit.',
 }
 
@@ -26,11 +26,11 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #0f172a 100%)' }} className="py-16 px-4">
+      <section style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #111600 60%, #0a0a0a 100%)' }} className="py-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl sm:text-5xl font-black text-white leading-tight mb-4">
             Trouvez l&apos;exercice
-            <span style={{ color: '#f97316' }}> parfait</span>
+            <span style={{ color: '#b8d400' }}> parfait</span>
           </h1>
           <p className="text-slate-300 text-lg mb-10 max-w-2xl mx-auto">
             Cliquez sur un muscle pour découvrir tous les exercices avec vidéos. Programmes salle et maison pour tous les niveaux.
@@ -45,7 +45,7 @@ export default function HomePage() {
               { val: '100%', label: 'Gratuit' },
             ].map(stat => (
               <div key={stat.label} className="text-center">
-                <div className="text-3xl font-black" style={{ color: '#f97316' }}>{stat.val}</div>
+                <div className="text-3xl font-black" style={{ color: '#b8d400' }}>{stat.val}</div>
                 <div className="text-slate-400 text-sm mt-0.5">{stat.label}</div>
               </div>
             ))}
@@ -74,13 +74,13 @@ export default function HomePage() {
                 <Link
                   key={muscle.id}
                   href={`/muscles/${muscle.slug}`}
-                  className="group flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-orange-300 hover:shadow-md transition-all"
+                  className="group flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-lime-300 hover:shadow-md transition-all"
                 >
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: muscle.couleurSvg + '22' }}>
                     <div className="w-4 h-4 rounded-full" style={{ background: muscle.couleurSvg }} />
                   </div>
                   <div>
-                    <div className="font-semibold text-slate-800 text-sm group-hover:text-orange-600 transition-colors">{muscle.nom}</div>
+                    <div className="font-semibold text-slate-800 text-sm group-hover:text-lime-500 transition-colors">{muscle.nom}</div>
                     <div className="text-slate-400 text-xs">
                       {EXERCISES.filter(e => e.musclesPrimaires.includes(muscle.id)).length} exercices
                     </div>
@@ -110,7 +110,7 @@ export default function HomePage() {
             <Link
               href="/muscles/pectoraux"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white transition-all hover:opacity-90"
-              style={{ background: '#f97316' }}
+              style={{ background: '#b8d400' }}
             >
               Voir tous les exercices
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -158,8 +158,8 @@ export default function HomePage() {
           <div className="text-center">
             <Link
               href="/programmes"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold border-2 transition-all hover:bg-orange-50"
-              style={{ borderColor: '#f97316', color: '#f97316' }}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold border-2 transition-all hover:bg-lime-50"
+              style={{ borderColor: '#b8d400', color: '#b8d400' }}
             >
               Tous les programmes
             </Link>
@@ -172,7 +172,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-2xl font-black text-slate-900">Renforcement par sport</h2>
-            <Link href="/sport" className="text-sm font-semibold text-orange-500 hover:text-orange-600 transition-colors">
+            <Link href="/sport" className="text-sm font-semibold text-lime-400 hover:text-lime-500 transition-colors">
               Voir tous →
             </Link>
           </div>
@@ -180,10 +180,10 @@ export default function HomePage() {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
             {SPORTS.map(sport => (
               <Link key={sport.id} href={`/sport/${sport.slug}`}
-                className="group flex items-center gap-3 p-4 bg-white rounded-xl border border-slate-200 hover:border-orange-300 hover:shadow-md transition-all">
+                className="group flex items-center gap-3 p-4 bg-white rounded-xl border border-slate-200 hover:border-lime-300 hover:shadow-md transition-all">
                 <span className="text-2xl">{sport.emoji}</span>
                 <div>
-                  <p className="font-semibold text-slate-800 text-sm group-hover:text-orange-600 transition-colors">{sport.nom}</p>
+                  <p className="font-semibold text-slate-800 text-sm group-hover:text-lime-500 transition-colors">{sport.nom}</p>
                   <p className="text-slate-400 text-xs">{sport.exercices.length} exercices</p>
                 </div>
               </Link>
@@ -193,15 +193,15 @@ export default function HomePage() {
       </section>
 
       {/* CTA Salle vs Maison */}
-      <section className="py-14 px-4" style={{ background: '#0f172a' }}>
+      <section className="py-14 px-4" style={{ background: '#0a0a0a' }}>
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Link href="/programmes/salle" className="group p-8 rounded-2xl border border-blue-800 hover:border-blue-600 transition-all" style={{ background: '#0f2346' }}>
+          <Link href="/programmes/salle" className="group p-8 rounded-2xl border border-blue-800 hover:border-blue-600 transition-all" style={{ background: '#0a1200' }}>
             <div className="text-4xl mb-4">🏋️</div>
             <h3 className="text-white font-black text-2xl mb-2">Mode Salle</h3>
             <p className="text-slate-400 mb-4">Programmes avec barre, haltères et machines. Pour progresser rapidement avec les charges libres.</p>
             <span className="text-blue-400 font-semibold group-hover:text-blue-300 transition-colors">Découvrir les programmes salle →</span>
           </Link>
-          <Link href="/programmes/maison" className="group p-8 rounded-2xl border border-green-800 hover:border-green-600 transition-all" style={{ background: '#0f2e1a' }}>
+          <Link href="/programmes/maison" className="group p-8 rounded-2xl border border-green-800 hover:border-green-600 transition-all" style={{ background: '#0a1a00' }}>
             <div className="text-4xl mb-4">🏠</div>
             <h3 className="text-white font-black text-2xl mb-2">Mode Maison</h3>
             <p className="text-slate-400 mb-4">Programmes au poids du corps. Zéro équipement, zéro abonnement. Résultats garantis.</p>

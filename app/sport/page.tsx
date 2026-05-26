@@ -22,11 +22,11 @@ export default function SportsPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {SPORTS.map(sport => (
           <Link key={sport.id} href={`/sport/${sport.slug}`}
-            className="group block p-5 bg-white rounded-2xl border border-slate-200 hover:border-orange-300 hover:shadow-lg transition-all exercise-card">
+            className="group block p-5 bg-white rounded-2xl border border-slate-200 hover:border-lime-300 hover:shadow-lg transition-all exercise-card">
             <div className="flex items-center gap-3 mb-3">
               <span className="text-4xl">{sport.emoji}</span>
               <div>
-                <h2 className="font-bold text-slate-900 text-lg group-hover:text-orange-600 transition-colors">
+                <h2 className="font-bold text-slate-900 text-lg group-hover:text-lime-500 transition-colors">
                   {sport.nom}
                 </h2>
                 <p className="text-slate-400 text-xs">{sport.exercices.length} exercices ciblés</p>

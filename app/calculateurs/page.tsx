@@ -23,11 +23,11 @@ function IMCCalculateur() {
       <div className="grid grid-cols-2 gap-4 mb-5">
         <div>
           <label className="text-sm font-semibold text-slate-700 block mb-1">Poids (kg)</label>
-          <input type="number" value={poids} onChange={e => setPoids(e.target.value)} placeholder="70" className="w-full border border-slate-200 rounded-lg px-3 py-2.5 text-slate-800 focus:outline-none focus:border-orange-400 transition-colors" />
+          <input type="number" value={poids} onChange={e => setPoids(e.target.value)} placeholder="70" className="w-full border border-slate-200 rounded-lg px-3 py-2.5 text-slate-800 focus:outline-none focus:border-lime-300 transition-colors" />
         </div>
         <div>
           <label className="text-sm font-semibold text-slate-700 block mb-1">Taille (cm)</label>
-          <input type="number" value={taille} onChange={e => setTaille(e.target.value)} placeholder="175" className="w-full border border-slate-200 rounded-lg px-3 py-2.5 text-slate-800 focus:outline-none focus:border-orange-400 transition-colors" />
+          <input type="number" value={taille} onChange={e => setTaille(e.target.value)} placeholder="175" className="w-full border border-slate-200 rounded-lg px-3 py-2.5 text-slate-800 focus:outline-none focus:border-lime-300 transition-colors" />
         </div>
       </div>
       {imc && cat && (
@@ -66,13 +66,13 @@ function MacroCalculateur() {
       <div className="space-y-4 mb-5">
         <div>
           <label className="text-sm font-semibold text-slate-700 block mb-1">Poids (kg)</label>
-          <input type="number" value={poids} onChange={e => setPoids(e.target.value)} placeholder="70" className="w-full border border-slate-200 rounded-lg px-3 py-2.5 text-slate-800 focus:outline-none focus:border-orange-400" />
+          <input type="number" value={poids} onChange={e => setPoids(e.target.value)} placeholder="70" className="w-full border border-slate-200 rounded-lg px-3 py-2.5 text-slate-800 focus:outline-none focus:border-lime-300" />
         </div>
         <div>
           <label className="text-sm font-semibold text-slate-700 block mb-2">Objectif</label>
           <div className="grid grid-cols-3 gap-2">
             {([['prise', 'Prise de masse'], ['maintien', 'Maintien'], ['seche', 'Sèche']] as const).map(([key, label]) => (
-              <button key={key} onClick={() => setObjectif(key)} className={`py-2 rounded-lg text-sm font-semibold transition-all ${objectif === key ? 'text-white' : 'text-slate-600 bg-slate-100 hover:bg-slate-200'}`} style={objectif === key ? { background: '#f97316' } : {}}>
+              <button key={key} onClick={() => setObjectif(key)} className={`py-2 rounded-lg text-sm font-semibold transition-all ${objectif === key ? 'text-white' : 'text-slate-600 bg-slate-100 hover:bg-slate-200'}`} style={objectif === key ? { background: '#b8d400' } : {}}>
                 {label}
               </button>
             ))}
@@ -80,7 +80,7 @@ function MacroCalculateur() {
         </div>
         <div>
           <label className="text-sm font-semibold text-slate-700 block mb-2">Niveau d&apos;activité</label>
-          <select value={activite} onChange={e => setActivite(e.target.value as typeof activite)} className="w-full border border-slate-200 rounded-lg px-3 py-2.5 text-slate-800 focus:outline-none focus:border-orange-400">
+          <select value={activite} onChange={e => setActivite(e.target.value as typeof activite)} className="w-full border border-slate-200 rounded-lg px-3 py-2.5 text-slate-800 focus:outline-none focus:border-lime-300">
             <option value="sedentaire">Sédentaire (bureau, peu d&apos;exercice)</option>
             <option value="leger">Léger (1–2 séances/semaine)</option>
             <option value="modere">Modéré (3–4 séances/semaine)</option>
@@ -91,8 +91,8 @@ function MacroCalculateur() {
       {cal && (
         <div className="grid grid-cols-2 gap-3">
           <div className="col-span-2 text-center p-4 rounded-xl" style={{ background: '#fff7ed', border: '1px solid #fed7aa' }}>
-            <div className="text-3xl font-black text-orange-600">{cal}</div>
-            <div className="text-orange-700 text-sm font-medium">calories / jour</div>
+            <div className="text-3xl font-black text-lime-500">{cal}</div>
+            <div className="text-lime-700 text-sm font-medium">calories / jour</div>
           </div>
           {[['Protéines', proteines, 'g', '#3b82f6'], ['Glucides', glucides, 'g', '#16a34a'], ['Lipides', lipides, 'g', '#f59e0b']].map(([label, val, unit, color]) => (
             <div key={label as string} className="text-center p-3 rounded-xl border border-slate-100 bg-slate-50">
@@ -125,11 +125,11 @@ function RepMaxCalculateur() {
       <div className="grid grid-cols-2 gap-4 mb-5">
         <div>
           <label className="text-sm font-semibold text-slate-700 block mb-1">Charge soulevée (kg)</label>
-          <input type="number" value={poids} onChange={e => setPoids(e.target.value)} placeholder="100" className="w-full border border-slate-200 rounded-lg px-3 py-2.5 text-slate-800 focus:outline-none focus:border-orange-400" />
+          <input type="number" value={poids} onChange={e => setPoids(e.target.value)} placeholder="100" className="w-full border border-slate-200 rounded-lg px-3 py-2.5 text-slate-800 focus:outline-none focus:border-lime-300" />
         </div>
         <div>
           <label className="text-sm font-semibold text-slate-700 block mb-1">Répétitions réalisées</label>
-          <input type="number" value={reps} onChange={e => setReps(e.target.value)} placeholder="5" className="w-full border border-slate-200 rounded-lg px-3 py-2.5 text-slate-800 focus:outline-none focus:border-orange-400" />
+          <input type="number" value={reps} onChange={e => setReps(e.target.value)} placeholder="5" className="w-full border border-slate-200 rounded-lg px-3 py-2.5 text-slate-800 focus:outline-none focus:border-lime-300" />
         </div>
       </div>
       {rm && (

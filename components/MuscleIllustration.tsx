@@ -7,7 +7,7 @@ const MUSCLE_COLORS: Record<MuscleId, string> = {
   biceps: '#06b6d4',
   triceps: '#f59e0b',
   'avant-bras': '#84cc16',
-  abdominaux: '#f97316',
+  abdominaux: '#b8d400',
   lombaires: '#a78bfa',
   quadriceps: '#10b981',
   'ischio-jambiers': '#0ea5e9',

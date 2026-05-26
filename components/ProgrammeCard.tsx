@@ -21,7 +21,7 @@ export default function ProgrammeCard({ programme }: { programme: Programme }) {
 
   return (
     <Link href={href} className="block exercise-card">
-      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden hover:border-orange-300 transition-all p-5" style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
+      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden hover:border-lime-300 transition-all p-5" style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
         {/* Mode badge */}
         <div className="flex items-center justify-between mb-3">
           <span
@@ -66,7 +66,7 @@ export default function ProgrammeCard({ programme }: { programme: Programme }) {
           </span>
         </div>
 
-        <div className="mt-4 flex items-center gap-1 font-semibold text-sm" style={{ color: '#f97316' }}>
+        <div className="mt-4 flex items-center gap-1 font-semibold text-sm" style={{ color: '#b8d400' }}>
           Voir le programme
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

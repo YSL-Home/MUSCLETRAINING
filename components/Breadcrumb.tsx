@@ -18,7 +18,7 @@ export default function Breadcrumb({ crumbs }: { crumbs: Crumb[] }) {
           {crumb.url ? (
             <Link
               href={crumb.url}
-              className="text-slate-500 hover:text-orange-600 font-medium transition-colors"
+              className="text-slate-500 hover:text-lime-500 font-medium transition-colors"
             >
               {crumb.nom}
             </Link>

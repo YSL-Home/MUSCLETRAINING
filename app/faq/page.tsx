@@ -157,7 +157,7 @@ const CATEGORIES: Categorie[] = [
     emoji: '💻',
     questions: [
       {
-        q: 'MuscleGym est-il gratuit ?',
+        q: 'Vert Lime est-il gratuit ?',
         r: 'Oui, entièrement et définitivement gratuit. Aucune inscription, aucun abonnement, aucune fonctionnalité payante. L\'accès à tous les exercices, programmes, calculateurs et guides est libre.',
       },
       {
@@ -174,7 +174,7 @@ const CATEGORIES: Categorie[] = [
       },
       {
         q: 'Les informations sont-elles vérifiées scientifiquement ?',
-        r: 'Nous nous efforçons de baser nos contenus sur des données probantes et des études en sciences du sport. Cependant, MuscleGym n\'est pas un site médical. En cas de doute, consultez un professionnel de santé ou un coach certifié. Voyez nos CGU pour plus d\'informations sur les limites de nos conseils.',
+        r: 'Nous nous efforçons de baser nos contenus sur des données probantes et des études en sciences du sport. Cependant, Vert Lime n\'est pas un site médical. En cas de doute, consultez un professionnel de santé ou un coach certifié. Voyez nos CGU pour plus d\'informations sur les limites de nos conseils.',
       },
     ],
   },
@@ -194,7 +194,7 @@ function AccordionItem({ question, reponse, isOpen, onToggle }: {
       >
         <span className="font-semibold text-slate-800 text-sm leading-snug">{question}</span>
         <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-transform text-white text-sm font-bold ${isOpen ? 'rotate-45' : ''}`}
-          style={{ background: '#f97316' }}>
+          style={{ background: '#b8d400' }}>
           +
         </span>
       </button>
@@ -248,7 +248,7 @@ export default function FaqPage() {
                 ? 'text-white shadow-sm'
                 : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
             }`}
-            style={activeCategory === cat.id ? { background: '#f97316' } : {}}
+            style={activeCategory === cat.id ? { background: '#b8d400' } : {}}
           >
             <span>{cat.emoji}</span>
             {cat.label}
@@ -304,7 +304,7 @@ export default function FaqPage() {
                   value={contactForm.nom}
                   onChange={e => setContactForm(p => ({ ...p, nom: e.target.value }))}
                   placeholder="Jean Dupont"
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-orange-400 focus:outline-none bg-white"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-lime-300 focus:outline-none bg-white"
                 />
               </div>
               <div>
@@ -317,7 +317,7 @@ export default function FaqPage() {
                   value={contactForm.email}
                   onChange={e => setContactForm(p => ({ ...p, email: e.target.value }))}
                   placeholder="jean@exemple.fr"
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-orange-400 focus:outline-none bg-white"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-lime-300 focus:outline-none bg-white"
                 />
               </div>
             </div>
@@ -330,7 +330,7 @@ export default function FaqPage() {
                 value={contactForm.sujet}
                 onChange={e => setContactForm(p => ({ ...p, sujet: e.target.value }))}
                 required
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-orange-400 focus:outline-none bg-white"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-lime-300 focus:outline-none bg-white"
               >
                 <option value="">Sélectionnez un sujet…</option>
                 <option value="question">Question sur un exercice ou programme</option>
@@ -352,20 +352,20 @@ export default function FaqPage() {
                 onChange={e => setContactForm(p => ({ ...p, message: e.target.value }))}
                 placeholder="Décrivez votre question ou votre problème en détail…"
                 rows={5}
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-orange-400 focus:outline-none bg-white resize-none"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-lime-300 focus:outline-none bg-white resize-none"
               />
             </div>
 
             <div className="flex items-center justify-between gap-4 flex-wrap">
               <p className="text-xs text-slate-400">
                 En soumettant ce formulaire, vous acceptez nos{' '}
-                <Link href="/cgu" className="text-orange-500 hover:underline">CGU</Link>{' '}
+                <Link href="/cgu" className="text-lime-400 hover:underline">CGU</Link>{' '}
                 et notre politique de confidentialité.
               </p>
               <button
                 type="submit"
                 className="px-6 py-2.5 rounded-xl text-white font-semibold text-sm transition-opacity hover:opacity-90"
-                style={{ background: '#f97316' }}
+                style={{ background: '#b8d400' }}
               >
                 Envoyer le message →
               </button>

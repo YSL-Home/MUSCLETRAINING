@@ -97,7 +97,7 @@ export const MUSCLES: MuscleGroup[] = [
     description: 'La sangle abdominale protège les organes et stabilise le rachis. Elle comprend le grand droit, les obliques et le transverse.',
     descriptionSeo: 'Exercices pour muscler les abdominaux : planche, crunch, relevé de jambes. Guide complet avec vidéos et programmes maison.',
     emoji: '🔥',
-    couleurSvg: '#f97316',
+    couleurSvg: '#b8d400',
     positionSvg: 'avant',
     groupeCorps: 'milieu',
   },

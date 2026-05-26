@@ -34,14 +34,14 @@ export default function MuscleMap({ activeMode = 'salle' }: MuscleMapProps) {
         <button
           onClick={() => setView('avant')}
           className={`px-5 py-2 text-sm font-semibold transition-all ${view === 'avant' ? 'text-white' : 'text-slate-600 hover:text-slate-800'}`}
-          style={view === 'avant' ? { background: '#f97316' } : {}}
+          style={view === 'avant' ? { background: '#b8d400' } : {}}
         >
           Vue de face
         </button>
         <button
           onClick={() => setView('arriere')}
           className={`px-5 py-2 text-sm font-semibold transition-all ${view === 'arriere' ? 'text-white' : 'text-slate-600 hover:text-slate-800'}`}
-          style={view === 'arriere' ? { background: '#f97316' } : {}}
+          style={view === 'arriere' ? { background: '#b8d400' } : {}}
         >
           Vue de dos
         </button>

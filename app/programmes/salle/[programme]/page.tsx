@@ -111,7 +111,7 @@ function ProgrammeDetail({ programme, mode }: { programme: ReturnType<typeof get
             <div key={jour.numero} className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
               <div className="px-6 py-4 border-b border-slate-100" style={{ background: 'linear-gradient(to right, #f8fafc, #f1f5f9)' }}>
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-orange-500 text-white text-sm font-bold flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-full bg-lime-400 text-white text-sm font-bold flex items-center justify-center">
                     {jour.numero}
                   </div>
                   <div>
@@ -137,7 +137,7 @@ function ProgrammeDetail({ programme, mode }: { programme: ReturnType<typeof get
                         </div>
                         <div className="flex-1 min-w-0">
                           {exData ? (
-                            <Link href={`/exercice/${ex.slug}`} className="font-semibold text-slate-800 hover:text-orange-600 transition-colors">
+                            <Link href={`/exercice/${ex.slug}`} className="font-semibold text-slate-800 hover:text-lime-500 transition-colors">
                               {ex.nom}
                             </Link>
                           ) : (

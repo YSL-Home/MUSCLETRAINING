@@ -125,7 +125,7 @@ export default async function MusclePage({ params }: { params: Promise<{ muscle:
             <Link
               key={m.id}
               href={`/muscles/${m.slug}`}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-white border border-slate-200 hover:border-orange-300 text-slate-700 hover:text-orange-600 transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-white border border-slate-200 hover:border-lime-300 text-slate-700 hover:text-lime-500 transition-all"
             >
               <div className="w-2.5 h-2.5 rounded-full" style={{ background: m.couleurSvg }} />
               {m.nom}
