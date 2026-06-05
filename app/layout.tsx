@@ -5,6 +5,7 @@ import CookieConsent from '@/components/CookieConsent'
 import { LanguageProvider } from '@/components/LanguageProvider'
 import { websiteSchema } from '@/lib/schema'
 import InstallPWA from '@/components/InstallPWA'
+import NativeApp from '@/components/NativeApp'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.muscletraining.uk'),
@@ -66,12 +67,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6870790039775701"
           crossOrigin="anonymous"
+          data-nscript="afterInteractive"
         />
+        {/* Désactive AdSense dans l'app native (Capacitor) — AdMob prend le relais */}
+        <script dangerouslySetInnerHTML={{ __html: `if(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform()){window.adsbygoogle=window.adsbygoogle||[];window.adsbygoogle.push=function(){};}` }} />
         {/* Kill old service worker that caches stale chunks (muscletraining.uk fix) */}
         <script dangerouslySetInnerHTML={{ __html: `if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister()));if(window.caches){caches.keys().then(ks=>ks.forEach(k=>caches.delete(k)))}}` }} />
       </head>
       <body>
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BNDVNC4" height="0" width="0" style={{ display: 'none', visibility: 'hidden' }}></iframe></noscript>
+        <NativeApp />
         <LanguageProvider>
         <Navbar />
         <main>{children}</main>

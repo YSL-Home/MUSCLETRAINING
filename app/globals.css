@@ -114,3 +114,19 @@ font[style*="background-color"] { background: transparent !important; }
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+
+/* ── Indicateur hors-ligne (app native Capacitor) ── */
+html.is-offline body::before {
+  content: "⚠ Hors-ligne — contenu en cache";
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9999;
+  background: #E63946;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 4px 8px;
+  letter-spacing: 0.03em;
+}
+html.is-offline body { padding-top: 26px; }
