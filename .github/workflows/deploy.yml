@@ -1,0 +1,47 @@
+name: Build & Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: musclefr-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    env:
+      CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+      CF_ACCOUNT_ID: 063fa1dc8164f892d4c04294bc55d96a
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (next export → out/)
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: '1'
+
+      - name: Deploy to Cloudflare Pages
+        if: env.CF_API_TOKEN != ''
+        run: |
+          npx wrangler@4 pages deploy out/ \
+            --project-name=muscletraining \
+            --commit-dirty=true \
+            --branch=main
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: 063fa1dc8164f892d4c04294bc55d96a
