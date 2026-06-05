@@ -45,3 +45,6 @@ next-env.d.ts
 
 # design mockups (not for prod)
 /public/mockups*.html
+
+# capacitor-assets unused PWA webp
+/icons/
