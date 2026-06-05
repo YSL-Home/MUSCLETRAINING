@@ -157,7 +157,7 @@ const CATEGORIES: Categorie[] = [
     emoji: '💻',
     questions: [
       {
-        q: 'Sport It est-il gratuit ?',
+        q: 'Muscle Training est-il gratuit ?',
         r: 'Oui, entièrement et définitivement gratuit. Aucune inscription, aucun abonnement, aucune fonctionnalité payante. L\'accès à tous les exercices, programmes, calculateurs et guides est libre.',
       },
       {
@@ -174,7 +174,7 @@ const CATEGORIES: Categorie[] = [
       },
       {
         q: 'Les informations sont-elles vérifiées scientifiquement ?',
-        r: 'Nous nous efforçons de baser nos contenus sur des données probantes et des études en sciences du sport. Cependant, Sport It n\'est pas un site médical. En cas de doute, consultez un professionnel de santé ou un coach certifié. Voyez nos CGU pour plus d\'informations sur les limites de nos conseils.',
+        r: 'Nous nous efforçons de baser nos contenus sur des données probantes et des études en sciences du sport. Cependant, Muscle Training n\'est pas un site médical. En cas de doute, consultez un professionnel de santé ou un coach certifié. Voyez nos CGU pour plus d\'informations sur les limites de nos conseils.',
       },
     ],
   },
@@ -187,20 +187,20 @@ function AccordionItem({ question, reponse, isOpen, onToggle }: {
   onToggle: () => void
 }) {
   return (
-    <div className="border border-slate-200 rounded-xl overflow-hidden">
+    <div className="border border-[rgba(230,57,70,0.1)] rounded-xl overflow-hidden">
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between px-5 py-4 text-left bg-white hover:bg-slate-50 transition-colors gap-3"
+        className="w-full flex items-center justify-between px-5 py-4 text-left bg-[#0C0C1A] hover:bg-[#0C0C1A] transition-colors gap-3"
       >
-        <span className="font-semibold text-slate-800 text-sm leading-snug">{question}</span>
+        <span className="font-semibold text-[#EDE8E0] text-sm leading-snug">{question}</span>
         <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-transform text-white text-sm font-bold ${isOpen ? 'rotate-45' : ''}`}
           style={{ background: '#b8d400' }}>
           +
         </span>
       </button>
       {isOpen && (
-        <div className="px-5 pb-5 pt-1 bg-white border-t border-slate-100">
-          <p className="text-slate-600 text-sm leading-relaxed whitespace-pre-line">{reponse}</p>
+        <div className="px-5 pb-5 pt-1 bg-[#0C0C1A] border-t border-[rgba(255,255,255,0.05)]">
+          <p className="text-[#8A9BB5] text-sm leading-relaxed whitespace-pre-line">{reponse}</p>
         </div>
       )}
     </div>
@@ -229,10 +229,10 @@ export default function FaqPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       {/* Header */}
       <div className="mb-10 text-center">
-        <h1 className="text-3xl sm:text-4xl font-black text-slate-900 mb-3">
+        <h1 className="text-3xl sm:text-4xl font-black text-[#EDE8E0] mb-3">
           Questions fréquentes
         </h1>
-        <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+        <p className="text-[#5A6478] text-lg max-w-2xl mx-auto">
           Retrouvez les réponses aux questions les plus posées sur la musculation, les programmes et le site.
         </p>
       </div>
@@ -246,7 +246,7 @@ export default function FaqPage() {
             className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all ${
               activeCategory === cat.id
                 ? 'text-white shadow-sm'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                : 'bg-[rgba(255,255,255,0.04)] text-[#8A9BB5] hover:bg-[rgba(255,255,255,0.06)]'
             }`}
             style={activeCategory === cat.id ? { background: '#b8d400' } : {}}
           >
@@ -273,9 +273,9 @@ export default function FaqPage() {
       </div>
 
       {/* Formulaire de contact */}
-      <div className="bg-slate-50 rounded-2xl border border-slate-200 p-6 sm:p-8">
-        <h2 className="text-xl font-bold text-slate-900 mb-2">Vous n&apos;avez pas trouvé votre réponse ?</h2>
-        <p className="text-slate-500 text-sm mb-6">
+      <div className="bg-[#0C0C1A] rounded-2xl border border-[rgba(230,57,70,0.1)] p-6 sm:p-8">
+        <h2 className="text-xl font-bold text-[#EDE8E0] mb-2">Vous n&apos;avez pas trouvé votre réponse ?</h2>
+        <p className="text-[#5A6478] text-sm mb-6">
           Posez votre question ou signalez une erreur — nous répondons sous 48h.
         </p>
 
@@ -295,7 +295,7 @@ export default function FaqPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-[#5A6478] uppercase tracking-wider mb-1.5">
                   Votre nom
                 </label>
                 <input
@@ -304,11 +304,11 @@ export default function FaqPage() {
                   value={contactForm.nom}
                   onChange={e => setContactForm(p => ({ ...p, nom: e.target.value }))}
                   placeholder="Jean Dupont"
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-lime-300 focus:outline-none bg-white"
+                  className="w-full px-4 py-2.5 rounded-xl border border-[rgba(230,57,70,0.1)] text-sm focus:border-[#E63946] focus:outline-none bg-[#0C0C1A]"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-[#5A6478] uppercase tracking-wider mb-1.5">
                   Votre email
                 </label>
                 <input
@@ -317,20 +317,20 @@ export default function FaqPage() {
                   value={contactForm.email}
                   onChange={e => setContactForm(p => ({ ...p, email: e.target.value }))}
                   placeholder="jean@exemple.fr"
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-lime-300 focus:outline-none bg-white"
+                  className="w-full px-4 py-2.5 rounded-xl border border-[rgba(230,57,70,0.1)] text-sm focus:border-[#E63946] focus:outline-none bg-[#0C0C1A]"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-[#5A6478] uppercase tracking-wider mb-1.5">
                 Sujet
               </label>
               <select
                 value={contactForm.sujet}
                 onChange={e => setContactForm(p => ({ ...p, sujet: e.target.value }))}
                 required
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-lime-300 focus:outline-none bg-white"
+                className="w-full px-4 py-2.5 rounded-xl border border-[rgba(230,57,70,0.1)] text-sm focus:border-[#E63946] focus:outline-none bg-[#0C0C1A]"
               >
                 <option value="">Sélectionnez un sujet…</option>
                 <option value="question">Question sur un exercice ou programme</option>
@@ -343,7 +343,7 @@ export default function FaqPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-[#5A6478] uppercase tracking-wider mb-1.5">
                 Votre message
               </label>
               <textarea
@@ -352,12 +352,12 @@ export default function FaqPage() {
                 onChange={e => setContactForm(p => ({ ...p, message: e.target.value }))}
                 placeholder="Décrivez votre question ou votre problème en détail…"
                 rows={5}
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-lime-300 focus:outline-none bg-white resize-none"
+                className="w-full px-4 py-2.5 rounded-xl border border-[rgba(230,57,70,0.1)] text-sm focus:border-[#E63946] focus:outline-none bg-[#0C0C1A] resize-none"
               />
             </div>
 
             <div className="flex items-center justify-between gap-4 flex-wrap">
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-[#3A4152]">
                 En soumettant ce formulaire, vous acceptez nos{' '}
                 <Link href="/cgu" className="text-lime-400 hover:underline">CGU</Link>{' '}
                 et notre politique de confidentialité.

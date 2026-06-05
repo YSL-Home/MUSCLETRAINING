@@ -119,11 +119,11 @@ export default function MuscleIllustration({ primaires, secondaires = [], vue = 
     return (
       <div className="flex gap-4 items-center justify-center">
         <div className="text-center">
-          <div className="text-xs text-slate-400 mb-1 font-medium">Face</div>
+          <div className="text-xs text-[#3A4152] mb-1 font-medium">Face</div>
           <Front />
         </div>
         <div className="text-center">
-          <div className="text-xs text-slate-400 mb-1 font-medium">Dos</div>
+          <div className="text-xs text-[#3A4152] mb-1 font-medium">Dos</div>
           <Back />
         </div>
       </div>

@@ -15,6 +15,7 @@ export interface Sport {
   id: string
   nom: string
   emoji: string
+  icon?: string
   slug: string
   couleur: string
   description: string
@@ -27,7 +28,8 @@ export const SPORTS: Sport[] = [
   {
     id: 'padel',
     nom: 'Padel',
-    emoji: '🎾',
+    emoji: '🏓',
+    icon: '/icons/padel.svg',
     slug: 'padel',
     couleur: '#b8d400',
     description: 'Le padel sollicite intensément les rotateurs de l\'épaule, le core et les membres inférieurs pour les déplacements latéraux rapides.',

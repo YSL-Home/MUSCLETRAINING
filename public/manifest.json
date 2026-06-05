@@ -1,0 +1,22 @@
+{
+  "name": "Muscle Training",
+  "short_name": "MT",
+  "description": "89+ exercices de musculation avec vidéos, programmes salle & maison",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07070F",
+  "theme_color": "#E63946",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/favicon-32x32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/logo.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "categories": ["health", "fitness", "sports"],
+  "lang": "fr",
+  "shortcuts": [
+    { "name": "Générateur", "url": "/generateur", "icons": [{"src": "/favicon-32x32.png", "sizes": "32x32"}] },
+    { "name": "Programmes", "url": "/programmes", "icons": [{"src": "/favicon-32x32.png", "sizes": "32x32"}] },
+    { "name": "Mon Tracker", "url": "/tracker", "icons": [{"src": "/favicon-32x32.png", "sizes": "32x32"}] }
+  ]
+}

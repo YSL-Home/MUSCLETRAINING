@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
     unoptimized: true,
     remotePatterns: [
       { protocol: 'https', hostname: 'img.youtube.com' },
+      { protocol: 'https', hostname: 'raw.githubusercontent.com' },
     ],
   },
 }

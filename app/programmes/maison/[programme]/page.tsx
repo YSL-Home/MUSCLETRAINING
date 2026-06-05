@@ -56,8 +56,8 @@ export default async function ProgrammeMaisonPage({ params }: { params: Promise<
               {niv.label}
             </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black text-slate-900 mb-3">{programme.nom}</h1>
-          <p className="text-slate-600 text-lg leading-relaxed max-w-3xl">{programme.description}</p>
+          <h1 className="text-3xl sm:text-4xl font-black text-[#EDE8E0] mb-3">{programme.nom}</h1>
+          <p className="text-[#8A9BB5] text-lg leading-relaxed max-w-3xl">{programme.description}</p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
@@ -67,9 +67,9 @@ export default async function ProgrammeMaisonPage({ params }: { params: Promise<
             { label: 'Temps / séance', val: `${programme.tempsParSeance} min` },
             { label: 'Matériel', val: programme.materielRequis[0] === 'Aucun (poids du corps uniquement)' ? '✓ Aucun' : programme.materielRequis.length + ' items' },
           ].map(s => (
-            <div key={s.label} className="bg-white rounded-xl p-4 border border-slate-200 text-center">
-              <div className="text-xl font-black text-slate-900">{s.val}</div>
-              <div className="text-slate-500 text-xs mt-1">{s.label}</div>
+            <div key={s.label} className="bg-[#0C0C1A] rounded-xl p-4 border border-[rgba(230,57,70,0.1)] text-center">
+              <div className="text-xl font-black text-[#EDE8E0]">{s.val}</div>
+              <div className="text-[#5A6478] text-xs mt-1">{s.label}</div>
             </div>
           ))}
         </div>
@@ -78,29 +78,29 @@ export default async function ProgrammeMaisonPage({ params }: { params: Promise<
           <h3 className="font-bold text-green-800 mb-3">Matériel requis</h3>
           <div className="flex flex-wrap gap-2">
             {programme.materielRequis.map(m => (
-              <span key={m} className="text-sm px-3 py-1 rounded-full bg-white border border-green-200 text-green-800">{m}</span>
+              <span key={m} className="text-sm px-3 py-1 rounded-full bg-[#0C0C1A] border border-green-200 text-green-800">{m}</span>
             ))}
           </div>
         </div>
 
         <div className="space-y-8">
-          <h2 className="text-2xl font-black text-slate-900">Plan d&apos;entraînement</h2>
+          <h2 className="text-2xl font-black text-[#EDE8E0]">Plan d&apos;entraînement</h2>
           {programme.jours.map(jour => (
-            <div key={jour.numero} className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
-              <div className="px-6 py-4 border-b border-slate-100" style={{ background: 'linear-gradient(to right, #f0fdf4, #dcfce7)' }}>
+            <div key={jour.numero} className="bg-[#0C0C1A] rounded-2xl border border-[rgba(230,57,70,0.1)] overflow-hidden">
+              <div className="px-6 py-4 border-b border-[rgba(255,255,255,0.05)]" style={{ background: 'linear-gradient(to right, #f0fdf4, #dcfce7)' }}>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-green-500 text-white text-sm font-bold flex items-center justify-center">
                     {jour.numero}
                   </div>
                   <div>
-                    <div className="font-bold text-slate-900">{jour.nom}</div>
-                    <div className="text-slate-500 text-sm">{jour.focus}</div>
+                    <div className="font-bold text-[#EDE8E0]">{jour.nom}</div>
+                    <div className="text-[#5A6478] text-sm">{jour.focus}</div>
                   </div>
                 </div>
               </div>
 
               {jour.exercices.length === 0 ? (
-                <div className="px-6 py-8 text-center text-slate-400">
+                <div className="px-6 py-8 text-center text-[#3A4152]">
                   <div className="text-3xl mb-2">😴</div>
                   <div className="font-medium">Repos</div>
                 </div>
@@ -109,26 +109,26 @@ export default async function ProgrammeMaisonPage({ params }: { params: Promise<
                   {jour.exercices.map((ex, i) => {
                     const exData = getExerciseBySlug(ex.slug)
                     return (
-                      <div key={i} className="px-6 py-4 flex items-start gap-4 hover:bg-slate-50 transition-colors">
+                      <div key={i} className="px-6 py-4 flex items-start gap-4 hover:bg-[#0C0C1A] transition-colors">
                         <div className="w-6 h-6 rounded-full bg-green-100 text-green-700 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
                           {i + 1}
                         </div>
                         <div className="flex-1 min-w-0">
                           {exData ? (
-                            <Link href={`/exercice/${ex.slug}`} className="font-semibold text-slate-800 hover:text-green-600 transition-colors">
+                            <Link href={`/exercice/${ex.slug}`} className="font-semibold text-[#EDE8E0] hover:text-green-600 transition-colors">
                               {ex.nom}
                             </Link>
                           ) : (
-                            <span className="font-semibold text-slate-800">{ex.nom}</span>
+                            <span className="font-semibold text-[#EDE8E0]">{ex.nom}</span>
                           )}
                           {ex.notes && (
-                            <p className="text-slate-400 text-xs mt-0.5">{ex.notes}</p>
+                            <p className="text-[#3A4152] text-xs mt-0.5">{ex.notes}</p>
                           )}
                         </div>
-                        <div className="flex gap-4 text-sm text-slate-500 flex-shrink-0">
-                          <span><span className="font-bold text-slate-800">{ex.series}</span> séries</span>
-                          <span><span className="font-bold text-slate-800">{ex.repetitions}</span></span>
-                          <span className="hidden sm:block"><span className="font-bold text-slate-800">{ex.repos}s</span> repos</span>
+                        <div className="flex gap-4 text-sm text-[#5A6478] flex-shrink-0">
+                          <span><span className="font-bold text-[#EDE8E0]">{ex.series}</span> séries</span>
+                          <span><span className="font-bold text-[#EDE8E0]">{ex.repetitions}</span></span>
+                          <span className="hidden sm:block"><span className="font-bold text-[#EDE8E0]">{ex.repos}s</span> repos</span>
                         </div>
                       </div>
                     )

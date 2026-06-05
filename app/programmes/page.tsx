@@ -16,8 +16,8 @@ export default function ProgrammesPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       {/* Header */}
       <div className="mb-10">
-        <h1 className="text-4xl font-black text-slate-900 mb-3">Programmes d&apos;entraînement</h1>
-        <p className="text-slate-600 text-lg max-w-2xl">
+        <h1 className="text-4xl font-black text-[#EDE8E0] mb-3">Programmes d&apos;entraînement</h1>
+        <p className="text-[#8A9BB5] text-lg max-w-2xl">
           Des plans complets clé-en-main, optimisés pour la salle ou la maison. Chaque exercice a sa vidéo technique.
         </p>
       </div>
@@ -34,9 +34,9 @@ export default function ProgrammesPage() {
 
       {/* Salle */}
       <section className="mb-14">
-        <h2 className="text-2xl font-black text-slate-900 mb-6 flex items-center gap-3">
+        <h2 className="text-2xl font-black text-[#EDE8E0] mb-6 flex items-center gap-3">
           🏋️ Salle de sport
-          <span className="text-sm font-normal text-slate-500">Avec barre, haltères et machines</span>
+          <span className="text-sm font-normal text-[#5A6478]">Avec barre, haltères et machines</span>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {salle.map(p => <ProgrammeCard key={p.slug} programme={p} />)}
@@ -45,9 +45,9 @@ export default function ProgrammesPage() {
 
       {/* Maison */}
       <section>
-        <h2 className="text-2xl font-black text-slate-900 mb-6 flex items-center gap-3">
+        <h2 className="text-2xl font-black text-[#EDE8E0] mb-6 flex items-center gap-3">
           🏠 Maison
-          <span className="text-sm font-normal text-slate-500">Sans matériel ou minimal</span>
+          <span className="text-sm font-normal text-[#5A6478]">Sans matériel ou minimal</span>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {maison.map(p => <ProgrammeCard key={p.slug} programme={p} />)}

@@ -11,19 +11,19 @@ export default function Breadcrumb({ crumbs }: { crumbs: Crumb[] }) {
       {crumbs.map((crumb, index) => (
         <span key={index} className="flex items-center gap-1.5">
           {index > 0 && (
-            <svg className="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-3 h-3 text-[#3A4152]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           )}
           {crumb.url ? (
             <Link
               href={crumb.url}
-              className="text-slate-500 hover:text-lime-500 font-medium transition-colors"
+              className="text-[#5A6478] hover:text-[#E63946] font-medium transition-colors"
             >
               {crumb.nom}
             </Link>
           ) : (
-            <span className="text-slate-800 font-semibold">{crumb.nom}</span>
+            <span className="text-[#EDE8E0] font-semibold">{crumb.nom}</span>
           )}
         </span>
       ))}

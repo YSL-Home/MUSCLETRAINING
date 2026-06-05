@@ -1,30 +1,36 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Navbar from '@/components/Navbar'
+import CookieConsent from '@/components/CookieConsent'
+import { LanguageProvider } from '@/components/LanguageProvider'
 import { websiteSchema } from '@/lib/schema'
+import InstallPWA from '@/components/InstallPWA'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.muscletraining.uk'),
   title: {
-    default: 'Sport It — Exercices, Programmes Salle & Maison avec Vidéos',
-    template: '%s | Sport It',
+    default: 'Muscle Training — Exercices, Programmes Salle & Maison avec Vidéos',
+    template: '%s | Muscle Training',
   },
   description: 'Bibliothèque complète de 60+ exercices de musculation avec vidéos YouTube en français, programmes salle et maison pour tous les niveaux. Gratuit, sans inscription.',
   keywords: ['musculation', 'exercices', 'programme', 'salle de sport', 'maison', 'sans matériel', 'pectoraux', 'dos', 'jambes', 'débutant'],
-  authors: [{ name: 'Sport It' }],
-  creator: 'Sport It',
+  authors: [{ name: 'Muscle Training' }],
+  creator: 'Muscle Training',
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: '48x48' },
-      { url: '/logo.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon.ico', type: 'image/x-icon', sizes: 'any' },
     ],
-    shortcut: '/favicon.ico',
+    shortcut: '/favicon.svg',
     apple: '/logo.png',
   },
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    siteName: 'Sport It',
-    title: 'Sport It — Exercices, Programmes Salle & Maison',
+    siteName: 'Muscle Training',
+    title: 'Muscle Training — Exercices, Programmes Salle & Maison',
     description: 'La référence francophone pour la musculation. 60+ exercices avec vidéos, programmes salle et maison.',
   },
   robots: {
@@ -38,56 +44,84 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr">
       <head>
+        <link rel="preconnect" href="https://img.youtube.com" />
+        <link rel="preconnect" href="https://raw.githubusercontent.com" />
+        <link rel="dns-prefetch" href="https://www.youtube.com" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=4" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=4" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=4" />
+        <link rel="shortcut icon" href="/favicon.ico?v=4" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#E63946" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema()) }}
         />
+        {/* Google Tag Manager */}
+        <script dangerouslySetInnerHTML={{ __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5BNDVNC4');` }} />
+        {/* Kill old service worker that caches stale chunks (muscletraining.uk fix) */}
+        <script dangerouslySetInnerHTML={{ __html: `if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister()));if(window.caches){caches.keys().then(ks=>ks.forEach(k=>caches.delete(k)))}}` }} />
       </head>
       <body>
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BNDVNC4" height="0" width="0" style={{ display: 'none', visibility: 'hidden' }}></iframe></noscript>
+        <LanguageProvider>
         <Navbar />
         <main>{children}</main>
-        <footer style={{ background: '#0f172a', borderTop: '1px solid #1e293b' }} className="mt-16 py-10">
+        <CookieConsent />
+        <InstallPWA />
+        <footer style={{ background: '#07070F', borderTop: '1px solid rgba(230,57,70,0.1)' }} className="mt-0 py-14">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-slate-400 text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 mb-10">
               <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-8 h-8 rounded-lg flex items-center justify-center text-lg"
-                    style={{ background: 'linear-gradient(135deg, #b8d400 0%, #38bdf8 100%)' }}>
-                    ⚡
-                  </div>
-                  <span className="font-black text-lg tracking-widest" style={{ color: '#b8d400' }}>SPORT IT</span>
-                </div>
-                <p>La référence francophone pour la musculation. Exercices, programmes et vidéos pour tous les niveaux.</p>
+                <span className="font-black text-xl tracking-[0.2em]" style={{
+                  background: 'linear-gradient(135deg, #E63946 0%, #FF6B7A 50%, #E63946 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}>MUSCLE TRAINING</span>
+                <p className="mt-3 text-sm leading-relaxed" style={{ color: '#3A4152' }}>
+                  La référence francophone pour la musculation. Exercices, programmes et vidéos pour tous les niveaux.
+                </p>
               </div>
               <div>
-                <div className="text-white font-semibold mb-3">Muscles</div>
-                <ul className="space-y-1.5">
-                  <li><a href="/muscles/pectoraux" className="hover:text-white transition-colors">Pectoraux</a></li>
-                  <li><a href="/muscles/dos" className="hover:text-white transition-colors">Dos</a></li>
-                  <li><a href="/muscles/quadriceps" className="hover:text-white transition-colors">Quadriceps</a></li>
-                  <li><a href="/muscles/fessiers" className="hover:text-white transition-colors">Fessiers</a></li>
+                <p className="text-xs font-bold tracking-[0.15em] uppercase mb-4" style={{ color: '#E63946' }}>Muscles</p>
+                <ul className="space-y-2">
+                  {['pectoraux','dos','quadriceps','fessiers'].map(m => (
+                    <li key={m}><a href={`/muscles/${m}`} className="text-sm transition-colors hover:text-[#E63946]" style={{ color: '#3A4152' }}>
+                      {m.charAt(0).toUpperCase() + m.slice(1)}
+                    </a></li>
+                  ))}
                 </ul>
               </div>
               <div>
-                <div className="text-white font-semibold mb-3">Programmes</div>
-                <ul className="space-y-1.5">
-                  <li><a href="/programmes/salle" className="hover:text-white transition-colors">Salle de sport</a></li>
-                  <li><a href="/programmes/maison" className="hover:text-white transition-colors">À la maison</a></li>
-                  <li><a href="/sport" className="hover:text-white transition-colors">Sports</a></li>
-                  <li><a href="/machines" className="hover:text-white transition-colors">Machines</a></li>
-                  <li><a href="/calculateurs" className="hover:text-white transition-colors">Calculateurs</a></li>
+                <p className="text-xs font-bold tracking-[0.15em] uppercase mb-4" style={{ color: '#E63946' }}>Navigation</p>
+                <ul className="space-y-2">
+                  {[
+                    ['/programmes/salle','Salle'],
+                    ['/programmes/maison','Maison'],
+                    ['/materiel','Matériel'],
+                    ['/glossaire','Glossaire'],
+                    ['/calculateurs','Calculateurs'],
+                    ['/generateur','Générateur'],
+                    ['/blog','Blog'],
+                  ].map(([href, label]) => (
+                    <li key={href}><a href={href} className="text-sm transition-colors hover:text-[#E63946]" style={{ color: '#3A4152' }}>{label}</a></li>
+                  ))}
                 </ul>
               </div>
             </div>
-            <div className="border-t border-slate-700 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-500 text-xs">
-              <span>© {new Date().getFullYear()} Sport It — Tous droits réservés</span>
-              <div className="flex gap-4">
-                <a href="/faq" className="hover:text-slate-300 transition-colors">FAQ</a>
-                <a href="/cgu" className="hover:text-slate-300 transition-colors">CGU</a>
+            <div style={{ borderTop: '1px solid rgba(230,57,70,0.08)' }} className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <span className="text-xs" style={{ color: '#3A4152' }}>© {new Date().getFullYear()} Muscle Training — Tous droits réservés</span>
+              <div className="flex gap-5">
+                {[['faq','FAQ'],['cgu','CGU']].map(([href, label]) => (
+                  <a key={href} href={`/${href}`} className="text-xs transition-colors hover:text-[#E63946]" style={{ color: '#3A4152' }}>{label}</a>
+                ))}
               </div>
             </div>
           </div>
         </footer>
+        </LanguageProvider>
       </body>
     </html>
   )

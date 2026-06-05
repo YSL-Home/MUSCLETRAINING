@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# knowledge graph artifacts (local only)
+/graphify-out/
+
+# design mockups (not for prod)
+/public/mockups*.html

@@ -33,24 +33,24 @@ const MUSCLE_COLORS: Record<MuscleId, string> = {
 
 function MachineCard({ machine }: { machine: Machine }) {
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+    <div className="bg-[#0C0C1A] rounded-2xl border border-[rgba(230,57,70,0.1)] overflow-hidden shadow-sm">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-slate-100 bg-slate-50 flex items-center justify-between flex-wrap gap-2">
-        <h2 className="font-bold text-slate-900 text-lg">{machine.nom}</h2>
-        <span className="text-xs text-slate-500 px-2 py-0.5 rounded-full bg-white border border-slate-200">
+      <div className="px-6 py-4 border-b border-[rgba(255,255,255,0.05)] bg-[#0C0C1A] flex items-center justify-between flex-wrap gap-2">
+        <h2 className="font-bold text-[#EDE8E0] text-lg">{machine.nom}</h2>
+        <span className="text-xs text-[#5A6478] px-2 py-0.5 rounded-full bg-[#0C0C1A] border border-[rgba(230,57,70,0.1)]">
           {machine.exercicesMachine.length} exercice{machine.exercicesMachine.length > 1 ? 's' : ''}
         </span>
       </div>
 
       <div className="p-6">
-        <p className="text-slate-600 text-sm leading-relaxed mb-6">{machine.description}</p>
+        <p className="text-[#8A9BB5] text-sm leading-relaxed mb-6">{machine.description}</p>
 
         {/* Illustration + Muscles */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
           {/* Illustration */}
           <div className="flex flex-col items-center">
-            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Muscles ciblés</p>
-            <div className="bg-slate-50 rounded-xl p-3 flex items-center justify-center w-full">
+            <p className="text-xs font-semibold text-[#3A4152] uppercase tracking-wider mb-2">Muscles ciblés</p>
+            <div className="bg-[#0C0C1A] rounded-xl p-3 flex items-center justify-center w-full">
               <MuscleIllustration
                 primaires={machine.musclesPrimaires}
                 secondaires={machine.musclesSecondaires}
@@ -62,7 +62,7 @@ function MachineCard({ machine }: { machine: Machine }) {
           {/* Muscles liste */}
           <div>
             <div className="mb-3">
-              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Principaux</p>
+              <p className="text-xs font-semibold text-[#3A4152] uppercase tracking-wider mb-2">Principaux</p>
               <div className="flex flex-wrap gap-1.5">
                 {machine.musclesPrimaires.map(m => (
                   <Link key={m} href={`/muscles/${m}`}>
@@ -76,11 +76,11 @@ function MachineCard({ machine }: { machine: Machine }) {
             </div>
             {machine.musclesSecondaires.length > 0 && (
               <div>
-                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Secondaires</p>
+                <p className="text-xs font-semibold text-[#3A4152] uppercase tracking-wider mb-2">Secondaires</p>
                 <div className="flex flex-wrap gap-1.5">
                   {machine.musclesSecondaires.map(m => (
                     <Link key={m} href={`/muscles/${m}`}>
-                      <span className="text-xs px-2.5 py-1 rounded-full font-medium cursor-pointer hover:opacity-80 transition-opacity bg-slate-100 text-slate-600">
+                      <span className="text-xs px-2.5 py-1 rounded-full font-medium cursor-pointer hover:opacity-80 transition-opacity bg-[rgba(255,255,255,0.04)] text-[#8A9BB5]">
                         {MUSCLE_LABELS[m]}
                       </span>
                     </Link>
@@ -93,17 +93,17 @@ function MachineCard({ machine }: { machine: Machine }) {
 
         {/* Exercices sur la machine */}
         <div>
-          <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Exercices à réaliser</p>
+          <p className="text-xs font-semibold text-[#3A4152] uppercase tracking-wider mb-3">Exercices à réaliser</p>
           <div className="space-y-3">
             {machine.exercicesMachine.map((ex, i) => (
-              <div key={i} className="p-4 rounded-xl border border-slate-100 bg-slate-50">
+              <div key={i} className="p-4 rounded-xl border border-[rgba(255,255,255,0.05)] bg-[#0C0C1A]">
                 <div className="flex items-start justify-between gap-3 mb-1">
-                  <p className="font-semibold text-slate-800 text-sm">{ex.nom}</p>
+                  <p className="font-semibold text-[#EDE8E0] text-sm">{ex.nom}</p>
                   <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-lime-100 text-lime-700 whitespace-nowrap flex-shrink-0">
                     {ex.seriesReps}
                   </span>
                 </div>
-                <p className="text-slate-600 text-xs leading-relaxed mb-1.5">{ex.description}</p>
+                <p className="text-[#8A9BB5] text-xs leading-relaxed mb-1.5">{ex.description}</p>
                 <p className="text-xs text-blue-700 bg-blue-50 px-2 py-1 rounded-lg">
                   💡 {ex.conseils}
                 </p>
@@ -125,10 +125,10 @@ export default function MachinesPage() {
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl sm:text-4xl font-black text-slate-900 mb-3">
+        <h1 className="text-3xl sm:text-4xl font-black text-[#EDE8E0] mb-3">
           🏋️ Guide des machines de salle
         </h1>
-        <p className="text-slate-600 text-lg max-w-2xl">
+        <p className="text-[#8A9BB5] text-lg max-w-2xl">
           Tapez le nom d&apos;une machine pour découvrir les muscles ciblés et les exercices à réaliser.
         </p>
       </div>
@@ -136,7 +136,7 @@ export default function MachinesPage() {
       {/* Barre de recherche */}
       <div className="relative mb-8">
         <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-          <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 text-[#3A4152]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
         </div>
@@ -145,12 +145,12 @@ export default function MachinesPage() {
           value={query}
           onChange={e => setQuery(e.target.value)}
           placeholder='Ex : "presse cuisses", "lat pulldown", "leg curl"…'
-          className="w-full pl-12 pr-4 py-4 text-base rounded-2xl border-2 border-slate-200 focus:border-lime-300 focus:outline-none transition-colors bg-white shadow-sm"
+          className="w-full pl-12 pr-4 py-4 text-base rounded-2xl border-2 border-[rgba(230,57,70,0.1)] focus:border-[#E63946] focus:outline-none transition-colors bg-[#0C0C1A] shadow-sm"
         />
         {query && (
           <button
             onClick={() => setQuery('')}
-            className="absolute inset-y-0 right-4 flex items-center text-slate-400 hover:text-slate-600"
+            className="absolute inset-y-0 right-4 flex items-center text-[#3A4152] hover:text-[#8A9BB5]"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -163,14 +163,14 @@ export default function MachinesPage() {
       {!showAll && (
         <div className="mb-8">
           {results.length === 0 ? (
-            <div className="text-center py-12 text-slate-400">
+            <div className="text-center py-12 text-[#3A4152]">
               <p className="text-4xl mb-3">🔍</p>
-              <p className="font-semibold text-slate-600">Aucune machine trouvée pour &quot;{query}&quot;</p>
+              <p className="font-semibold text-[#8A9BB5]">Aucune machine trouvée pour &quot;{query}&quot;</p>
               <p className="text-sm mt-1">Essayez &quot;presse&quot;, &quot;poulie&quot;, &quot;leg curl&quot;, &quot;smith machine&quot;…</p>
             </div>
           ) : (
             <>
-              <p className="text-sm text-slate-500 mb-4">
+              <p className="text-sm text-[#5A6478] mb-4">
                 {results.length} machine{results.length > 1 ? 's' : ''} trouvée{results.length > 1 ? 's' : ''} pour &quot;{query}&quot;
               </p>
               <div className="space-y-6">
@@ -190,7 +190,7 @@ export default function MachinesPage() {
               <button
                 key={tag}
                 onClick={() => setQuery(tag)}
-                className="px-3 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-lime-100 hover:text-lime-700 transition-colors"
+                className="px-3 py-1.5 rounded-full text-sm font-medium bg-[rgba(255,255,255,0.04)] text-[#8A9BB5] hover:bg-lime-100 hover:text-lime-700 transition-colors"
               >
                 {tag}
               </button>

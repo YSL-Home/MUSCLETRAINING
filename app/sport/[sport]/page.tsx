@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Breadcrumb from '@/components/Breadcrumb'
 import YouTubeEmbed from '@/components/YouTubeEmbed'
 import MuscleIllustration from '@/components/MuscleIllustration'
-import ExerciseIllustration from '@/components/ExerciseIllustration'
+import ExerciseGif from '@/components/ExerciseGif'
 import ShareButtons from '@/components/ShareButtons'
 import { SPORTS, getSportBySlug } from '@/data/sports'
 import type { MuscleId } from '@/data/muscles'
@@ -37,7 +37,7 @@ export default async function SportPage({ params }: { params: Promise<{ sport: s
   const sport = getSportBySlug(slug)
   if (!sport) notFound()
 
-  const pageUrl = `https://www.sportit.fr/sport/${sport.slug}`
+  const pageUrl = `https://www.muscletraining.uk/sport/${sport.slug}`
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -50,15 +50,17 @@ export default async function SportPage({ params }: { params: Promise<{ sport: s
       {/* Header */}
       <div className="mt-6 mb-8">
         <div className="flex items-center gap-3 mb-4">
-          <span className="text-5xl">{sport.emoji}</span>
+          {sport.icon
+            ? <img src={sport.icon} alt={sport.nom} className="w-12 h-12" />
+            : <span className="text-5xl">{sport.emoji}</span>}
           <div>
-            <h1 className="text-3xl sm:text-4xl font-black text-slate-900">
+            <h1 className="text-3xl sm:text-4xl font-black text-[#EDE8E0]">
               Renforcement {sport.nom}
             </h1>
-            <p className="text-slate-400 text-sm mt-1">{sport.exercices.length} exercices spécifiques</p>
+            <p className="text-[#3A4152] text-sm mt-1">{sport.exercices.length} exercices spécifiques</p>
           </div>
         </div>
-        <p className="text-slate-600 text-lg leading-relaxed max-w-3xl mb-4">{sport.description}</p>
+        <p className="text-[#8A9BB5] text-lg leading-relaxed max-w-3xl mb-4">{sport.description}</p>
         <ShareButtons url={pageUrl} title={`Programme renforcement ${sport.nom}`} compact />
       </div>
 
@@ -78,30 +80,30 @@ export default async function SportPage({ params }: { params: Promise<{ sport: s
       <div className="space-y-10">
         {sport.exercices.map((ex, i) => {
           const diff = DIFF[ex.difficulte]
-          const exUrl = `https://www.sportit.fr/sport/${sport.slug}#${ex.slug}`
+          const exUrl = `https://www.muscletraining.uk/sport/${sport.slug}#${ex.slug}`
           const muscleIds = ex.muscles.map(m =>
             m.toLowerCase().replace(/[éèê]/g, 'e').replace(/[àâ]/g, 'a').replace(/ .*/,'') as MuscleId
           )
 
           return (
             <div key={ex.slug} id={ex.slug}
-              className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+              className="bg-[#0C0C1A] rounded-2xl border border-[rgba(230,57,70,0.1)] overflow-hidden shadow-sm">
               {/* Header carte */}
-              <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between flex-wrap gap-3"
+              <div className="px-6 py-4 border-b border-[rgba(255,255,255,0.05)] flex items-center justify-between flex-wrap gap-3"
                 style={{ background: sport.couleur + '08' }}>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full text-white text-sm font-bold flex items-center justify-center"
                     style={{ background: sport.couleur }}>
                     {i + 1}
                   </div>
-                  <h2 className="font-bold text-slate-900 text-lg">{ex.nom}</h2>
+                  <h2 className="font-bold text-[#EDE8E0] text-lg">{ex.nom}</h2>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-semibold px-2.5 py-1 rounded-full"
                     style={{ color: diff.color, background: diff.bg }}>
                     {diff.label}
                   </span>
-                  <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">
+                  <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-[rgba(255,255,255,0.04)] text-[#8A9BB5]">
                     {ex.mode === 'maison' ? '🏠 Maison' : ex.mode === 'salle' ? '🏋️ Salle' : '🏋️🏠 Les deux'}
                   </span>
                 </div>
@@ -118,19 +120,17 @@ export default async function SportPage({ params }: { params: Promise<{ sport: s
                 {/* Vidéo + Illustration côte à côte */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                   <div className="md:col-span-2">
-                    <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Vidéo technique</p>
+                    <p className="text-xs font-semibold text-[#3A4152] uppercase tracking-wider mb-2">Vidéo technique</p>
                     <YouTubeEmbed videoId={ex.videoYoutube} title={ex.nom} />
                   </div>
                   <div className="flex flex-col items-center gap-3">
                     <div className="w-full">
-                      <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Illustration</p>
-                      <div className="rounded-xl overflow-hidden bg-slate-50">
-                        <ExerciseIllustration slug={ex.slug} />
-                      </div>
+                      <p className="text-xs font-semibold text-[#3A4152] uppercase tracking-wider mb-2">Illustration</p>
+                      <ExerciseGif slug={ex.slug} />
                     </div>
                     <div className="w-full">
-                      <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Muscles</p>
-                      <div className="bg-slate-50 rounded-xl p-2 flex items-center justify-center w-full">
+                      <p className="text-xs font-semibold text-[#3A4152] uppercase tracking-wider mb-2">Muscles</p>
+                      <div className="bg-[#0C0C1A] rounded-xl p-2 flex items-center justify-center w-full">
                         <MuscleIllustration
                           primaires={ex.muscles.slice(0,2).map(m => normalizeMuscle(m))}
                           secondaires={ex.muscles.slice(2).map(m => normalizeMuscle(m))}
@@ -141,7 +141,7 @@ export default async function SportPage({ params }: { params: Promise<{ sport: s
                         {ex.muscles.map((m, mi) => (
                           <span key={m} className="text-xs px-2 py-0.5 rounded-full font-medium"
                             style={{
-                              background: mi === 0 ? sport.couleur + '20' : '#f1f5f9',
+                              background: mi === 0 ? sport.couleur + '20' : '#0C0C1A',
                               color: mi === 0 ? sport.couleur : '#64748b',
                             }}>
                             {m}
@@ -154,24 +154,24 @@ export default async function SportPage({ params }: { params: Promise<{ sport: s
 
                 {/* Instructions */}
                 <div className="mb-5">
-                  <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Exécution</p>
+                  <p className="text-xs font-semibold text-[#3A4152] uppercase tracking-wider mb-3">Exécution</p>
                   <ol className="space-y-2">
                     {ex.instructions.map((step, si) => (
                       <li key={si} className="flex gap-3 items-start">
-                        <span className="w-5 h-5 rounded-full bg-slate-100 text-slate-600 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="w-5 h-5 rounded-full bg-[rgba(255,255,255,0.04)] text-[#8A9BB5] text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
                           {si + 1}
                         </span>
-                        <p className="text-slate-600 text-sm leading-relaxed">{step}</p>
+                        <p className="text-[#8A9BB5] text-sm leading-relaxed">{step}</p>
                       </li>
                     ))}
                   </ol>
                 </div>
 
                 {/* Footer : matériel + partage */}
-                <div className="flex items-center justify-between flex-wrap gap-3 pt-4 border-t border-slate-100">
+                <div className="flex items-center justify-between flex-wrap gap-3 pt-4 border-t border-[rgba(255,255,255,0.05)]">
                   <div className="flex flex-wrap gap-1.5">
                     {ex.materiel.map(m => (
-                      <span key={m} className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-medium">
+                      <span key={m} className="text-xs px-2 py-0.5 rounded-full bg-[rgba(255,255,255,0.04)] text-[#5A6478] font-medium">
                         {m}
                       </span>
                     ))}
@@ -185,12 +185,12 @@ export default async function SportPage({ params }: { params: Promise<{ sport: s
       </div>
 
       {/* Autres sports */}
-      <div className="mt-12 p-6 bg-slate-50 rounded-2xl border border-slate-200">
-        <h3 className="font-bold text-slate-800 mb-4">Autres sports</h3>
+      <div className="mt-12 p-6 bg-[#0C0C1A] rounded-2xl border border-[rgba(230,57,70,0.1)]">
+        <h3 className="font-bold text-[#EDE8E0] mb-4">Autres sports</h3>
         <div className="flex flex-wrap gap-3">
           {SPORTS.filter(s => s.id !== sport.id).map(s => (
             <Link key={s.id} href={`/sport/${s.slug}`}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200 hover:border-lime-300 text-sm font-medium text-slate-700 hover:text-lime-500 transition-all">
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0C0C1A] border border-[rgba(230,57,70,0.1)] hover:border-[#E63946] text-sm font-medium text-[#C4CDD9] hover:text-[#E63946] transition-all">
               <span>{s.emoji}</span>
               {s.nom}
             </Link>
