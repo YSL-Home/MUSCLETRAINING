@@ -60,6 +60,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         {/* Google Tag Manager */}
         <script dangerouslySetInnerHTML={{ __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5BNDVNC4');` }} />
+        {/* Google AdSense */}
+        <meta name="google-adsense-account" content="ca-pub-6870790039775701" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6870790039775701"
+          crossOrigin="anonymous"
+        />
         {/* Kill old service worker that caches stale chunks (muscletraining.uk fix) */}
         <script dangerouslySetInnerHTML={{ __html: `if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister()));if(window.caches){caches.keys().then(ks=>ks.forEach(k=>caches.delete(k)))}}` }} />
       </head>
