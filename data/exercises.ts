@@ -223,7 +223,7 @@ export const EXERCISES: Exercise[] = [
     mode: 'maison',
     materiel: ['poids-corps', 'chaise'],
     difficulte: 'intermediaire',
-    videoYoutube: '-lkv4E8Aymk',
+    videoYoutube: 'peEANfxAgHQ',
     instructions: [
       'Placez les pieds sur une chaise ou un banc (30–50 cm de hauteur).',
       'Placez les mains au sol légèrement plus larges que les épaules.',

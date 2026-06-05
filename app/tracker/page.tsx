@@ -81,6 +81,27 @@ export default function TrackerPage() {
     setLogs(updated)
   }
 
+  const exportCSV = () => {
+    if (!logs.length) return
+    const rows = [['Date', 'Exercice', 'Serie', 'Poids (kg)', 'Reps', 'Duree (min)', 'Notes']]
+    logs.forEach(l => {
+      const d = new Date(l.date).toLocaleDateString('fr-FR')
+      l.exercices.forEach(ex => {
+        ex.series.forEach((s, i) => {
+          rows.push([d, ex.nom, String(i + 1), String(s.poids), String(s.reps), String(l.duree), (l.notes || '').replace(/[\n"]/g, ' ')])
+        })
+      })
+    })
+    const csv = rows.map(r => r.map(c => `"${c}"`).join(',')).join('\n')
+    const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `muscletraining-tracker-${new Date().toISOString().slice(0, 10)}.csv`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
   // Compute PRs (sessions + manual overrides — keep the heavier one)
   const prs = EXERCISES.map(ex => {
     const allSeries = logs.flatMap(l => l.exercices.filter(e => e.slug === ex.slug).flatMap(e => e.series))
@@ -247,6 +268,15 @@ export default function TrackerPage() {
       {/* === TAB: HISTORY === */}
       {tab === 'history' && (
         <div className="space-y-4">
+          {logs.length > 0 && (
+            <div className="flex justify-end">
+              <button onClick={exportCSV}
+                className="px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2"
+                style={{ background: 'rgba(230,57,70,0.08)', color: RED, border: '1px solid rgba(230,57,70,0.25)' }}>
+                ⬇ Exporter CSV
+              </button>
+            </div>
+          )}
           {logs.length === 0 ? (
             <div className="text-center py-16">
               <p className="text-4xl mb-4">📋</p>

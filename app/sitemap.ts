@@ -51,6 +51,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/programmes/salle`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${BASE_URL}/programmes/maison`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    ...['tracker', 'machines', 'nutrition', 'materiel', 'glossaire', 'calculateurs', 'generateur', 'quiz', 'comparatif', 'sport', 'recherche'].map(
+      (p): MetadataRoute.Sitemap[number] => ({
+        url: `${BASE_URL}/${p}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.6,
+      })
+    ),
   ]
 
   return [
