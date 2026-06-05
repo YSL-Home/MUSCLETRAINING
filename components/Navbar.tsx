@@ -21,10 +21,10 @@ export default function Navbar() {
     { href: '/', label: tr('nav.muscles') },
     { href: '/programmes', label: tr('nav.programs') },
     { href: '/generateur', label: tr('nav.session') },
+    { href: '/tracker', label: 'Tracker' },
+    { href: '/machines', label: 'Machines' },
+    { href: '/nutrition', label: 'Nutrition' },
     { href: '/quiz', label: tr('nav.quiz') },
-    { href: '/tracker', label: '📊 Tracker' },
-    { href: '/machines', label: '🏋️ Machines' },
-    { href: '/nutrition', label: '🥗 Nutrition' },
     { href: '/blog', label: tr('nav.blog') },
   ]
   const currentLocale = LOCALES.find(l => l.code === locale)
@@ -82,17 +82,17 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav + search — all in one row */}
-          <div className="hidden lg:flex items-center gap-5 flex-1 min-w-0">
+          <div className="hidden lg:flex items-center gap-3 xl:gap-4 flex-1 min-w-0">
             {NAV_LINKS.map(({ href, label }) => (
               <Link key={href} href={href}
-                className="text-xs font-semibold tracking-[0.1em] uppercase whitespace-nowrap transition-colors duration-200 hover:text-[#E63946]"
+                className="text-[11px] xl:text-xs font-semibold tracking-[0.06em] uppercase whitespace-nowrap transition-colors duration-200 hover:text-[#E63946]"
                 style={{ color: '#5A6478' }}>
                 {label}
               </Link>
             ))}
 
-            {/* Inline search — takes remaining space */}
-            <form onSubmit={submitSearch} className="flex-1 min-w-0 max-w-xs ml-2">
+            {/* Inline search — only when there's room (xl+) */}
+            <form onSubmit={submitSearch} className="hidden xl:block flex-1 min-w-0 max-w-[200px] ml-1">
               <div className="relative flex items-center">
                 <svg className="absolute left-3 w-3.5 h-3.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                   style={{ color: '#3A4152' }}>
@@ -115,6 +115,15 @@ export default function Navbar() {
                 />
               </div>
             </form>
+
+            {/* Search icon button when input is hidden (lg only) */}
+            <Link href="/recherche" aria-label="Rechercher"
+              className="xl:hidden flex items-center justify-center w-8 h-8 rounded-full flex-shrink-0 transition-colors hover:text-[#E63946]"
+              style={{ border: '1px solid rgba(230,57,70,0.18)', color: '#8A9BB5' }}>
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </Link>
           </div>
 
           {/* Right: mode toggle + burger */}

@@ -17,7 +17,7 @@ export async function generateMetadata(
   const programme = getProgrammeBySlug(slug)
   if (!programme) return {}
   return {
-    title: `${programme.nom} — Programme Maison ${programme.dureeWeeks} Semaines`,
+    title: `${programme.nom} — Programme Sans Matériel ${programme.dureeWeeks} Semaines`,
     description: programme.descriptionSeo,
   }
 }
@@ -43,14 +43,14 @@ export default async function ProgrammeMaisonPage({ params }: { params: Promise<
         <Breadcrumb crumbs={[
           { nom: 'Accueil', url: '/' },
           { nom: 'Programmes', url: '/programmes' },
-          { nom: 'Maison', url: '/programmes/maison' },
+          { nom: 'Sans matériel', url: '/programmes/maison' },
           { nom: programme.nom },
         ]} />
 
         <div className="mt-6 mb-8">
           <div className="flex items-center gap-2 mb-3">
-            <span className="text-sm font-bold px-3 py-1 rounded-full" style={{ background: '#f0fdf4', color: '#16a34a' }}>
-              🏠 Maison
+            <span className="text-sm font-bold px-3 py-1 rounded-full" style={{ background: 'rgba(16,185,129,0.12)', color: '#10b981' }}>
+              🏠 Sans matériel
             </span>
             <span className="text-sm font-semibold px-3 py-1 rounded-full" style={{ color: niv.color, background: niv.bg }}>
               {niv.label}

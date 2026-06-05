@@ -447,7 +447,7 @@ export const EXERCISES: Exercise[] = [
     mode: 'salle',
     materiel: ['barre'],
     difficulte: 'intermediaire',
-    videoYoutube: 'feWp7jZopI8',
+    videoYoutube: '2yjwXTZQDDI',
     instructions: [
       'Debout ou assis, barre devant vous à hauteur de cou, prise légèrement plus large que les épaules.',
       'Core engagé, dos droit (pas d\'hyperextension lombaire).',

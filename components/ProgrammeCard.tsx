@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { Programme } from '@/data/programmes'
+import { MODE_LABEL, PROFIL_LABEL } from '@/data/programmes'
 
 const NIVEAU: Record<string, { label: string; color: string }> = {
   debutant:      { label: 'Débutant',      color: '#4ADE80' },
@@ -20,7 +21,7 @@ export default function ProgrammeCard({ programme }: { programme: Programme }) {
       <div className="glass-card rounded-2xl p-5 h-full">
         <div className="flex items-center justify-between mb-3">
           <span className="badge-red px-2.5 py-1 rounded-full">
-            {programme.mode === 'salle' ? '🏋️ Salle' : '🏠 Maison'}
+            {MODE_LABEL[programme.mode]}
           </span>
           <span className="text-xs font-semibold" style={{ color: '#3A4152' }}>
             {programme.dureeWeeks} semaines
@@ -47,6 +48,17 @@ export default function ProgrammeCard({ programme }: { programme: Programme }) {
           <span className="text-xs font-bold" style={{ color: niv.color }}>{niv.label}</span>
           <span className="text-xs" style={{ color: '#3A4152' }}>· {OBJECTIF[programme.objectif]}</span>
         </div>
+
+        {programme.profils && programme.profils.length > 0 && (
+          <div className="flex items-center gap-1.5 flex-wrap mt-2">
+            {programme.profils.slice(0, 3).map(p => (
+              <span key={p} className="text-[10px] font-semibold px-2 py-0.5 rounded-full"
+                style={{ background: 'rgba(230,57,70,0.08)', color: '#E63946', border: '1px solid rgba(230,57,70,0.18)' }}>
+                {PROFIL_LABEL[p]}
+              </span>
+            ))}
+          </div>
+        )}
 
         <div className="mt-4 flex items-center gap-1 text-xs font-bold tracking-widest uppercase" style={{ color: '#E63946' }}>
           Voir le programme →
