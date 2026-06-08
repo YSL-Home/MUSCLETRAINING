@@ -110,8 +110,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <p className="text-xs font-bold tracking-[0.15em] uppercase mb-4" style={{ color: '#E63946' }}>Navigation</p>
                 <ul className="space-y-2">
                   {[
-                    ['/programmes/salle','Salle'],
-                    ['/programmes/maison','Maison'],
+                    ['/programmes/salle','Avec matériel'],
+                    ['/programmes/maison','Sans matériel'],
+                    ['/guides','Guides exercices'],
                     ['/materiel','Matériel'],
                     ['/glossaire','Glossaire'],
                     ['/calculateurs','Calculateurs'],

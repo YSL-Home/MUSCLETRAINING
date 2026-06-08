@@ -80,6 +80,25 @@ export default async function MusclePage({ params }: { params: Promise<{ muscle:
                 <p className="text-xs leading-relaxed" style={{ color: '#5A6478' }}>{muscle.description}</p>
               </div>
               <div className="rounded-2xl p-4" style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(230,57,70,0.08)' }}>
+                <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: '#E63946' }}>Guides {muscle.nom}</p>
+                <div className="space-y-1">
+                  {exercicesSalle.length > 0 && (
+                    <Link href={`/guides/exercices-${muscle.slug}-salle`}
+                      className="block py-1.5 text-xs font-semibold transition-colors hover:text-[#E63946]"
+                      style={{ color: '#5A6478', borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
+                      🏋️ {exercicesSalle.length} exercices en salle →
+                    </Link>
+                  )}
+                  {exercicesMaison.length > 0 && (
+                    <Link href={`/guides/exercices-${muscle.slug}-maison`}
+                      className="block py-1.5 text-xs font-semibold transition-colors hover:text-[#E63946]"
+                      style={{ color: '#5A6478' }}>
+                      🏠 {exercicesMaison.length} exercices à la maison →
+                    </Link>
+                  )}
+                </div>
+              </div>
+              <div className="rounded-2xl p-4" style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(230,57,70,0.08)' }}>
                 <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: '#E63946' }}>Autres muscles</p>
                 <div className="space-y-1">
                   {MUSCLES.filter(m => m.id !== muscle.id).slice(0, 8).map(m => (
