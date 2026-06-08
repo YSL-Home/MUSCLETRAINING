@@ -269,6 +269,19 @@ export default async function ExercisePage({ params }: { params: Promise<{ slug:
           </div>
         </div>
 
+        {/* FAQ visible (même contenu que le schema FAQ injecté) */}
+        <section className="mt-12">
+          <h2 className="text-xl font-bold mb-5" style={{ color: '#EDE8E0' }}>Questions fréquentes</h2>
+          <div className="space-y-3">
+            {faqJsonLd.mainEntity.map((item, i) => (
+              <details key={i} className="rounded-xl p-4" style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(230,57,70,0.1)' }}>
+                <summary className="font-bold cursor-pointer text-sm" style={{ color: '#EDE8E0' }}>{item.name}</summary>
+                <p className="mt-2 text-sm leading-relaxed" style={{ color: '#8A9BB5' }}>{item.acceptedAnswer.text}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
         {/* Carte de progression */}
         <ProgressionMap currentSlug={exercise.slug} varianteSlugs={exercise.varianteSlugs} />
 

@@ -16,7 +16,9 @@ export interface Section {
   content: string | string[]
 }
 
-export const ARTICLES: Article[] = [
+import { GENERATED_ARTICLES } from './generated-articles'
+
+const BASE_ARTICLES: Article[] = [
   {
     slug: 'programme-musculation-debutant-3-jours',
     titre: 'Programme Musculation Débutant : 3 jours par semaine (Guide Complet)',
@@ -1276,6 +1278,9 @@ export const ARTICLES: Article[] = [
     ],
   },
 ]
+
+// Articles de base + articles générés automatiquement (les plus récents en tête)
+export const ARTICLES: Article[] = [...GENERATED_ARTICLES, ...BASE_ARTICLES]
 
 export function getArticleBySlug(slug: string): Article | undefined {
   return ARTICLES.find(a => a.slug === slug)

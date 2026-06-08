@@ -44,3 +44,8 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Ping IndexNow (Bing/Yandex)
+        if: github.ref == 'refs/heads/main'
+        run: node scripts/indexnow.mjs
+        continue-on-error: true

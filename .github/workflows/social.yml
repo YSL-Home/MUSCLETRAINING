@@ -1,0 +1,33 @@
+name: Auto-post réseaux sociaux
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/generated-articles.json'
+  workflow_dispatch:
+
+concurrency:
+  group: musclefr-social
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Publier sur les réseaux
+        run: node scripts/social-post.mjs
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          SOCIAL_WEBHOOK_URL: ${{ secrets.SOCIAL_WEBHOOK_URL }}
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+        continue-on-error: true

@@ -31,6 +31,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
 
+  const guideUrls: MetadataRoute.Sitemap = MUSCLES.flatMap((m) =>
+    (['maison', 'salle'] as const).map((lieu) => ({
+      url: `${BASE_URL}/guides/exercices-${m.slug}-${lieu}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.75,
+    }))
+  )
+
   const sportUrls: MetadataRoute.Sitemap = SPORTS.map((s) => ({
     url: `${BASE_URL}/sport/${s.slug}`,
     lastModified: new Date(),
@@ -66,6 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...exerciseUrls,
     ...muscleUrls,
     ...programmeUrls,
+    ...guideUrls,
     ...sportUrls,
     ...articleUrls,
   ]

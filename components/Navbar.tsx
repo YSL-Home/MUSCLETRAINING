@@ -20,6 +20,7 @@ export default function Navbar() {
   const NAV_LINKS = [
     { href: '/', label: tr('nav.muscles') },
     { href: '/programmes', label: tr('nav.programs') },
+    { href: '/guides', label: 'Guides' },
     { href: '/generateur', label: tr('nav.session') },
     { href: '/tracker', label: 'Tracker' },
     { href: '/machines', label: 'Machines' },
