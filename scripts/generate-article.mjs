@@ -10,7 +10,7 @@ import fs from 'fs'
 import path from 'path'
 
 const KEY = process.env.ANTHROPIC_API_KEY
-const MODEL = process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-5'
+const MODEL = process.env.ANTHROPIC_MODEL || 'claude-haiku-4-5'
 if (!KEY) { console.error('❌ ANTHROPIC_API_KEY manquant'); process.exit(1) }
 
 const JSON_PATH = path.resolve(process.cwd(), 'data', 'generated-articles.json')
