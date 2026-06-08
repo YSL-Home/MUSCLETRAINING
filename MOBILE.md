@@ -27,11 +27,33 @@ brew install openjdk@21
 npm run mobile:android     # build + ouvre Android Studio
 ```
 
-Dans Android Studio :
-1. Laisser Gradle se synchroniser.
-2. **Build > Generate Signed Bundle / APK** → AAB (Android App Bundle).
-3. Créer/charger un keystore de signature (à conserver précieusement).
-4. Uploader l'`.aab` sur [Google Play Console](https://play.google.com/console) (compte développeur 25 $ unique).
+### AAB release signé (en ligne de commande)
+
+Un keystore de release a déjà été généré dans `android/keystore/muscletraining-release.jks`
+et la config de signature est lue depuis `android/key.properties`.
+
+> 🔐 **`key.properties` et le `.jks` ne sont PAS versionnés (secrets).**
+> Les identifiants ont été affichés lors de la génération — garde-les hors du repo
+> (gestionnaire de mots de passe). Sans eux, impossible de publier une mise à jour.
+
+```bash
+export JAVA_HOME="/opt/homebrew/opt/openjdk@21"
+export PATH="$JAVA_HOME/bin:$PATH"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+
+cd android && ./gradlew :app:bundleRelease --no-daemon
+# → app/build/outputs/bundle/release/app-release.aab  (signé, prêt pour Play)
+```
+
+Le dernier AAB signé est copié dans `dist/muscletraining-v1.0-release.aab`.
+
+Pour incrémenter une version : éditer `versionCode` (+1) et `versionName` dans
+`android/app/build.gradle`, puis re-builder.
+
+### Publication
+1. [Google Play Console](https://play.google.com/console) (compte développeur 25 $ unique).
+2. Créer l'app → activer **Play App Signing** (recommandé).
+3. Uploader l'`.aab` dans un track (test interne → production).
 
 ## iOS (App Store)
 

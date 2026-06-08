@@ -48,3 +48,12 @@ next-env.d.ts
 
 # capacitor-assets unused PWA webp
 /icons/
+
+# Android release signing secrets — NE JAMAIS COMMITER
+/android/key.properties
+/android/keystore/
+*.jks
+*.keystore
+
+# AAB/APK générés (artefacts de build)
+/dist/
