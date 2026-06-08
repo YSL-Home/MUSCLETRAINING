@@ -36,12 +36,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!combo) return {}
   const muscle = getMuscleBySlug(combo.muscleSlug)
   if (!muscle) return {}
-  const count = getExercisesByMuscleAndMode(muscle.id, combo.lieu).length
+  const exos = getExercisesByMuscleAndMode(muscle.id, combo.lieu)
+  const count = exos.length
   const title = `${count} Exercices ${muscle.nom} ${LIEU_LABEL[combo.lieu]} (${LIEU_SUB[combo.lieu]})`
+  const desc = `Les meilleurs exercices pour muscler ${muscle.nomPluriel} ${LIEU_LABEL[combo.lieu]} ${LIEU_SUB[combo.lieu]}. ${count} mouvements avec vidéos, technique et conseils.`
+  const ogImg = exos[0]?.videoYoutube
+    ? `https://img.youtube.com/vi/${exos[0].videoYoutube}/maxresdefault.jpg`
+    : 'https://www.muscletraining.uk/logo-512.png'
+  const url = `https://www.muscletraining.uk/guides/${slug}`
   return {
     title,
-    description: `Les meilleurs exercices pour muscler ${muscle.nomPluriel} ${LIEU_LABEL[combo.lieu]} ${LIEU_SUB[combo.lieu]}. ${count} mouvements avec vidéos, technique et conseils.`,
-    alternates: { canonical: `https://www.muscletraining.uk/guides/${slug}` },
+    description: desc,
+    alternates: { canonical: url },
+    openGraph: { title, description: desc, url, images: [ogImg] },
+    twitter: { card: 'summary_large_image', title, description: desc, images: [ogImg] },
   }
 }
 

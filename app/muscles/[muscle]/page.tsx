@@ -17,15 +17,24 @@ export async function generateMetadata(
   const muscle = getMuscleBySlug(muscleSlug)
   if (!muscle) return {}
 
-  const count = getExercisesByMuscle(muscle.id).length
+  const exos = getExercisesByMuscle(muscle.id)
+  const count = exos.length
+  const ogImg = exos[0]?.videoYoutube
+    ? `https://img.youtube.com/vi/${exos[0].videoYoutube}/maxresdefault.jpg`
+    : 'https://www.muscletraining.uk/logo-512.png'
+  const url = `https://www.muscletraining.uk/muscles/${muscle.slug}`
 
   return {
     title: `Exercices ${muscle.nom} : ${count} Mouvements avec Vidéos`,
     description: muscle.descriptionSeo,
+    alternates: { canonical: url },
     openGraph: {
       title: `Exercices ${muscle.nom} — Salle & Maison`,
       description: muscle.descriptionSeo,
+      url,
+      images: [ogImg],
     },
+    twitter: { card: 'summary_large_image', title: `Exercices ${muscle.nom}`, description: muscle.descriptionSeo, images: [ogImg] },
   }
 }
 
