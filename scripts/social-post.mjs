@@ -21,8 +21,13 @@ const a = gen[0]
 const url = `${BASE}/blog/${a.slug}`
 const imageUrl = a.image ? (a.image.startsWith('http') ? a.image : BASE + a.image) : `${BASE}/logo-512.png`
 
-const hashtags = (a.tags || []).slice(0, 4).map(t => '#' + String(t).replace(/[^a-z0-9]/gi, '')).join(' ')
-const HASH_BASE = '#musculation #fitness #muscu #training'
+// Hashtags dédupliqués (tags article + base marque)
+const BASE_TAGS = ['musculation', 'fitness', 'muscu', 'training']
+const tagWords = [...(a.tags || []).map(t => String(t).replace(/[^a-z0-9]/gi, '').toLowerCase()), ...BASE_TAGS]
+const uniqTags = [...new Set(tagWords.filter(Boolean))]
+const hashtags = uniqTags.slice(0, 6).map(t => '#' + t).join(' ')
+const HASH_BASE = uniqTags.slice(6, 11).map(t => '#' + t).join(' ')
+const HASH_INSTA = [...new Set([...uniqTags, 'gym', 'santé', 'progression', 'motivation', 'workout'])].map(t => '#' + t).join(' ')
 
 // Accroches marketing en rotation (déterministe par jour)
 const HOOKS = [
@@ -60,7 +65,7 @@ ${a.description}
 
 🔗 Lien en bio / ${url}
 
-${hashtags} ${HASH_BASE} #gym #santé #progression #motivation #workout`,
+${HASH_INSTA}`,
 }
 
 let posted = 0
