@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: musclefr-content
@@ -35,6 +36,7 @@ jobs:
           ANTHROPIC_MODEL: ${{ secrets.ANTHROPIC_MODEL }}
 
       - name: Commit & push
+        id: commit
         run: |
           if [ -n "$(git status --porcelain data/generated-articles.json)" ]; then
             git config user.name  "github-actions[bot]"
@@ -42,6 +44,18 @@ jobs:
             git add data/generated-articles.json
             git commit -m "📝 Nouvel article auto (moteur de contenu hebdo)"
             git push
+            echo "new=true" >> "$GITHUB_OUTPUT"
           else
             echo "Aucun nouvel article."
           fi
+
+      # Les pushs via GITHUB_TOKEN ne déclenchent pas d'autres workflows :
+      # on lance donc explicitement le déploiement puis l'auto-post social.
+      - name: Déclencher déploiement + social
+        if: steps.commit.outputs.new == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run deploy.yml --ref main
+          sleep 90
+          gh workflow run social.yml --ref main
