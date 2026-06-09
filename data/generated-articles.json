@@ -1,1 +1,75 @@
-[]
+[
+  {
+    "slug": "progresser-au-souleve-de-terre-sans-se-blesser",
+    "titre": "Booste tes performances au soulevé de terre sans risquer la blessure",
+    "description": "Apprends à progresser au soulevé de terre de manière sécurisée et efficace avec nos conseils d'experts.",
+    "descriptionSeo": "Découvre comment améliorer tes performances au soulevé de terre sans risquer la blessure, avec des conseils et des astuces de nos experts en musculation.",
+    "categorie": "Technique",
+    "tempsLecture": 8,
+    "datePublication": "2026-06-09",
+    "image": "",
+    "tags": [
+      "souleve-de-terre",
+      "musculation",
+      "technique",
+      "securite",
+      "progression"
+    ],
+    "contenu": [
+      {
+        "type": "h2",
+        "content": "Introduction au soulevé de terre"
+      },
+      {
+        "type": "p",
+        "content": "Le soulevé de terre est un exercice polyarticulaire qui sollicite plusieurs groupes musculaires, notamment les muscles du dos, des jambes et des fessiers. Il est considéré comme l'un des exercices les plus efficaces pour développer la force et la puissance. Cependant, il peut également être l'un des exercices les plus risqués si la technique n'est pas maîtrisée."
+      },
+      {
+        "type": "h2",
+        "content": "Les erreurs à éviter pour progresser sans se blesser"
+      },
+      {
+        "type": "ul",
+        "content": [
+          "Ne pas chauffer correctement avant de commencer l'exercice",
+          "Ne pas utiliser un équipement adapté à son niveau de force",
+          "Ne pas respecter la technique de soulevé de terre",
+          "Ne pas écouter son corps et ignorer les signaux de fatigue ou de douleur"
+        ]
+      },
+      {
+        "type": "p",
+        "content": "Il est essentiel de prendre le temps de se préparer avant de commencer l'exercice, en faisant des étirements et des mouvements de mobilisation pour éviter les blessures. De plus, il est important de choisir un équipement adapté à son niveau de force pour éviter de se surmener."
+      },
+      {
+        "type": "h2",
+        "content": "Les conseils pour progresser de manière sécurisée"
+      },
+      {
+        "type": "ol",
+        "content": [
+          "Commence avec des poids légers et augmente progressivement la charge",
+          "Fais des séries de répétitions avec des pauses régulières pour éviter la fatigue",
+          "Respecte la technique de soulevé de terre et ne te laisse pas distraire",
+          "Écoute ton corps et arrête l'exercice si tu ressens une douleur ou une fatigue excessive"
+        ]
+      },
+      {
+        "type": "tip",
+        "content": "N'oublie pas de respirer correctement pendant l'exercice, en inspirant lors de la phase de descente et en expirant lors de la phase de montée."
+      },
+      {
+        "type": "h2",
+        "content": "Les bénéfices d'une progression sécurisée"
+      },
+      {
+        "type": "p",
+        "content": "Une progression sécurisée au soulevé de terre permet de développer la force et la puissance de manière efficace, tout en minimisant les risques de blessure. De plus, elle permet de renforcer la confiance en soi et de développer une meilleure maîtrise de la technique."
+      },
+      {
+        "type": "warning",
+        "content": "N'oublie pas que la sécurité doit toujours être la priorité lors de l'exercice, et qu'il est préférable de demander l'aide d'un professionnel si tu as des doutes sur la technique ou les équipements."
+      }
+    ]
+  }
+]
