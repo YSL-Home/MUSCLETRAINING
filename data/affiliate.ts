@@ -83,6 +83,37 @@ export function affiliateForMateriel(materiels: Materiel[]): AffiliateProduct[] 
   return out.slice(0, 3)
 }
 
+/** Sélection « essentiels » (homepage, page matériel, fin d'article). */
+export const AFFILIATE_ESSENTIALS: AffiliateProduct[] = [
+  p('Haltères réglables', 'haltères réglables musculation', 'dès 80 €', 'Le couteau suisse de la maison : remplace tout un rack d\'haltères.', '💪', 'Top vente'),
+  p('Bandes de résistance', 'bandes élastiques résistance fitness set', 'dès 20 €', 'Polyvalentes, compactes, parfaites pour la force et la mobilité.', '🟢', 'Petit budget'),
+  p('Barre de traction', 'barre de traction porte sans perçage', 'dès 25 €', 'Tractions et gainage suspendu, sans perçage.', '🚪'),
+  p('Whey protéine', 'whey protéine isolat', 'dès 25 €', 'Soutient la récupération et l\'apport en protéines.', '🥤', 'Populaire'),
+  p('Banc réglable', 'banc musculation réglable inclinable', 'dès 70 €', 'Développé, écarté, abdos : la base d\'un home gym.', '🪑'),
+  p('Tapis de sol', 'tapis de sol fitness épais antidérapant', 'dès 20 €', 'Confort et adhérence pour le travail au sol.', '🧘'),
+]
+
+/** Mapping libellés français (programmes) → type de matériel. */
+const LABEL_TO_MATERIEL: { re: RegExp; m: Materiel }[] = [
+  { re: /barre de traction|traction/i, m: 'barre-de-traction' },
+  { re: /barre/i, m: 'barre' },
+  { re: /haltère/i, m: 'halteres' },
+  { re: /élastique|elastique|bande/i, m: 'elastique' },
+  { re: /kettlebell/i, m: 'kettlebell' },
+  { re: /banc/i, m: 'banc' },
+  { re: /poulie|câble|cable/i, m: 'poulie' },
+  { re: /machine|presse|station/i, m: 'machine' },
+  { re: /tapis|yoga|aucun|poids du corps/i, m: 'poids-corps' },
+  { re: /anneaux|chaise/i, m: 'chaise' },
+]
+
+/** Produits affiliés déduits de libellés texte (ex. materielRequis d'un programme). */
+export function affiliateForLabels(labels: string[]): AffiliateProduct[] {
+  const mats = new Set<Materiel>()
+  for (const l of labels) for (const { re, m } of LABEL_TO_MATERIEL) if (re.test(l)) mats.add(m)
+  return affiliateForMateriel([...mats])
+}
+
 /** Mention légale obligatoire (Amazon Partenaires UE). */
 export const AFFILIATE_DISCLOSURE =
   'En tant que Partenaire Amazon, ce site réalise un bénéfice sur les achats remplissant les conditions requises. Certains liens sont des liens affiliés.'

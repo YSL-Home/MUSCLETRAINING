@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Breadcrumb from '@/components/Breadcrumb'
+import AffiliateRecommendations from '@/components/AffiliateRecommendations'
 import { getProgrammeBySlug, getProgrammesByMode } from '@/data/programmes'
 import { getExerciseBySlug } from '@/data/exercises'
 import { programmeSchema } from '@/lib/schema'
@@ -82,13 +83,17 @@ function ProgrammeDetail({ programme, mode }: { programme: ReturnType<typeof get
         </div>
 
         {/* Matériel */}
-        <div className="bg-[#0C0C1A] rounded-xl p-5 mb-10 border border-[rgba(230,57,70,0.1)]">
+        <div className="bg-[#0C0C1A] rounded-xl p-5 mb-6 border border-[rgba(230,57,70,0.1)]">
           <h3 className="font-bold text-[#EDE8E0] mb-3">Matériel requis</h3>
           <div className="flex flex-wrap gap-2">
             {programme.materielRequis.map(m => (
               <span key={m} className="text-sm px-3 py-1 rounded-full bg-[#0C0C1A] border border-[rgba(230,57,70,0.1)] text-[#C4CDD9]">{m}</span>
             ))}
           </div>
+        </div>
+
+        <div className="mb-10">
+          <AffiliateRecommendations labels={programme.materielRequis} title="🛒 S'équiper pour ce programme" compact />
         </div>
 
         {/* Avantages */}

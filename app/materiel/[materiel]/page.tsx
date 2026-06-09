@@ -9,32 +9,32 @@ import { getExerciseBySlug } from '@/data/exercises'
 
 const AFFILIATES: Record<string, { nom: string; prix: string; description: string; url: string; badge?: string; emoji: string }[]> = {
   'barre': [
-    { nom: 'Barre Olympique 20kg', prix: '~180€', description: 'Barre olympique 2m, 20kg, rotule roulements. Standard salle de sport.', url: 'https://www.amazon.fr/s?k=barre+olympique+20kg&tag=muscletraining-21', badge: 'Meilleure vente', emoji: '🏋️' },
-    { nom: 'Barre EZ curl', prix: '~45€', description: 'Barre ondulée pour biceps et triceps. Réduit la tension sur les poignets.', url: 'https://www.amazon.fr/s?k=barre+ez+curl&tag=muscletraining-21', emoji: '💪' },
+    { nom: 'Barre Olympique 20kg', prix: '~180€', description: 'Barre olympique 2m, 20kg, rotule roulements. Standard salle de sport.', url: 'https://www.amazon.fr/s?k=barre+olympique+20kg&tag=muscletrainin-21', badge: 'Meilleure vente', emoji: '🏋️' },
+    { nom: 'Barre EZ curl', prix: '~45€', description: 'Barre ondulée pour biceps et triceps. Réduit la tension sur les poignets.', url: 'https://www.amazon.fr/s?k=barre+ez+curl&tag=muscletrainin-21', emoji: '💪' },
   ],
   'halteres': [
-    { nom: 'Haltères Réglables 2-32kg', prix: '~120€', description: 'Paire d\'haltères réglables remplace 15 paires. Idéal maison.', url: 'https://www.amazon.fr/s?k=halteres+reglables+32kg&tag=muscletraining-21', badge: 'Rapport qualité/prix', emoji: '🏋️' },
-    { nom: 'Set Haltères Hexagonaux', prix: '~80€', description: 'Set 4 paires d\'haltères néoprène 4-10kg. Parfait débutant.', url: 'https://www.amazon.fr/s?k=set+halteres+hexagonaux&tag=muscletraining-21', emoji: '💪' },
+    { nom: 'Haltères Réglables 2-32kg', prix: '~120€', description: 'Paire d\'haltères réglables remplace 15 paires. Idéal maison.', url: 'https://www.amazon.fr/s?k=halteres+reglables+32kg&tag=muscletrainin-21', badge: 'Rapport qualité/prix', emoji: '🏋️' },
+    { nom: 'Set Haltères Hexagonaux', prix: '~80€', description: 'Set 4 paires d\'haltères néoprène 4-10kg. Parfait débutant.', url: 'https://www.amazon.fr/s?k=set+halteres+hexagonaux&tag=muscletrainin-21', emoji: '💪' },
   ],
   'barre-de-traction': [
-    { nom: 'Barre de Traction Porte', prix: '~30€', description: 'S\'installe sans perçage en 5 min. Jusqu\'à 150kg. Incontournable.', url: 'https://www.amazon.fr/s?k=barre+traction+porte&tag=muscletraining-21', badge: 'Meilleure vente', emoji: '🔝' },
-    { nom: 'Station Traction + Dips', prix: '~150€', description: 'Station complète : tractions, dips, pompes surélevées. Multi-usage.', url: 'https://www.amazon.fr/s?k=station+traction+dips&tag=muscletraining-21', badge: 'Premium', emoji: '🏋️' },
+    { nom: 'Barre de Traction Porte', prix: '~30€', description: 'S\'installe sans perçage en 5 min. Jusqu\'à 150kg. Incontournable.', url: 'https://www.amazon.fr/s?k=barre+traction+porte&tag=muscletrainin-21', badge: 'Meilleure vente', emoji: '🔝' },
+    { nom: 'Station Traction + Dips', prix: '~150€', description: 'Station complète : tractions, dips, pompes surélevées. Multi-usage.', url: 'https://www.amazon.fr/s?k=station+traction+dips&tag=muscletrainin-21', badge: 'Premium', emoji: '🏋️' },
   ],
   'elastique': [
-    { nom: 'Kit 5 Élastiques', prix: '~25€', description: '5 résistances différentes (10-40kg). Pour tous les exercices.', url: 'https://www.amazon.fr/s?k=kit+elastiques+musculation&tag=muscletraining-21', badge: 'Meilleure vente', emoji: '🔴' },
-    { nom: 'Élastiques Longs Power', prix: '~35€', description: 'Pour tractions assistées, squats et exercices full body.', url: 'https://www.amazon.fr/s?k=elastiques+longs+musculation&tag=muscletraining-21', emoji: '💪' },
+    { nom: 'Kit 5 Élastiques', prix: '~25€', description: '5 résistances différentes (10-40kg). Pour tous les exercices.', url: 'https://www.amazon.fr/s?k=kit+elastiques+musculation&tag=muscletrainin-21', badge: 'Meilleure vente', emoji: '🔴' },
+    { nom: 'Élastiques Longs Power', prix: '~35€', description: 'Pour tractions assistées, squats et exercices full body.', url: 'https://www.amazon.fr/s?k=elastiques+longs+musculation&tag=muscletrainin-21', emoji: '💪' },
   ],
   'kettlebell': [
-    { nom: 'Kettlebell 16kg', prix: '~35€', description: 'Fonte coulée, poignée ergonomique. Le 16kg est idéal pour débuter.', url: 'https://www.amazon.fr/s?k=kettlebell+16kg&tag=muscletraining-21', badge: 'Rapport qualité/prix', emoji: '🔔' },
-    { nom: 'Set Kettlebells 8-24kg', prix: '~120€', description: '3 kettlebells (8, 16, 24kg) pour progresser sur le long terme.', url: 'https://www.amazon.fr/s?k=set+kettlebells&tag=muscletraining-21', emoji: '🏋️' },
+    { nom: 'Kettlebell 16kg', prix: '~35€', description: 'Fonte coulée, poignée ergonomique. Le 16kg est idéal pour débuter.', url: 'https://www.amazon.fr/s?k=kettlebell+16kg&tag=muscletrainin-21', badge: 'Rapport qualité/prix', emoji: '🔔' },
+    { nom: 'Set Kettlebells 8-24kg', prix: '~120€', description: '3 kettlebells (8, 16, 24kg) pour progresser sur le long terme.', url: 'https://www.amazon.fr/s?k=set+kettlebells&tag=muscletrainin-21', emoji: '🏋️' },
   ],
   'banc': [
-    { nom: 'Banc Réglable Inclinable', prix: '~80€', description: 'Multi-position : plat, incliné, décliné. Robuste jusqu\'à 300kg.', url: 'https://www.amazon.fr/s?k=banc+musculation+reglable&tag=muscletraining-21', badge: 'Meilleure vente', emoji: '🛏️' },
-    { nom: 'Banc Plat Pro', prix: '~120€', description: 'Banc plat ultra-stable, rembourrage dense. Pour charges lourdes.', url: 'https://www.amazon.fr/s?k=banc+plat+musculation&tag=muscletraining-21', badge: 'Premium', emoji: '💺' },
+    { nom: 'Banc Réglable Inclinable', prix: '~80€', description: 'Multi-position : plat, incliné, décliné. Robuste jusqu\'à 300kg.', url: 'https://www.amazon.fr/s?k=banc+musculation+reglable&tag=muscletrainin-21', badge: 'Meilleure vente', emoji: '🛏️' },
+    { nom: 'Banc Plat Pro', prix: '~120€', description: 'Banc plat ultra-stable, rembourrage dense. Pour charges lourdes.', url: 'https://www.amazon.fr/s?k=banc+plat+musculation&tag=muscletrainin-21', badge: 'Premium', emoji: '💺' },
   ],
   'poids-corps': [
-    { nom: 'Tapis de Sol Épais 15mm', prix: '~30€', description: 'Tapis yoga/fitness 183×61cm, 15mm d\'épaisseur. Anti-dérapant.', url: 'https://www.amazon.fr/s?k=tapis+yoga+musculation+épais&tag=muscletraining-21', badge: 'Meilleure vente', emoji: '🟫' },
-    { nom: 'Anneaux de Gym', prix: '~35€', description: 'Anneaux en bois, sangles réglables. Pour dips, tractions et muscle-up.', url: 'https://www.amazon.fr/s?k=anneaux+gym+bois&tag=muscletraining-21', emoji: '⭕' },
+    { nom: 'Tapis de Sol Épais 15mm', prix: '~30€', description: 'Tapis yoga/fitness 183×61cm, 15mm d\'épaisseur. Anti-dérapant.', url: 'https://www.amazon.fr/s?k=tapis+yoga+musculation+épais&tag=muscletrainin-21', badge: 'Meilleure vente', emoji: '🟫' },
+    { nom: 'Anneaux de Gym', prix: '~35€', description: 'Anneaux en bois, sangles réglables. Pour dips, tractions et muscle-up.', url: 'https://www.amazon.fr/s?k=anneaux+gym+bois&tag=muscletrainin-21', emoji: '⭕' },
   ],
 }
 

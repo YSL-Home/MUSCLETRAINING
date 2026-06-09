@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Breadcrumb from '@/components/Breadcrumb'
+import AffiliateRecommendations from '@/components/AffiliateRecommendations'
 import { getProgrammeBySlug, getProgrammesByMode } from '@/data/programmes'
 import { getExerciseBySlug } from '@/data/exercises'
 import { programmeSchema } from '@/lib/schema'
@@ -81,6 +82,10 @@ export default async function ProgrammeMaisonPage({ params }: { params: Promise<
               <span key={m} className="text-sm px-3 py-1 rounded-full bg-[#0C0C1A] border border-green-200 text-green-800">{m}</span>
             ))}
           </div>
+        </div>
+
+        <div className="mb-10">
+          <AffiliateRecommendations labels={programme.materielRequis} title="🛒 S'équiper pour ce programme" compact />
         </div>
 
         <div className="space-y-8">

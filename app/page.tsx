@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import MuscleMap from '@/components/MuscleMap'
+import AffiliateRecommendations from '@/components/AffiliateRecommendations'
+import { AFFILIATE_ESSENTIALS } from '@/data/affiliate'
 import ExerciseCard from '@/components/ExerciseCard'
 import { MUSCLES } from '@/data/muscles'
 import { EXERCISES } from '@/data/exercises'
@@ -192,6 +194,10 @@ export default function HomePage() {
               <p className="text-xs font-semibold group-hover:text-[#E63946] transition-colors truncate" style={{ color: '#5A6478' }}>{s.nom}</p>
             </Link>
           ))}
+        </div>
+
+        <div className="mt-14">
+          <AffiliateRecommendations products={AFFILIATE_ESSENTIALS} title="🛒 Le matériel essentiel pour progresser" />
         </div>
       </div>
 

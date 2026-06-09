@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Breadcrumb from '@/components/Breadcrumb'
 import { MATERIEL_DATA } from '@/data/materiel'
+import AffiliateRecommendations from '@/components/AffiliateRecommendations'
+import { AFFILIATE_ESSENTIALS } from '@/data/affiliate'
 
 export const metadata: Metadata = {
   title: 'Exercices par Matériel — Barre, Haltères, Poids du Corps, Machine',
@@ -29,6 +31,8 @@ export default function MaterielPage() {
           </Link>
         ))}
       </div>
+
+      <AffiliateRecommendations products={AFFILIATE_ESSENTIALS} title="🛒 Les essentiels pour s'équiper" />
     </div>
   )
 }

@@ -3,8 +3,10 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Breadcrumb from '@/components/Breadcrumb'
 import MuscleExerciseFilter from '@/components/MuscleExerciseFilter'
+import AffiliateRecommendations from '@/components/AffiliateRecommendations'
 import { getMuscleBySlug, MUSCLES } from '@/data/muscles'
 import { getExercisesByMuscle } from '@/data/exercises'
+import type { Materiel } from '@/data/exercises'
 
 export async function generateStaticParams() {
   return MUSCLES.map(m => ({ muscle: m.slug }))
@@ -130,6 +132,7 @@ export default async function MusclePage({ params }: { params: Promise<{ muscle:
               muscleId={muscle.id}
               muscleCouleur={muscle.couleurSvg}
             />
+            <AffiliateRecommendations materiels={[...new Set(allExercices.flatMap(e => e.materiel))] as Materiel[]} />
           </div>
         </div>
       </div>

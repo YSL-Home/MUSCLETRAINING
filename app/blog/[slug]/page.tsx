@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Breadcrumb from '@/components/Breadcrumb'
 import ShareButtons from '@/components/ShareButtons'
+import AffiliateRecommendations from '@/components/AffiliateRecommendations'
 import { ARTICLES, getArticleBySlug } from '@/data/articles'
 import type { Section } from '@/data/articles'
 
@@ -178,6 +179,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             <div className="prose-sport">
               {article.contenu.map((section, idx) => renderSection(section, idx))}
             </div>
+
+            {/* Matériel recommandé (liens affiliés) */}
+            <AffiliateRecommendations labels={article.tags} title="🛒 Pour t'équiper" compact />
 
             <div className="mt-10 pt-6 border-t border-[rgba(230,57,70,0.1)]">
               <div className="flex flex-wrap gap-2 mb-5">
