@@ -9,9 +9,22 @@
 import fs from 'fs'
 import path from 'path'
 
-const KEY = process.env.ANTHROPIC_API_KEY
-const MODEL = process.env.ANTHROPIC_MODEL || 'claude-haiku-4-5'
-if (!KEY) { console.error('❌ ANTHROPIC_API_KEY manquant'); process.exit(1) }
+// Fournisseurs (par ordre de préférence) :
+//  1. Cloudflare Workers AI — GRATUIT (réutilise CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID)
+//  2. Google Gemini — gratuit (GOOGLE_API_KEY via AI Studio)
+//  3. Anthropic — payant (ANTHROPIC_API_KEY)
+const CF_TOKEN = process.env.CLOUDFLARE_API_TOKEN
+const CF_ACCOUNT = process.env.CLOUDFLARE_ACCOUNT_ID
+const CF_MODEL = process.env.CF_AI_MODEL || '@cf/meta/llama-3.3-70b-instruct-fp8-fast'
+const GOOGLE_KEY = process.env.GOOGLE_API_KEY
+const GOOGLE_MODEL = process.env.GOOGLE_MODEL || 'gemini-2.0-flash'
+const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY
+const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || 'claude-haiku-4-5'
+
+if (!CF_TOKEN && !GOOGLE_KEY && !ANTHROPIC_KEY) {
+  console.error('❌ Aucun fournisseur configuré (CLOUDFLARE_API_TOKEN+ACCOUNT_ID, GOOGLE_API_KEY ou ANTHROPIC_API_KEY)')
+  process.exit(1)
+}
 
 const JSON_PATH = path.resolve(process.cwd(), 'data', 'generated-articles.json')
 const existing = JSON.parse(fs.readFileSync(JSON_PATH, 'utf8'))
@@ -56,24 +69,73 @@ Réponds UNIQUEMENT avec un objet JSON valide (aucun texte autour) respectant EX
 }
 Règles contenu : 900-1400 mots, 4-6 sections h2, paragraphes denses et concrets, au moins 1 "ul"/"ol", au moins 1 "tip". Ton : expert, direct, tutoiement. Pas de blabla.`
 
-const res = await fetch('https://api.anthropic.com/v1/messages', {
-  method: 'POST',
-  headers: {
-    'content-type': 'application/json',
-    'x-api-key': KEY,
-    'anthropic-version': '2023-06-01',
-  },
-  body: JSON.stringify({
-    model: MODEL,
-    max_tokens: 4096,
-    messages: [{ role: 'user', content: prompt }],
-  }),
-})
+// ── Appels fournisseurs ──────────────────────────────
+async function viaCloudflare() {
+  const url = `https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT}/ai/run/${CF_MODEL}`
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', authorization: `Bearer ${CF_TOKEN}` },
+    body: JSON.stringify({
+      max_tokens: 4096,
+      messages: [
+        { role: 'system', content: 'Tu réponds uniquement avec du JSON valide, sans texte ni markdown autour.' },
+        { role: 'user', content: prompt },
+      ],
+    }),
+  })
+  if (!res.ok) throw new Error(`Cloudflare AI ${res.status} ${await res.text()}`)
+  const j = await res.json()
+  if (!j.success) throw new Error(`Cloudflare AI: ${JSON.stringify(j.errors)}`)
+  return j.result?.response || ''
+}
 
-if (!res.ok) { console.error('❌ API Anthropic', res.status, await res.text()); process.exit(1) }
-const json = await res.json()
-let text = (json.content?.[0]?.text || '').trim()
-text = text.replace(/^```json\s*/i, '').replace(/```$/, '').trim()
+async function viaGoogle() {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${GOOGLE_MODEL}:generateContent?key=${GOOGLE_KEY}`
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig: { responseMimeType: 'application/json', maxOutputTokens: 4096 },
+    }),
+  })
+  if (!res.ok) throw new Error(`Google ${res.status} ${await res.text()}`)
+  const j = await res.json()
+  return j.candidates?.[0]?.content?.parts?.[0]?.text || ''
+}
+
+async function viaAnthropic() {
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', 'x-api-key': ANTHROPIC_KEY, 'anthropic-version': '2023-06-01' },
+    body: JSON.stringify({ model: ANTHROPIC_MODEL, max_tokens: 4096, messages: [{ role: 'user', content: prompt }] }),
+  })
+  if (!res.ok) throw new Error(`Anthropic ${res.status} ${await res.text()}`)
+  const j = await res.json()
+  return j.content?.[0]?.text || ''
+}
+
+const providers = []
+if (CF_TOKEN && CF_ACCOUNT) providers.push(['Cloudflare Workers AI', viaCloudflare])
+if (GOOGLE_KEY) providers.push(['Google Gemini', viaGoogle])
+if (ANTHROPIC_KEY) providers.push(['Anthropic', viaAnthropic])
+
+let raw = ''
+for (const [name, fn] of providers) {
+  try {
+    console.log(`→ Tentative via ${name}…`)
+    raw = await fn()
+    if (raw) { console.log(`✓ Réponse obtenue via ${name}`); break }
+  } catch (e) {
+    console.error(`⚠️ ${name} échec : ${e.message}`)
+  }
+}
+if (!raw) { console.error('❌ Tous les fournisseurs ont échoué'); process.exit(1) }
+
+// Extraction robuste du JSON (gère ```json, texte parasite…)
+let text = raw.trim().replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```$/i, '').trim()
+const first = text.indexOf('{'), last = text.lastIndexOf('}')
+if (first > 0 || last < text.length - 1) text = text.slice(first, last + 1)
 
 let article
 try { article = JSON.parse(text) } catch (e) { console.error('❌ JSON invalide:', e.message, '\n', text.slice(0, 500)); process.exit(1) }
