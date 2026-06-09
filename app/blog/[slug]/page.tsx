@@ -14,15 +14,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const article = getArticleBySlug(slug)
   if (!article) return {}
+  const img = article.image
+    ? (article.image.startsWith('http') ? article.image : `https://www.muscletraining.uk${article.image}`)
+    : 'https://www.muscletraining.uk/logo-512.png'
   return {
     title: article.titre,
     description: article.descriptionSeo,
+    alternates: { canonical: `https://www.muscletraining.uk/blog/${slug}` },
     openGraph: {
       title: article.titre,
       description: article.descriptionSeo,
       type: 'article',
       publishedTime: article.datePublication,
+      images: [img],
     },
+    twitter: { card: 'summary_large_image', title: article.titre, description: article.descriptionSeo, images: [img] },
   }
 }
 
@@ -158,6 +164,13 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                 <ShareButtons url={pageUrl} title={article.titre} compact />
               </div>
             </div>
+
+            {article.image && (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img src={article.image} alt={article.titre} loading="eager"
+                className="w-full rounded-2xl mb-8 border border-[rgba(230,57,70,0.12)]"
+                style={{ aspectRatio: '16/9', objectFit: 'cover' }} />
+            )}
 
             <div className="h-px bg-[rgba(255,255,255,0.06)] mb-8" />
 

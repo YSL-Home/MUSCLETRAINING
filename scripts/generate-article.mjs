@@ -155,6 +155,37 @@ article.image = article.image || ''
 article.tempsLecture = Number(article.tempsLecture) || 7
 article.datePublication = article.datePublication || new Date().toISOString().slice(0, 10)
 
+// ── Image de couverture via Cloudflare Workers AI (gratuit) ──
+async function generateImage() {
+  if (!CF_TOKEN || !CF_ACCOUNT) return ''
+  const theme = (article.tags || []).slice(0, 2).join(' ') || 'musculation'
+  const imgPrompt = `Cinematic fitness action photograph, close-up of a muscular athlete mid-exercise with a barbell and weight plates in a dark modern gym, ` +
+    `theme: ${theme}. Dramatic rim lighting, deep shadows, subtle red accent glow, sweat, shallow depth of field, photorealistic, 35mm. ` +
+    `ABSOLUTELY NO TEXT, no letters, no words, no numbers, no captions, no titles, no typography, no logo, no watermark, no poster layout, no border.`
+  try {
+    const url = `https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT}/ai/run/@cf/black-forest-labs/flux-1-schnell`
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', authorization: `Bearer ${CF_TOKEN}` },
+      body: JSON.stringify({ prompt: imgPrompt.slice(0, 2048), steps: 6 }),
+    })
+    if (!res.ok) throw new Error(`${res.status} ${await res.text()}`)
+    const j = await res.json()
+    const b64 = j.result?.image
+    if (!b64) throw new Error('pas d_image dans la réponse')
+    const dir = path.resolve(process.cwd(), 'public', 'blog')
+    fs.mkdirSync(dir, { recursive: true })
+    fs.writeFileSync(path.join(dir, `${slug}.jpg`), Buffer.from(b64, 'base64'))
+    return `/blog/${slug}.jpg`
+  } catch (e) {
+    console.error('⚠️ Image non générée (non bloquant):', e.message)
+    return ''
+  }
+}
+
+article.image = await generateImage()
+if (article.image) console.log(`🖼️ Image: public${article.image}`)
+
 const updated = [article, ...existing]
 fs.writeFileSync(JSON_PATH, JSON.stringify(updated, null, 2) + '\n', 'utf8')
 console.log(`✅ Article généré : ${article.titre} (/blog/${slug})`)
