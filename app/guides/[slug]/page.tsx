@@ -3,8 +3,10 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Breadcrumb from '@/components/Breadcrumb'
 import ExerciseCard from '@/components/ExerciseCard'
+import AffiliateRecommendations from '@/components/AffiliateRecommendations'
 import { MUSCLES, getMuscleBySlug } from '@/data/muscles'
 import { getExercisesByMuscleAndMode } from '@/data/exercises'
+import type { Materiel } from '@/data/exercises'
 
 type Lieu = 'maison' | 'salle'
 const LIEUX: Lieu[] = ['maison', 'salle']
@@ -119,8 +121,11 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           {exercices.map(ex => <ExerciseCard key={ex.slug} exercise={ex} />)}
         </div>
 
+        {/* Matériel recommandé (liens affiliés) */}
+        <AffiliateRecommendations materiels={[...new Set(exercices.flatMap(e => e.materiel))] as Materiel[]} />
+
         {/* Maillage interne */}
-        <div className="flex flex-wrap gap-3 mb-12">
+        <div className="flex flex-wrap gap-3 mb-12 mt-12">
           <Link href={`/guides/exercices-${muscle.slug}-${otherLieu}`}
             className="text-sm font-semibold px-4 py-2 rounded-xl transition-colors hover:text-[#E63946]"
             style={{ background: 'rgba(255,255,255,0.04)', color: '#8A9BB5', border: '1px solid rgba(230,57,70,0.12)' }}>

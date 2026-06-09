@@ -132,6 +132,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 ))}
               </div>
             </div>
+            <p className="text-[11px] leading-relaxed mt-4" style={{ color: '#2A3142' }}>
+              En tant que Partenaire Amazon, ce site réalise un bénéfice sur les achats remplissant les conditions requises. Certains liens sont des liens affiliés.
+            </p>
           </div>
         </footer>
         </LanguageProvider>

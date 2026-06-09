@@ -9,6 +9,7 @@ import ExerciseGif from '@/components/ExerciseGif'
 import FavoriteButton from '@/components/FavoriteButton'
 import PRInput from '@/components/PRInput'
 import ProgressionMap from '@/components/ProgressionMap'
+import AffiliateRecommendations from '@/components/AffiliateRecommendations'
 import { getExerciseBySlug, EXERCISES } from '@/data/exercises'
 import { getMuscleById } from '@/data/muscles'
 import { exerciseSchema, breadcrumbSchema, aggregateRatingSchema, faqSchema } from '@/lib/schema'
@@ -281,6 +282,9 @@ export default async function ExercisePage({ params }: { params: Promise<{ slug:
             ))}
           </div>
         </section>
+
+        {/* Matériel recommandé (liens affiliés) */}
+        <AffiliateRecommendations materiels={exercise.materiel} />
 
         {/* Carte de progression */}
         <ProgressionMap currentSlug={exercise.slug} varianteSlugs={exercise.varianteSlugs} />
