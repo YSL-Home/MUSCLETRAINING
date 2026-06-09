@@ -86,7 +86,8 @@ async function viaCloudflare() {
   if (!res.ok) throw new Error(`Cloudflare AI ${res.status} ${await res.text()}`)
   const j = await res.json()
   if (!j.success) throw new Error(`Cloudflare AI: ${JSON.stringify(j.errors)}`)
-  return j.result?.response || ''
+  const r = j.result?.response
+  return typeof r === 'string' ? r : JSON.stringify(r ?? j.result ?? '')
 }
 
 async function viaGoogle() {
@@ -132,7 +133,8 @@ for (const [name, fn] of providers) {
 }
 if (!raw) { console.error('❌ Tous les fournisseurs ont échoué'); process.exit(1) }
 
-// Extraction robuste du JSON (gère ```json, texte parasite…)
+// Extraction robuste du JSON (gère objet, ```json, texte parasite…)
+if (typeof raw !== 'string') raw = JSON.stringify(raw)
 let text = raw.trim().replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```$/i, '').trim()
 const first = text.indexOf('{'), last = text.lastIndexOf('}')
 if (first > 0 || last < text.length - 1) text = text.slice(first, last + 1)
