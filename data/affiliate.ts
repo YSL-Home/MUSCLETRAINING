@@ -6,7 +6,7 @@ import type { Materiel } from './exercises'
  * Une fois le tag obtenu, change uniquement cette constante : tous les liens
  * du site seront automatiquement monétisés.
  */
-export const AMAZON_TAG = 'muscletraining-21'
+export const AMAZON_TAG = 'muscletrainin-21'
 
 /** Construit un lien de recherche Amazon affilié (robuste : jamais de lien mort). */
 export function amazonSearch(query: string): string {
