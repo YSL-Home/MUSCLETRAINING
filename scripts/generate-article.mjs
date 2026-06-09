@@ -13,7 +13,7 @@ import path from 'path'
 //  1. Cloudflare Workers AI — GRATUIT (réutilise CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID)
 //  2. Google Gemini — gratuit (GOOGLE_API_KEY via AI Studio)
 //  3. Anthropic — payant (ANTHROPIC_API_KEY)
-const CF_TOKEN = process.env.CLOUDFLARE_API_TOKEN
+const CF_TOKEN = process.env.CF_AI_TOKEN || process.env.CLOUDFLARE_API_TOKEN
 const CF_ACCOUNT = process.env.CLOUDFLARE_ACCOUNT_ID
 const CF_MODEL = process.env.CF_AI_MODEL || '@cf/meta/llama-3.3-70b-instruct-fp8-fast'
 const GOOGLE_KEY = process.env.GOOGLE_API_KEY

@@ -27,6 +27,7 @@ jobs:
       - name: Générer un article
         run: node scripts/generate-article.mjs
         env:
+          CF_AI_TOKEN: ${{ secrets.CF_AI_TOKEN }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
