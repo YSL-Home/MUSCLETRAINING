@@ -24,6 +24,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
 
+  const alternativeUrls: MetadataRoute.Sitemap = EXERCISES.map((e) => ({
+    url: `${BASE_URL}/alternatives/${e.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }))
+
   const programmeUrls: MetadataRoute.Sitemap = PROGRAMMES.map((p) => ({
     url: `${BASE_URL}/programmes/${p.mode}/${p.slug}`,
     lastModified: new Date(),
@@ -74,6 +81,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticUrls,
     ...exerciseUrls,
     ...muscleUrls,
+    ...alternativeUrls,
     ...programmeUrls,
     ...guideUrls,
     ...sportUrls,

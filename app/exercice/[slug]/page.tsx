@@ -296,6 +296,10 @@ export default async function ExercisePage({ params }: { params: Promise<{ slug:
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {variantes.map(v => v && <ExerciseCard key={v.slug} exercise={v} />)}
             </div>
+            <Link href={`/alternatives/${exercise.slug}`}
+              className="inline-block mt-6 text-sm font-semibold hover:underline" style={{ color: '#E63946' }}>
+              Voir toutes les alternatives au {exercise.nom} →
+            </Link>
           </div>
         )}
       </div>
