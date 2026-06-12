@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Breadcrumb from '@/components/Breadcrumb'
 import ShareButtons from '@/components/ShareButtons'
 import AffiliateRecommendations from '@/components/AffiliateRecommendations'
+import TelegramCTA from '@/components/TelegramCTA'
 import { ARTICLES, getArticleBySlug } from '@/data/articles'
 import type { Section } from '@/data/articles'
 
@@ -179,6 +180,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             <div className="prose-sport">
               {article.contenu.map((section, idx) => renderSection(section, idx))}
             </div>
+
+            {/* Rejoindre Telegram */}
+            <TelegramCTA />
 
             {/* Matériel recommandé (liens affiliés) */}
             <AffiliateRecommendations labels={article.tags} title="🛒 Pour t'équiper" compact />

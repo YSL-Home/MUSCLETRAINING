@@ -95,6 +95,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <p className="mt-3 text-sm leading-relaxed" style={{ color: '#3A4152' }}>
                   La référence francophone pour la musculation. Exercices, programmes et vidéos pour tous les niveaux.
                 </p>
+                <a href="https://t.me/muscletrainiing" target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mt-4 text-sm font-semibold transition-colors hover:opacity-80"
+                  style={{ color: '#229ED9' }}>
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.86 8.78c-.14.62-.51.77-1.03.48l-2.85-2.1-1.37 1.32c-.15.15-.28.28-.57.28l.2-2.9 5.27-4.76c.23-.2-.05-.32-.35-.12L8.4 13.5l-2.8-.88c-.61-.19-.62-.61.13-.9l10.95-4.22c.51-.18.96.12.78.66z"/></svg>
+                  Rejoindre le canal Telegram
+                </a>
               </div>
               <div>
                 <p className="text-xs font-bold tracking-[0.15em] uppercase mb-4" style={{ color: '#E63946' }}>Muscles</p>

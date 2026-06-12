@@ -161,6 +161,11 @@ export default function Navbar() {
               )}
             </div>
 
+            <a href="https://t.me/muscletrainiing" target="_blank" rel="noopener noreferrer" title="Canal Telegram"
+              className="hidden md:flex items-center justify-center w-8 h-8 rounded-full transition-all hover:opacity-80"
+              style={{ border: '1px solid rgba(35,158,217,0.3)', color: '#229ED9' }}>
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.86 8.78c-.14.62-.51.77-1.03.48l-2.85-2.1-1.37 1.32c-.15.15-.28.28-.57.28l.2-2.9 5.27-4.76c.23-.2-.05-.32-.35-.12L8.4 13.5l-2.8-.88c-.61-.19-.62-.61.13-.9l10.95-4.22c.51-.18.96.12.78.66z"/></svg>
+            </a>
             <Link href="/favoris" title={tr('nav.favorites')}
               className="hidden md:flex items-center justify-center w-8 h-8 rounded-full transition-all hover:border-[#E63946]"
               style={{ border: '1px solid rgba(230,57,70,0.18)', color: '#8A9BB5' }}>
