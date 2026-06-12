@@ -21,6 +21,29 @@ const a = gen[0]
 const url = `${BASE}/blog/${a.slug}`
 const imageUrl = a.image ? (a.image.startsWith('http') ? a.image : BASE + a.image) : `${BASE}/logo-512.png`
 
+// ── GIF du mouvement (depuis la base d'exercices) ─────
+// On parse le mapping slug→gif de components/ExerciseGif.tsx.
+function loadExerciseGifs() {
+  try {
+    const src = fs.readFileSync(path.resolve(process.cwd(), 'components', 'ExerciseGif.tsx'), 'utf8')
+    const baseM = src.match(/const BASE = '([^']+)'/)
+    const gbase = baseM ? baseM[1] : ''
+    const map = {}
+    for (const m of src.matchAll(/'([^']+)':\s*`\$\{BASE\}\/([^`]+)`/g)) map[m[1]] = `${gbase}/${m[2]}`
+    return map
+  } catch { return {} }
+}
+const GIFS = loadExerciseGifs()
+const norm = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+// Cherche un GIF pertinent : tag = slug d'exercice, sinon mot du titre dans un slug
+let animationUrl = ''
+for (const t of a.tags || []) { if (GIFS[t]) { animationUrl = GIFS[t]; break } }
+if (!animationUrl) {
+  const title = norm(a.titre)
+  const hit = Object.keys(GIFS).find(slug => title.includes(norm(slug)) || norm(slug).split('-').filter(w => w.length > 4).some(w => title.includes(w)))
+  if (hit) animationUrl = GIFS[hit]
+}
+
 // Hashtags dédupliqués (tags article + base marque)
 const BASE_TAGS = ['musculation', 'fitness', 'muscu', 'training']
 const tagWords = [...(a.tags || []).map(t => String(t).replace(/[^a-z0-9]/gi, '').toLowerCase()), ...BASE_TAGS]
@@ -70,16 +93,17 @@ ${HASH_INSTA}`,
 
 let posted = 0
 
-// ── Telegram (photo + légende) ────────────────────────
+// ── Telegram : GIF animé du mouvement si dispo, sinon image ──
 const TG = process.env.TELEGRAM_BOT_TOKEN, TGC = process.env.TELEGRAM_CHAT_ID
 if (TG && TGC) {
   try {
-    const endpoint = `https://api.telegram.org/bot${TG}/sendPhoto`
-    const r = await fetch(endpoint, {
+    const method = animationUrl ? 'sendAnimation' : 'sendPhoto'
+    const media = animationUrl ? { animation: animationUrl } : { photo: imageUrl }
+    const r = await fetch(`https://api.telegram.org/bot${TG}/${method}`, {
       method: 'POST', headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ chat_id: TGC, photo: imageUrl, caption: captions.long }),
+      body: JSON.stringify({ chat_id: TGC, ...media, caption: captions.long }),
     })
-    console.log('Telegram:', r.status); posted++
+    console.log(`Telegram (${animationUrl ? 'GIF' : 'image'}):`, r.status); posted++
   } catch (e) { console.error('Telegram échec:', e.message) }
 }
 
@@ -91,6 +115,7 @@ if (WH) {
       method: 'POST', headers: { 'content-type': 'application/json' },
       body: JSON.stringify({
         title: a.titre, description: a.description, url, imageUrl,
+        animationUrl, // GIF du mouvement (vide si aucun)
         hook, cta: CTA, hashtags: `${hashtags} ${HASH_BASE}`,
         captions, // { long, x, instagram }
       }),
