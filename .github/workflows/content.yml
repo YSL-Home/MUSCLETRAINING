@@ -25,6 +25,9 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Installer ffmpeg + polices (pour les Reels)
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-dejavu-core
+
       - name: Générer un article
         run: node scripts/generate-article.mjs
         env:
@@ -35,14 +38,21 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_MODEL: ${{ secrets.ANTHROPIC_MODEL }}
 
+      - name: Installer dépendances (sharp pour le Reel)
+        run: npm ci
+
+      - name: Générer le Reel vertical (TikTok/Reels/Shorts)
+        run: node scripts/make-reel.mjs
+        continue-on-error: true
+
       - name: Commit & push
         id: commit
         run: |
           if [ -n "$(git status --porcelain data/generated-articles.json)" ]; then
             git config user.name  "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add data/generated-articles.json public/blog/
-            git commit -m "📝 Nouvel article auto (moteur de contenu hebdo)"
+            git add data/generated-articles.json public/blog/ public/reels/
+            git commit -m "📝 Nouvel article auto + Reel (moteur de contenu hebdo)"
             git push
             echo "new=true" >> "$GITHUB_OUTPUT"
           else

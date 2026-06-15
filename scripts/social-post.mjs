@@ -93,17 +93,34 @@ ${HASH_INSTA}`,
 
 let posted = 0
 
-// ── Telegram : GIF animé du mouvement si dispo, sinon image ──
+// Reel vidéo local (généré par make-reel.mjs)
+const reelPath = path.resolve(process.cwd(), 'public', 'reels', `${a.slug}.mp4`)
+const hasReel = fs.existsSync(reelPath)
+const reelUrl = hasReel ? `${BASE}/reels/${a.slug}.mp4` : ''
+
+// ── Telegram : Reel vidéo > GIF mouvement > image ──
 const TG = process.env.TELEGRAM_BOT_TOKEN, TGC = process.env.TELEGRAM_CHAT_ID
 if (TG && TGC) {
   try {
-    const method = animationUrl ? 'sendAnimation' : 'sendPhoto'
-    const media = animationUrl ? { animation: animationUrl } : { photo: imageUrl }
-    const r = await fetch(`https://api.telegram.org/bot${TG}/${method}`, {
-      method: 'POST', headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ chat_id: TGC, ...media, caption: captions.long }),
-    })
-    console.log(`Telegram (${animationUrl ? 'GIF' : 'image'}):`, r.status); posted++
+    let r, kind
+    if (hasReel) {
+      // upload du fichier local (fiable, indépendant du déploiement)
+      const fd = new FormData()
+      fd.append('chat_id', TGC)
+      fd.append('caption', captions.long)
+      fd.append('video', new Blob([fs.readFileSync(reelPath)], { type: 'video/mp4' }), `${a.slug}.mp4`)
+      r = await fetch(`https://api.telegram.org/bot${TG}/sendVideo`, { method: 'POST', body: fd })
+      kind = 'Reel'
+    } else {
+      const method = animationUrl ? 'sendAnimation' : 'sendPhoto'
+      const media = animationUrl ? { animation: animationUrl } : { photo: imageUrl }
+      r = await fetch(`https://api.telegram.org/bot${TG}/${method}`, {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ chat_id: TGC, ...media, caption: captions.long }),
+      })
+      kind = animationUrl ? 'GIF' : 'image'
+    }
+    console.log(`Telegram (${kind}):`, r.status); posted++
   } catch (e) { console.error('Telegram échec:', e.message) }
 }
 
@@ -116,6 +133,7 @@ if (WH) {
       body: JSON.stringify({
         title: a.titre, description: a.description, url, imageUrl,
         animationUrl, // GIF du mouvement (vide si aucun)
+        reelUrl,      // Reel vertical MP4 pour TikTok/Reels/Shorts (vide si aucun)
         hook, cta: CTA, hashtags: `${hashtags} ${HASH_BASE}`,
         captions, // { long, x, instagram }
       }),
