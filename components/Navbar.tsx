@@ -13,22 +13,27 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [query, setQuery] = useState('')
   const [langOpen, setLangOpen] = useState(false)
+  const [moreOpen, setMoreOpen] = useState(false)
   const router = useRouter()
   const inputRef = useRef<HTMLInputElement>(null)
   const { locale, setLocale, tr } = useLang()
 
-  const NAV_LINKS = [
+  // Liens principaux (toujours visibles sur desktop) + secondaires (menu « Plus »)
+  const PRIMARY_LINKS = [
     { href: '/', label: tr('nav.muscles') },
     { href: '/programmes', label: tr('nav.programs') },
     { href: '/calisthenics', label: 'Calisthénics' },
     { href: '/guides', label: 'Guides' },
     { href: '/generateur', label: tr('nav.session') },
+  ]
+  const MORE_LINKS = [
     { href: '/tracker', label: 'Tracker' },
     { href: '/machines', label: 'Machines' },
     { href: '/nutrition', label: 'Nutrition' },
-    { href: '/quiz', label: tr('nav.quiz') },
     { href: '/blog', label: tr('nav.blog') },
+    { href: '/quiz', label: tr('nav.quiz') },
   ]
+  const NAV_LINKS = [...PRIMARY_LINKS, ...MORE_LINKS]
   const currentLocale = LOCALES.find(l => l.code === locale)
 
   useEffect(() => {
@@ -85,13 +90,36 @@ export default function Navbar() {
 
           {/* Desktop nav + search — all in one row */}
           <div className="hidden lg:flex items-center gap-3 xl:gap-4 flex-1 min-w-0">
-            {NAV_LINKS.map(({ href, label }) => (
+            {PRIMARY_LINKS.map(({ href, label }) => (
               <Link key={href} href={href}
                 className="text-[11px] xl:text-xs font-semibold tracking-[0.06em] uppercase whitespace-nowrap transition-colors duration-200 hover:text-[#E63946]"
                 style={{ color: '#5A6478' }}>
                 {label}
               </Link>
             ))}
+
+            {/* Menu « Plus » pour les liens secondaires */}
+            <div className="relative" onMouseLeave={() => setMoreOpen(false)}>
+              <button onClick={() => setMoreOpen(o => !o)} onMouseEnter={() => setMoreOpen(true)}
+                className="flex items-center gap-1 text-[11px] xl:text-xs font-semibold tracking-[0.06em] uppercase whitespace-nowrap transition-colors hover:text-[#E63946]"
+                style={{ color: '#5A6478' }}>
+                Plus
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+              </button>
+              {moreOpen && (
+                <div className="absolute left-0 top-full pt-2 w-44 z-50">
+                  <div className="rounded-2xl overflow-hidden shadow-xl" style={{ background: '#0C0C1A', border: '1px solid rgba(230,57,70,0.2)' }}>
+                    {MORE_LINKS.map(({ href, label }) => (
+                      <Link key={href} href={href} onClick={() => setMoreOpen(false)}
+                        className="block px-4 py-2.5 text-xs font-semibold tracking-[0.06em] uppercase transition-colors hover:bg-[rgba(230,57,70,0.08)] hover:text-[#E63946]"
+                        style={{ color: '#8A9BB5' }}>
+                        {label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* Inline search — only when there's room (xl+) */}
             <form onSubmit={submitSearch} className="hidden xl:block flex-1 min-w-0 max-w-[200px] ml-1">
