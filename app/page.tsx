@@ -9,6 +9,7 @@ import { EXERCISES } from '@/data/exercises'
 import { PROGRAMMES } from '@/data/programmes'
 import { SPORTS } from '@/data/sports'
 import { ARTICLES } from '@/data/articles'
+import { CAL_PLANS } from '@/data/calisthenics'
 
 export const metadata: Metadata = {
   title: 'Muscle Training — Exercices, Programmes Salle & Maison avec Vidéos',
@@ -25,6 +26,25 @@ export default function HomePage() {
 
   return (
     <div style={{ background: '#07070F', minHeight: '100vh' }} className="px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto">
+
+      {/* ── BANDEAU CTA CONVERSION ── */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+        <Link href="/generateur" className="rounded-2xl p-4 flex items-center gap-3 transition-all hover:-translate-y-0.5"
+          style={{ background: 'linear-gradient(135deg, rgba(230,57,70,0.15), rgba(230,57,70,0.05))', border: '1px solid rgba(230,57,70,0.3)' }}>
+          <span className="text-2xl">⚡</span>
+          <div><div className="font-black text-sm" style={{ color: '#EDE8E0' }}>Crée ta séance</div><div className="text-xs" style={{ color: '#8A9BB5' }}>Générateur gratuit en 30s</div></div>
+        </Link>
+        <Link href="/calisthenics" className="rounded-2xl p-4 flex items-center gap-3 transition-all hover:-translate-y-0.5"
+          style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(230,57,70,0.15)' }}>
+          <span className="text-2xl">🔥</span>
+          <div><div className="font-black text-sm" style={{ color: '#EDE8E0' }}>Challenges 30 jours</div><div className="text-xs" style={{ color: '#8A9BB5' }}>Transforme ton corps</div></div>
+        </Link>
+        <a href="https://t.me/muscletrainiing" target="_blank" rel="noopener noreferrer" className="rounded-2xl p-4 flex items-center gap-3 transition-all hover:-translate-y-0.5"
+          style={{ background: 'rgba(35,158,217,0.08)', border: '1px solid rgba(35,158,217,0.3)' }}>
+          <svg className="w-7 h-7 flex-shrink-0" viewBox="0 0 24 24" fill="#229ED9"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.86 8.78c-.14.62-.51.77-1.03.48l-2.85-2.1-1.37 1.32c-.15.15-.28.28-.57.28l.2-2.9 5.27-4.76c.23-.2-.05-.32-.35-.12L8.4 13.5l-2.8-.88c-.61-.19-.62-.61.13-.9l10.95-4.22c.51-.18.96.12.78.66z"/></svg>
+          <div><div className="font-black text-sm" style={{ color: '#EDE8E0' }}>Canal Telegram</div><div className="text-xs" style={{ color: '#8A9BB5' }}>1 conseil/semaine, gratuit</div></div>
+        </a>
+      </div>
 
       {/* ── BENTO GRID ROW 1 ── */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-4">
@@ -44,8 +64,8 @@ export default function HomePage() {
 
           {/* Stats cards */}
           {[
-            { val: '62+', label: 'Exercices', icon: '💪', href: '/muscles/pectoraux' },
-            { val: '6',   label: 'Programmes', icon: '📋', href: '/programmes' },
+            { val: `${EXERCISES.length}+`, label: 'Exercices', icon: '💪', href: '/muscles/pectoraux' },
+            { val: `${PROGRAMMES.length + CAL_PLANS.length}`, label: 'Programmes', icon: '📋', href: '/programmes' },
           ].map(s => (
             <Link key={s.label} href={s.href}
               className="rounded-3xl p-5 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1"

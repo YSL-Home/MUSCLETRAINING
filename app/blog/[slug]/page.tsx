@@ -5,6 +5,7 @@ import Breadcrumb from '@/components/Breadcrumb'
 import ShareButtons from '@/components/ShareButtons'
 import AffiliateRecommendations from '@/components/AffiliateRecommendations'
 import TelegramCTA from '@/components/TelegramCTA'
+import { linkifyText } from '@/lib/linkify'
 import { ARTICLES, getArticleBySlug } from '@/data/articles'
 import type { Section } from '@/data/articles'
 
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
-function renderSection(section: Section, idx: number) {
+function renderSection(section: Section, idx: number, used: Set<string>) {
   const content = section.content
   switch (section.type) {
     case 'h2':
@@ -42,14 +43,14 @@ function renderSection(section: Section, idx: number) {
     case 'h3':
       return <h3 key={idx} className="text-lg font-bold text-[#EDE8E0] mt-6 mb-3">{content as string}</h3>
     case 'p':
-      return <p key={idx} className="text-[#8A9BB5] leading-relaxed mb-4">{content as string}</p>
+      return <p key={idx} className="text-[#8A9BB5] leading-relaxed mb-4">{linkifyText(content as string, used)}</p>
     case 'ul':
       return (
         <ul key={idx} className="space-y-2 mb-5 pl-1">
           {(content as string[]).map((item, i) => (
             <li key={i} className="flex gap-2 text-[#8A9BB5] text-sm leading-relaxed">
               <span className="text-[#E63946] font-bold flex-shrink-0 mt-0.5">→</span>
-              <span>{item}</span>
+              <span>{linkifyText(item, used)}</span>
             </li>
           ))}
         </ul>
@@ -60,7 +61,7 @@ function renderSection(section: Section, idx: number) {
           {(content as string[]).map((item, i) => (
             <li key={i} className="flex gap-3 text-[#8A9BB5] text-sm leading-relaxed">
               <span className="w-6 h-6 rounded-full bg-[rgba(255,255,255,0.04)] text-[#C4CDD9] font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</span>
-              <span>{item}</span>
+              <span>{linkifyText(item, used)}</span>
             </li>
           ))}
         </ol>
@@ -178,7 +179,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
             {/* Contenu */}
             <div className="prose-sport">
-              {article.contenu.map((section, idx) => renderSection(section, idx))}
+              {(() => { const used = new Set<string>(); return article.contenu.map((section, idx) => renderSection(section, idx, used)) })()}
             </div>
 
             {/* Rejoindre Telegram */}
