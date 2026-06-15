@@ -6,6 +6,7 @@ import { MUSCLES } from '@/data/muscles'
 import { PROGRAMMES } from '@/data/programmes'
 import { SPORTS } from '@/data/sports'
 import { ARTICLES } from '@/data/articles'
+import { CAL_PLANS } from '@/data/calisthenics'
 
 const BASE_URL = 'https://www.muscletraining.uk'
 
@@ -79,6 +80,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticUrls,
+    { url: `${BASE_URL}/calisthenics`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+    ...CAL_PLANS.map((p): MetadataRoute.Sitemap[number] => ({
+      url: `${BASE_URL}/calisthenics/${p.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    })),
     ...exerciseUrls,
     ...muscleUrls,
     ...alternativeUrls,
