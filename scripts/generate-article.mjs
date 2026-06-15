@@ -47,7 +47,25 @@ const TOPICS = [
   'Sommeil et récupération musculaire : ce qu\'il faut savoir',
   'Débuter la musculation à 40 ans : guide complet',
   'Les meilleurs exercices polyarticulaires et pourquoi',
+  // ── Calisthénics / poids du corps (mappés à un GIF de mouvement) ──
+  'Apprendre les tractions de zéro : la méthode complète',
+  'Maîtriser les pompes : variantes et progression',
+  'Comment réussir ses premiers dips',
+  'Pistol squat : la progression pour y arriver',
+  'Muscle-up : le guide de progression étape par étape',
+  'Gainage : la planche pour des abdos en béton',
+  'Devenir plus souple : routine de mobilité pour pratiquants de musculation',
+  'Challenge 30 jours au poids du corps : transformer son corps',
+  'Calisthénics ou musculation classique : que choisir',
+  'L-sit : l\'exercice de gainage des athlètes calisthénics',
 ]
+// Sujet ↔ slug d'exercice : force le tag pour déclencher le GIF animé sur Telegram
+const TOPIC_EXERCISE = {
+  'Apprendre les tractions': 'tractions', 'Maîtriser les pompes': 'pompes',
+  'premiers dips': 'dips', 'Pistol squat': 'pistol-squat', 'Muscle-up': 'muscle-up',
+  'la planche pour': 'planche', 'L-sit': 'l-sit',
+  'soulevé de terre': 'souleve-de-terre', 'développé couché': 'developpe-couche-barre',
+}
 const weekIndex = Math.floor(Date.now() / (7 * 864e5)) % TOPICS.length
 let topic = TOPICS[weekIndex]
 
@@ -154,6 +172,13 @@ article.slug = slug
 article.image = article.image || ''
 article.tempsLecture = Number(article.tempsLecture) || 7
 article.datePublication = article.datePublication || new Date().toISOString().slice(0, 10)
+
+// Force le tag de l'exercice lié → GIF animé sur Telegram
+const matchKey = Object.keys(TOPIC_EXERCISE).find(k => topic.includes(k))
+if (matchKey) {
+  const exSlug = TOPIC_EXERCISE[matchKey]
+  article.tags = [exSlug, ...(article.tags || []).filter(t => t !== exSlug)]
+}
 
 // ── Image de couverture via Cloudflare Workers AI (gratuit) ──
 async function generateImage() {
