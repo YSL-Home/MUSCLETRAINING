@@ -54,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="shortcut icon" href="/favicon.ico?v=6" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
+        <link rel="alternate" type="application/rss+xml" title="Muscle Training — Blog" href="/feed.xml" />
         <meta name="theme-color" content="#E63946" />
         <script
           type="application/ld+json"
