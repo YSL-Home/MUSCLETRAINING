@@ -1,8 +1,8 @@
-name: Moteur de contenu hebdo
+name: Moteur de contenu
 
 on:
   schedule:
-    - cron: '0 8 * * 1' # tous les lundis à 08:00 UTC
+    - cron: '0 8 * * 1,3,5' # lundi, mercredi, vendredi à 08:00 UTC
   workflow_dispatch:
 
 permissions:

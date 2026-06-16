@@ -66,8 +66,9 @@ const TOPIC_EXERCISE = {
   'la planche pour': 'planche', 'L-sit': 'l-sit',
   'soulevé de terre': 'souleve-de-terre', 'développé couché': 'developpe-couche-barre',
 }
-const weekIndex = Math.floor(Date.now() / (7 * 864e5)) % TOPICS.length
-let topic = TOPICS[weekIndex]
+// Rotation par jour (3 runs/semaine → sujets différents à chaque exécution)
+const dayIndex = Math.floor(Date.now() / 864e5) % TOPICS.length
+let topic = TOPICS[dayIndex]
 
 const prompt = `Tu es rédacteur SEO expert en musculation pour le site français Muscle Training.
 Rédige un article de blog complet, original et actionnable sur le sujet : "${topic}".
