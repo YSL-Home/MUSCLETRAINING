@@ -1,5 +1,112 @@
 [
   {
+    "categorie": "Conseils",
+    "contenu": [
+      {
+        "content": "Introduction à la mobilité en musculation",
+        "type": "h2"
+      },
+      {
+        "content": "La mobilité est un aspect essentiel de la musculation, souvent négligé par les pratiquants. Cependant, une bonne mobilité peut améliorer la flexibilité, réduire les risques de blessures et même améliorer les performances en musculation.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Amélioration de la flexibilité",
+          "Réduction des risques de blessures",
+          "Amélioration des performances en musculation",
+          "Meilleure récupération après l'entraînement"
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Les bénéfices de la mobilité pour les pratiquants de musculation",
+        "type": "h2"
+      },
+      {
+        "content": "La mobilité peut aider les pratiquants de musculation à améliorer leur flexibilité, ce qui peut réduire les risques de blessures et améliorer les performances en musculation. De plus, une bonne mobilité peut aider à réduire les tensions musculaires et améliorer la récupération après l'entraînement.",
+        "type": "p"
+      },
+      {
+        "content": "Exemples d'exercices de mobilité pour les pratiquants de musculation",
+        "type": "h3"
+      },
+      {
+        "content": [
+          "Étirements des ischio-jambiers",
+          "Étirements des quadriceps",
+          "Étirements des pectoraux",
+          "Étirements des épaules",
+          "Mouvements de mobilité pour les hanches et les genoux"
+        ],
+        "type": "ol"
+      },
+      {
+        "content": "Il est important de réaliser les étirements et les mouvements de mobilité de manière régulière, idéalement après chaque entraînement, pour améliorer la flexibilité et réduire les risques de blessures.",
+        "type": "tip"
+      },
+      {
+        "content": "Comment intégrer la mobilité dans ton entraînement de musculation",
+        "type": "h2"
+      },
+      {
+        "content": "Il est facile d'intégrer la mobilité dans ton entraînement de musculation. Voici quelques conseils pour commencer :",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Réalise des étirements et des mouvements de mobilité après chaque entraînement",
+          "Inclue des exercices de mobilité dans ton programme d'entraînement",
+          "Fais des étirements et des mouvements de mobilité régulièrement, même les jours de repos"
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Conseils pour améliorer la mobilité en musculation",
+        "type": "h2"
+      },
+      {
+        "content": "Voici quelques conseils pour améliorer la mobilité en musculation :",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Écoute ton corps et ne force pas les étirements",
+          "Respire profondément et régulièrement pendant les étirements",
+          "Maintiens les étirements pendant au moins 20 secondes",
+          "Réalise les étirements de manière régulière pour améliorer la flexibilité"
+        ],
+        "type": "ol"
+      },
+      {
+        "content": "Il est important de ne pas forcer les étirements, car cela peut causer des blessures. Écoute ton corps et arrête si tu ressens une douleur ou un inconfort.",
+        "type": "warning"
+      },
+      {
+        "content": "Conclusion",
+        "type": "h2"
+      },
+      {
+        "content": "La mobilité est un aspect essentiel de la musculation qui peut améliorer la flexibilité, réduire les risques de blessures et améliorer les performances en musculation. En intégrant des exercices de mobilité dans ton programme d'entraînement et en les réalisant de manière régulière, tu peux améliorer ta flexibilité et réduire les risques de blessures.",
+        "type": "p"
+      }
+    ],
+    "datePublication": "2026-06-17",
+    "description": "Améliore ta flexibilité et réduit les risques de blessures avec une routine de mobilité ciblée pour les pratiquants de musculation",
+    "descriptionSeo": "Découvrez les exercices de mobilité pour améliorer la flexibilité et prévenir les blessures en musculation. Routine de mobilité pour pratiquants de musculation",
+    "image": "/blog/devenir-plus-souple-routine-de-mobilite.jpg",
+    "slug": "devenir-plus-souple-routine-de-mobilite",
+    "tags": [
+      "mobilite",
+      "flexibilite",
+      "musculations",
+      "blessures",
+      "exercices"
+    ],
+    "tempsLecture": 8,
+    "titre": "Devenir plus souple : la routine de mobilité pour les pratiquants de musculation"
+  },
+  {
     "slug": "gainage-planche-abdos-en-beton",
     "titre": "Gainage : la planche pour des abdos en béton",
     "description": "Découvre comment la planche peut te aider à développer des abdos solides et puissants, essentiels pour une bonne posture et une stabilité améliorée.",
