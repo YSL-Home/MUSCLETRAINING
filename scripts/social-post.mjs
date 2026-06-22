@@ -44,6 +44,31 @@ if (!animationUrl) {
   if (hit) animationUrl = GIFS[hit]
 }
 
+// ── Lien profond : page programme/exercice qui répond au sujet ──
+function resolveDeepLink() {
+  const t = norm(a.titre + ' ' + (a.tags || []).join(' '))
+  const RULES = [
+    [/traction|pull.?up/, '/calisthenics/challenge-30-jours-tractions'],
+    [/pompe|push.?up/, '/calisthenics/challenge-30-jours-pompes'],
+    [/abdo|gainage|planche|core/, '/calisthenics/challenge-30-jours-abdos'],
+    [/dips/, '/exercice/dips'],
+    [/pistol/, '/exercice/pistol-squat'],
+    [/muscle.?up/, '/exercice/muscle-up'],
+    [/souplesse|mobilit|etir/, '/calisthenics/routine-souplesse-quotidienne'],
+    [/calisthen|poids du corps|street/, '/calisthenics'],
+    [/transform|challenge|30 jours/, '/calisthenics/challenge-30-jours-transformation'],
+    [/prise de masse|masse/, '/programmes/salle/prise-masse-rapide-salle'],
+    [/seche|secher|perte|gras/, '/programmes/maison/seche-cardio-maison'],
+    [/full body|split|programme|routine/, '/programmes'],
+    [/proteine|nutrition|whey|creatine|complement/, '/nutrition'],
+  ]
+  // tag = slug d'exercice connu → fiche exercice
+  for (const tag of a.tags || []) if (GIFS[tag]) return `${BASE}/exercice/${tag}`
+  for (const [re, dest] of RULES) if (re.test(t)) return `${BASE}${dest}`
+  return url // fallback : l'article
+}
+const link = resolveDeepLink()
+
 // Hashtags dédupliqués (tags article + base marque)
 const BASE_TAGS = ['musculation', 'fitness', 'muscu', 'training']
 const tagWords = [...(a.tags || []).map(t => String(t).replace(/[^a-z0-9]/gi, '').toLowerCase()), ...BASE_TAGS]
@@ -64,29 +89,30 @@ const HOOKS = [
 const hook = HOOKS[Math.floor(Date.now() / 864e5) % HOOKS.length]
 const CTA = '👉 Lis le guide complet (gratuit)'
 
-// Variantes par réseau
+// Variantes par réseau — style TikTok fitness (accroche + valeur + CTA programme)
 const captions = {
-  // Long, émotionnel — Facebook / Telegram / LinkedIn
+  // Telegram / Facebook : punchy, orienté programme
   long:
 `${hook}
 
 ${a.titre}
 
-${a.description}
+📋 Le programme complet (exos, séries, progression) t'attend ici 👇
+${link}
 
-${CTA} :
-${url}
+📌 Enregistre ce post · 🔔 Abonne-toi pour +1 conseil/semaine
 
 ${hashtags} ${HASH_BASE}`,
-  // Court, percutant — X / Twitter (≤280)
-  x: `${hook} ${a.titre}\n\n${CTA} 👇\n${url}\n${hashtags}`.slice(0, 278),
-  // Instagram — visuel, beaucoup de hashtags
+  // X / Twitter (≤280)
+  x: `${hook} ${a.titre}\n\n📋 Programme complet 👇\n${link}\n${hashtags}`.slice(0, 278),
+  // Instagram
   instagram:
 `${hook} ${a.titre} 💪
 
 ${a.description}
 
-🔗 Lien en bio / ${url}
+📋 Programme détaillé → ${link}
+📌 Enregistre · 🔔 Abonne-toi
 
 ${HASH_INSTA}`,
 }
