@@ -14,7 +14,7 @@ import { execFileSync } from 'child_process'
 
 const BASE = 'https://www.muscletraining.uk'
 const GIF_BASE = 'https://raw.githubusercontent.com/JahelCuadrado/ExerciseGymGifsDB/main'
-const W = 1080, H = 1350, BG = '#e9dcc6', RED = '#7a1410', DARK = '#2a2622', GREY = '#9a8f7c'
+const W = 1080, H = 1350, BGD = '#0b0b12', CARDC = '#16161f', RED = '#E63946', WHITE = '#F5F1EA', GREY = '#8A9BB5'
 
 const PROG = {
   slug: 'full-body-parfait',
@@ -37,45 +37,54 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
 const wrap = (s, n = 14) => { const w = s.split(/\s+/), L = []; let c = ''; for (const x of w) { if ((c + ' ' + x).trim().length > n) { L.push(c.trim()); c = x } else c += ' ' + x } if (c.trim()) L.push(c.trim()); return L.slice(0, 2) }
 
 // Grille : 3 colonnes × 2 rangées
-const CX = [190, 540, 890], ROW_Y = [225, 715], CARD = 300
+const CX = [190, 540, 890], ROW_Y = [255, 745], CARD = 290
 const cells = i => ({ cx: CX[i % 3], y: ROW_Y[Math.floor(i / 3)] })
 
-// ── Couverture (image) ──
+// ── Couverture (image, thème sombre premium) ──
 async function cover() {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
-    <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbf4e6"/><stop offset="1" stop-color="${BG}"/></linearGradient></defs>
-    <rect width="${W}" height="${H}" fill="url(#g)"/>
-    <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-90}" y="150" width="180" height="180"/>
-    <text x="${W/2}" y="500" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="118" fill="${RED}">${PROG.titre[0]}</text>
-    <text x="${W/2}" y="650" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="152" fill="${RED}">${PROG.titre[1]}</text>
-    <text x="${W/2}" y="780" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="118" fill="${DARK}">${PROG.titre[2]}</text>
-    <rect x="${W/2-120}" y="830" width="240" height="6" rx="3" fill="${RED}"/>
-    <text x="${W/2}" y="920" text-anchor="middle" font-family="Arial" font-size="44" fill="${GREY}">4 jours · prise de muscle · salle</text>
-    <text x="${W/2}" y="1230" text-anchor="middle" font-family="Arial" font-weight="700" font-size="40" fill="${DARK}">Programme complet gratuit →</text>
+    <defs>
+      <radialGradient id="glow" cx="50%" cy="32%" r="65%"><stop offset="0" stop-color="#3a0f14"/><stop offset="55%" stop-color="#120a10"/><stop offset="100%" stop-color="${BGD}"/></radialGradient>
+      <linearGradient id="rg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF6B7A"/><stop offset="1" stop-color="${RED}"/></linearGradient>
+    </defs>
+    <rect width="${W}" height="${H}" fill="url(#glow)"/>
+    <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-95}" y="150" width="190" height="190"/>
+    <text x="${W/2}" y="500" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="92" fill="${WHITE}" letter-spacing="6">PROGRAMME</text>
+    <text x="${W/2}" y="660" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="158" fill="url(#rg)">FULL BODY</text>
+    <text x="${W/2}" y="790" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="120" fill="${WHITE}">PARFAIT</text>
+    <rect x="${W/2-90}" y="840" width="180" height="7" rx="4" fill="${RED}"/>
+    <text x="${W/2}" y="930" text-anchor="middle" font-family="Arial" font-size="44" fill="${GREY}">4 jours · prise de muscle · salle</text>
+    <rect x="${W/2-230}" y="1180" width="460" height="86" rx="43" fill="${RED}"/>
+    <text x="${W/2}" y="1236" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="40" fill="#ffffff">PROGRAMME GRATUIT →</text>
   </svg>`
-  const b = await sharp(Buffer.from(svg)).jpeg({ quality: 90 }).toBuffer()
+  const b = await sharp(Buffer.from(svg)).jpeg({ quality: 92 }).toBuffer()
   fs.writeFileSync(path.join(outDir, 'slide-0.jpg'), b); return b
 }
 
-// Fond (beige + cartes blanches ombrées) et calque texte (header + noms + logo)
+// Fond sombre + cartes (avec zone photo blanche pour les illustrations)
 function bgSvg() {
-  let cardsS = ''
-  for (let i = 0; i < 6; i++) { const { cx, y } = cells(i); const x = cx - CARD / 2
-    cardsS += `<rect x="${x + 6}" y="${y + 8}" width="${CARD}" height="${CARD}" rx="26" fill="#000000" opacity="0.06"/><rect x="${x}" y="${y}" width="${CARD}" height="${CARD}" rx="26" fill="#ffffff"/>` }
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}"><rect width="${W}" height="${H}" fill="${BG}"/>${cardsS}</svg>`
+  let s = ''
+  for (let i = 0; i < 6; i++) { const { cx, y } = cells(i); const cx0 = cx - 165
+    s += `<rect x="${cx0}" y="${y - 22}" width="330" height="408" rx="30" fill="${CARDC}" stroke="${RED}" stroke-opacity="0.22" stroke-width="2"/>`
+    s += `<rect x="${cx - 145}" y="${y}" width="290" height="290" rx="20" fill="#ffffff"/>` }
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
+    <defs><radialGradient id="bg" cx="50%" cy="0%" r="80%"><stop offset="0" stop-color="#1a0f14"/><stop offset="60%" stop-color="${BGD}"/></radialGradient></defs>
+    <rect width="${W}" height="${H}" fill="url(#bg)"/>${s}</svg>`
 }
 function fgSvg(j) {
-  let names = ''
-  for (let i = 0; i < j.ex.length; i++) { const { cx, y } = cells(i); const lines = wrap(j.ex[i][1].toUpperCase())
-    lines.forEach((l, k) => names += `<text x="${cx}" y="${y + CARD + 50 + k * 34}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="29" fill="${DARK}">${esc(l)}</text>`)
-    names += `<text x="${cx}" y="${y + CARD + 50 + lines.length * 34 + 8}" text-anchor="middle" font-family="Arial" font-size="26" fill="${RED}">3 × 10-12</text>` }
-  const arrows = '»'.repeat(40)
+  let s = ''
+  for (let i = 0; i < j.ex.length; i++) { const { cx, y } = cells(i); const cx0 = cx - 165
+    // badge numéroté
+    s += `<circle cx="${cx0 + 4}" cy="${y - 18}" r="30" fill="${RED}"/><text x="${cx0 + 4}" y="${y - 8}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="32" fill="#fff">${i + 1}</text>`
+    const lines = wrap(j.ex[i][1].toUpperCase())
+    lines.forEach((l, k) => s += `<text x="${cx}" y="${y + CARD + 48 + k * 32}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="27" fill="${WHITE}">${esc(l)}</text>`)
+    s += `<text x="${cx}" y="${y + CARD + 48 + lines.length * 32 + 6}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="25" fill="${RED}">3 × 10-12</text>` }
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
-    <text x="${W/2}" y="105" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="54" fill="${RED}">${esc(j.t)}</text>
-    <text x="${W/2}" y="150" text-anchor="middle" font-family="Arial" font-weight="900" font-size="26" fill="${RED}" opacity="0.55" letter-spacing="-1">${arrows}</text>
-    ${names}
-    <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-150}" y="1268" width="58" height="58"/>
-    <text x="${W/2-78}" y="1308" font-family="Arial Black,Arial" font-weight="900" font-size="34" fill="${RED}">muscletraining.uk</text>
+    <text x="${W/2}" y="115" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="58" fill="${WHITE}">${esc(j.t)}</text>
+    <rect x="${W/2-70}" y="142" width="140" height="6" rx="3" fill="${RED}"/>
+    ${s}
+    <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-145}" y="1276" width="52" height="52"/>
+    <text x="${W/2-78}" y="1312" font-family="Arial Black,Arial" font-weight="900" font-size="32" fill="${WHITE}">muscletraining.uk</text>
   </svg>`
 }
 
@@ -98,7 +107,7 @@ async function dayVideo(j, idx) {
 
   const scales = present.map((_, k) => `[${k + 1}:v]scale=290:290:force_original_aspect_ratio=decrease,pad=290:290:(ow-iw)/2:(oh-ih)/2:color=white,setpts=PTS-STARTPTS[g${k}]`)
   let chain = '', prev = '0:v'
-  present.forEach((cellI, k) => { const { cx, y } = cells(cellI); const X = cx - 145, Y = y + 5; const lbl = `b${k}`; chain += `[${prev}][g${k}]overlay=${X}:${Y}[${lbl}];`; prev = lbl })
+  present.forEach((cellI, k) => { const { cx, y } = cells(cellI); const X = cx - 145, Y = y; const lbl = `b${k}`; chain += `[${prev}][g${k}]overlay=${X}:${Y}[${lbl}];`; prev = lbl })
   chain += `[${prev}][${fgIdx}:v]overlay=0:0[v]`
   const filter = scales.join(';') + ';' + chain
   execFileSync('ffmpeg', ['-y', ...inputs, '-filter_complex', filter, '-map', '[v]', '-r', '20', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out], { stdio: ['ignore', 'ignore', 'pipe'] })
