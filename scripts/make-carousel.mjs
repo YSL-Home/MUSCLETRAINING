@@ -1,129 +1,127 @@
 #!/usr/bin/env node
 /**
- * Génère un carrousel "programme" façon TikTok :
- *  - 1 slide de couverture
- *  - 1 slide par jour : header "JOUR X : …" + grille d'exercices illustrés (Nx reps)
- * Puis poste le carrousel sur Telegram (sendMediaGroup).
+ * Carrousel "programme" façon TikTok, ANIMÉ :
+ *  - slide couverture (image + logo)
+ *  - 1 vidéo par jour : grille d'exercices dont les illustrations JOUENT le mouvement
+ * Poste sur Telegram (sendMediaGroup, photo + vidéos) avec lien vers le programme du site.
  *
- * Env : CF/CLOUDFLARE non requis. TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID pour poster.
- * Sortie : public/carousels/<prog>/slide-N.jpg
+ * Requiert ffmpeg + sharp. TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID pour poster.
  */
 import fs from 'fs'
 import path from 'path'
 import sharp from 'sharp'
+import { execFileSync } from 'child_process'
 
 const BASE = 'https://www.muscletraining.uk'
 const GIF_BASE = 'https://raw.githubusercontent.com/JahelCuadrado/ExerciseGymGifsDB/main'
+const W = 1080, H = 1350, BG = '#e9dcc6', RED = '#7a1410', DARK = '#2a2622', GREY = '#9a8f7c'
 
-// Programme (façon split 4 jours) — slug pour l'illustration + libellé + format
 const PROG = {
   slug: 'full-body-parfait',
   titre: ['PROGRAMME', 'FULL BODY', 'PARFAIT'],
   link: `${BASE}/programmes/salle/prise-masse-rapide-salle`,
   caption: 'Tu veux prendre du muscle ? Fais ça. 💪',
   jours: [
-    { t: 'JOUR 1 : POITRINE & TRICEPS', ex: [
-      ['developpe-couche-barre', 'Développé couché'], ['developpe-incline-barre', 'Développé incliné'], ['ecarte-halteres', 'Écartés poitrine'],
-      ['extension-triceps-poulie', 'Pushdown triceps'], ['skull-crusher', 'Extension allongée'], ['dips', 'Dips'],
-    ]},
-    { t: 'JOUR 2 : DOS & BICEPS', ex: [
-      ['tirage-poitrine', 'Pulldown à la barre'], ['tirage-horizontal', 'Rowing à la câble'], ['rowing-haltere', 'Rowing haltère'],
-      ['curl-barre', 'Curl à la barre'], ['curl-marteau', 'Curl marteau'], ['curl-pupitre', 'Curl prédicateur'],
-    ]},
-    { t: 'JOUR 3 : JAMBES', ex: [
-      ['hack-squat', 'Squat hack'], ['leg-extension', 'Extension des jambes'], ['presse-cuisses', 'Presse à jambes'],
-      ['leg-curl-allonge', 'Curl allongé'], ['mollets-assis', 'Mollets assis'], ['souleve-de-terre', 'Soulevé de terre'],
-    ]},
-    { t: 'JOUR 4 : ÉPAULES & BRAS', ex: [
-      ['developpe-militaire', 'Développé militaire'], ['elevations-laterales', 'Élévations latérales'], ['developpe-halteres-epaules', 'Développé haltères'],
-      ['extension-triceps-poulie', 'Pushdown triceps'], ['curl-barre', 'Curl barre'], ['curl-marteau', 'Curl marteau'],
-    ]},
+    { t: 'JOUR 1 · POITRINE & TRICEPS', ex: [['developpe-couche-barre','Développé couché'],['developpe-incline-barre','Développé incliné'],['ecarte-halteres','Écartés poitrine'],['extension-triceps-poulie','Pushdown triceps'],['skull-crusher','Extension allongée'],['dips','Dips']] },
+    { t: 'JOUR 2 · DOS & BICEPS', ex: [['tirage-poitrine','Pulldown barre'],['tirage-horizontal','Rowing câble'],['rowing-haltere','Rowing haltère'],['curl-barre','Curl barre'],['curl-marteau','Curl marteau'],['curl-pupitre','Curl prédicateur']] },
+    { t: 'JOUR 3 · JAMBES', ex: [['hack-squat','Squat hack'],['leg-extension','Extension jambes'],['presse-cuisses','Presse à jambes'],['leg-curl-allonge','Curl allongé'],['mollets-assis','Mollets assis'],['souleve-de-terre','Soulevé de terre']] },
+    { t: 'JOUR 4 · ÉPAULES & BRAS', ex: [['developpe-militaire','Développé militaire'],['elevations-laterales','Élévations latérales'],['developpe-halteres-epaules','Développé haltères'],['extension-triceps-poulie','Pushdown triceps'],['curl-barre','Curl barre'],['curl-marteau','Curl marteau']] },
   ],
 }
 
-const W = 1080, H = 1350, BG = '#e7dac4', RED = '#6b1410', DARK = '#2a2622', GREY = '#8a7f6e'
 const outDir = path.resolve(process.cwd(), 'public', 'carousels', PROG.slug)
 fs.mkdirSync(outDir, { recursive: true })
-
-const gifSrc = (m, src) => src // map already absolute below
-async function frameB64(slug, mapEntry) {
-  const url = `${GIF_BASE}/${mapEntry}`
-  const r = await fetch(url); if (!r.ok) throw new Error(`${slug} ${r.status}`)
-  const buf = Buffer.from(await r.arrayBuffer())
-  const png = await sharp(buf, { page: 0 }).resize(300, 300, { fit: 'contain', background: BG }).png().toBuffer()
-  return png.toString('base64')
-}
-
-// Map slug → chemin gif (parse du composant)
-function gifMap() {
-  const src = fs.readFileSync(path.resolve(process.cwd(), 'components', 'ExerciseGif.tsx'), 'utf8')
-  const map = {}
-  for (const m of src.matchAll(/'([^']+)':\s*`\$\{BASE\}\/([^`]+)`/g)) map[m[1]] = m[2]
-  return map
-}
-const MAP = gifMap()
-
+const MAP = (() => { const s = fs.readFileSync(path.resolve(process.cwd(), 'components', 'ExerciseGif.tsx'), 'utf8'); const m = {}; for (const x of s.matchAll(/'([^']+)':\s*`\$\{BASE\}\/([^`]+)`/g)) m[x[1]] = x[2]; return m })()
+const LOGO_B64 = fs.readFileSync(path.resolve(process.cwd(), 'public', 'logo-512.png')).toString('base64')
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-function wrap(s, n = 15) {
-  const w = s.split(/\s+/), lines = []; let c = ''
-  for (const x of w) { if ((c + ' ' + x).trim().length > n) { lines.push(c.trim()); c = x } else c += ' ' + x }
-  if (c.trim()) lines.push(c.trim()); return lines.slice(0, 2)
-}
+const wrap = (s, n = 14) => { const w = s.split(/\s+/), L = []; let c = ''; for (const x of w) { if ((c + ' ' + x).trim().length > n) { L.push(c.trim()); c = x } else c += ' ' + x } if (c.trim()) L.push(c.trim()); return L.slice(0, 2) }
 
-async function coverSlide() {
+// Grille : 3 colonnes × 2 rangées
+const CX = [190, 540, 890], ROW_Y = [225, 715], CARD = 300
+const cells = i => ({ cx: CX[i % 3], y: ROW_Y[Math.floor(i / 3)] })
+
+// ── Couverture (image) ──
+async function cover() {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
-    <rect width="${W}" height="${H}" fill="${BG}"/>
-    <text x="${W/2}" y="320" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="120" fill="${RED}">${PROG.titre[0]}</text>
-    <text x="${W/2}" y="470" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="150" fill="${RED}">${PROG.titre[1]}</text>
-    <text x="${W/2}" y="600" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="120" fill="${DARK}">${PROG.titre[2]}</text>
-    <text x="${W/2}" y="760" text-anchor="middle" font-family="Arial" font-size="42" fill="${GREY}">4 jours · prise de muscle · salle</text>
-    <text x="${W/2}" y="1180" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="48" fill="${RED}">muscletraining.uk</text>
-    <text x="${W/2}" y="1250" text-anchor="middle" font-family="Arial" font-weight="700" font-size="38" fill="${DARK}">Programme complet gratuit →</text>
+    <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbf4e6"/><stop offset="1" stop-color="${BG}"/></linearGradient></defs>
+    <rect width="${W}" height="${H}" fill="url(#g)"/>
+    <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-90}" y="150" width="180" height="180"/>
+    <text x="${W/2}" y="500" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="118" fill="${RED}">${PROG.titre[0]}</text>
+    <text x="${W/2}" y="650" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="152" fill="${RED}">${PROG.titre[1]}</text>
+    <text x="${W/2}" y="780" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="118" fill="${DARK}">${PROG.titre[2]}</text>
+    <rect x="${W/2-120}" y="830" width="240" height="6" rx="3" fill="${RED}"/>
+    <text x="${W/2}" y="920" text-anchor="middle" font-family="Arial" font-size="44" fill="${GREY}">4 jours · prise de muscle · salle</text>
+    <text x="${W/2}" y="1230" text-anchor="middle" font-family="Arial" font-weight="700" font-size="40" fill="${DARK}">Programme complet gratuit →</text>
   </svg>`
-  return sharp(Buffer.from(svg)).jpeg({ quality: 88 }).toBuffer()
+  const b = await sharp(Buffer.from(svg)).jpeg({ quality: 90 }).toBuffer()
+  fs.writeFileSync(path.join(outDir, 'slide-0.jpg'), b); return b
 }
 
-async function daySlide(j) {
-  const cols = [200, 540, 880]
-  const rowsY = [250, 760] // top y of image per row
-  const cells = []
-  for (let i = 0; i < j.ex.length; i++) {
-    const [slug, label] = j.ex[i]
-    const cx = cols[i % 3], iy = rowsY[Math.floor(i / 3)]
-    let img = ''
-    try { if (MAP[slug]) img = `<image href="data:image/png;base64,${await frameB64(slug, MAP[slug])}" x="${cx-150}" y="${iy}" width="300" height="300"/>` } catch {}
-    const lines = wrap(label.toUpperCase())
-    const nameSvg = lines.map((l, k) => `<text x="${cx}" y="${iy+345+k*34}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="28" fill="${DARK}">${esc(l)}</text>`).join('')
-    const repsY = iy + 345 + lines.length * 34 + 8
-    cells.push(`${img}${nameSvg}<text x="${cx}" y="${repsY}" text-anchor="middle" font-family="Arial" font-size="26" fill="${GREY}">3 × 10-12</text>`)
-  }
-  const arrows = '»'.repeat(46)
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
-    <rect width="${W}" height="${H}" fill="${BG}"/>
-    <text x="${W/2}" y="110" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="56" fill="${RED}">${esc(j.t)}</text>
-    <text x="${W/2}" y="160" text-anchor="middle" font-family="Arial" font-weight="900" font-size="30" fill="${RED}" letter-spacing="-2">${arrows}</text>
-    ${cells.join('')}
-    <text x="${W/2}" y="1320" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="32" fill="${RED}">muscletraining.uk</text>
+// Fond (beige + cartes blanches ombrées) et calque texte (header + noms + logo)
+function bgSvg() {
+  let cardsS = ''
+  for (let i = 0; i < 6; i++) { const { cx, y } = cells(i); const x = cx - CARD / 2
+    cardsS += `<rect x="${x + 6}" y="${y + 8}" width="${CARD}" height="${CARD}" rx="26" fill="#000000" opacity="0.06"/><rect x="${x}" y="${y}" width="${CARD}" height="${CARD}" rx="26" fill="#ffffff"/>` }
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}"><rect width="${W}" height="${H}" fill="${BG}"/>${cardsS}</svg>`
+}
+function fgSvg(j) {
+  let names = ''
+  for (let i = 0; i < j.ex.length; i++) { const { cx, y } = cells(i); const lines = wrap(j.ex[i][1].toUpperCase())
+    lines.forEach((l, k) => names += `<text x="${cx}" y="${y + CARD + 50 + k * 34}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="29" fill="${DARK}">${esc(l)}</text>`)
+    names += `<text x="${cx}" y="${y + CARD + 50 + lines.length * 34 + 8}" text-anchor="middle" font-family="Arial" font-size="26" fill="${RED}">3 × 10-12</text>` }
+  const arrows = '»'.repeat(40)
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
+    <text x="${W/2}" y="105" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="54" fill="${RED}">${esc(j.t)}</text>
+    <text x="${W/2}" y="150" text-anchor="middle" font-family="Arial" font-weight="900" font-size="26" fill="${RED}" opacity="0.55" letter-spacing="-1">${arrows}</text>
+    ${names}
+    <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-150}" y="1268" width="58" height="58"/>
+    <text x="${W/2-78}" y="1308" font-family="Arial Black,Arial" font-weight="900" font-size="34" fill="${RED}">muscletraining.uk</text>
   </svg>`
-  return sharp(Buffer.from(svg)).jpeg({ quality: 88 }).toBuffer()
 }
 
-// ── Build slides ──
-const slides = []
-slides.push(await coverSlide())
-for (const j of PROG.jours) slides.push(await daySlide(j))
-slides.forEach((b, i) => fs.writeFileSync(path.join(outDir, `slide-${i}.jpg`), b))
-console.log(`✅ ${slides.length} slides → public/carousels/${PROG.slug}/`)
+// ── Vidéo d'un jour (illustrations animées) ──
+async function dayVideo(j, idx) {
+  const out = path.join(outDir, `slide-${idx}.mp4`)
+  const bgPng = path.join(outDir, `_bg.png`), fgPng = path.join(outDir, `_fg${idx}.png`)
+  await sharp(Buffer.from(bgSvg())).png().toFile(bgPng)
+  await sharp(Buffer.from(fgSvg(j))).png().toFile(fgPng)
+  // télécharge les gifs
+  const gifs = []
+  for (let i = 0; i < j.ex.length; i++) { const slug = j.ex[i][0]; if (!MAP[slug]) { gifs.push(null); continue }
+    const f = path.join(outDir, `_g${idx}_${i}.gif`); const r = await fetch(`${GIF_BASE}/${MAP[slug]}`); fs.writeFileSync(f, Buffer.from(await r.arrayBuffer())); gifs.push(f) }
 
-// ── Post Telegram (sendMediaGroup) ──
+  const inputs = ['-loop', '1', '-t', '5', '-i', bgPng]
+  const present = []
+  gifs.forEach((g, i) => { if (g) { inputs.push('-ignore_loop', '0', '-t', '5', '-i', g); present.push(i) } })
+  inputs.push('-loop', '1', '-t', '5', '-i', fgPng)
+  const fgIdx = 1 + present.length
+
+  const scales = present.map((_, k) => `[${k + 1}:v]scale=290:290:force_original_aspect_ratio=decrease,pad=290:290:(ow-iw)/2:(oh-ih)/2:color=white,setpts=PTS-STARTPTS[g${k}]`)
+  let chain = '', prev = '0:v'
+  present.forEach((cellI, k) => { const { cx, y } = cells(cellI); const X = cx - 145, Y = y + 5; const lbl = `b${k}`; chain += `[${prev}][g${k}]overlay=${X}:${Y}[${lbl}];`; prev = lbl })
+  chain += `[${prev}][${fgIdx}:v]overlay=0:0[v]`
+  const filter = scales.join(';') + ';' + chain
+  execFileSync('ffmpeg', ['-y', ...inputs, '-filter_complex', filter, '-map', '[v]', '-r', '20', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out], { stdio: ['ignore', 'ignore', 'pipe'] })
+  for (const g of gifs) if (g) { try { fs.unlinkSync(g) } catch {} }
+  try { fs.unlinkSync(fgPng) } catch {}
+  return out
+}
+
+// ── Build ──
+const media = [{ type: 'photo', file: await cover().then(() => path.join(outDir, 'slide-0.jpg')) }]
+for (let i = 0; i < PROG.jours.length; i++) media.push({ type: 'video', file: await dayVideo(PROG.jours[i], i + 1) })
+try { fs.unlinkSync(path.join(outDir, '_bg.png')) } catch {}
+console.log(`✅ ${media.length} slides (1 photo + ${media.length - 1} vidéos)`)
+
+// ── Post Telegram ──
 const TG = process.env.TELEGRAM_BOT_TOKEN, TGC = process.env.TELEGRAM_CHAT_ID
 if (TG && TGC) {
   const fd = new FormData()
   fd.append('chat_id', TGC)
-  const media = slides.map((_, i) => ({ type: 'photo', media: `attach://f${i}`, ...(i === 0 ? { caption: `${PROG.caption}\n\n📋 Programme complet 👇\n${PROG.link}\n\n📌 Enregistre · 🔔 Abonne-toi\n#musculation #fitness #programme #muscu` } : {}) }))
-  fd.append('media', JSON.stringify(media))
-  slides.forEach((b, i) => fd.append(`f${i}`, new Blob([b], { type: 'image/jpeg' }), `slide-${i}.jpg`))
+  const cap = `${PROG.caption}\n\n📋 Programme complet 👇\n${PROG.link}\n\n📌 Enregistre · 🔔 Abonne-toi\n#musculation #fitness #programme #muscu`
+  const arr = media.map((m, i) => ({ type: m.type, media: `attach://f${i}`, ...(i === 0 ? { caption: cap } : {}) }))
+  fd.append('media', JSON.stringify(arr))
+  media.forEach((m, i) => fd.append(`f${i}`, new Blob([fs.readFileSync(m.file)], { type: m.type === 'photo' ? 'image/jpeg' : 'video/mp4' }), path.basename(m.file)))
   const r = await fetch(`https://api.telegram.org/bot${TG}/sendMediaGroup`, { method: 'POST', body: fd })
-  const j = await r.json()
-  console.log('Telegram sendMediaGroup:', r.status, j.ok ? 'OK' : JSON.stringify(j).slice(0, 200))
+  const j = await r.json(); console.log('Telegram:', r.status, j.ok ? 'OK' : JSON.stringify(j).slice(0, 200))
 }

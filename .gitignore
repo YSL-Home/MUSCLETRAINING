@@ -58,3 +58,6 @@ next-env.d.ts
 # AAB/APK générés (artefacts de build)
 /dist/
 .indexnow-key
+
+# Carrousels générés (médias lourds, régénérés à la volée)
+/public/carousels/
