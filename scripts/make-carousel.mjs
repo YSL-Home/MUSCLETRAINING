@@ -65,10 +65,16 @@ async function cover() {
 function bgSvg() {
   let s = ''
   for (let i = 0; i < 6; i++) { const { cx, y } = cells(i); const cx0 = cx - 160
-    s += `<rect x="${cx0}" y="${y - 26}" width="320" height="416" rx="30" fill="${CARDC}" stroke="${RED}" stroke-opacity="0.22" stroke-width="2"/>`
-    s += `<rect x="${cx - 135}" y="${y}" width="270" height="270" rx="18" fill="#ffffff"/>` }
+    s += `<rect x="${cx0}" y="${y - 26}" width="320" height="416" rx="30" fill="url(#card)" stroke="${RED}" stroke-opacity="0.28" stroke-width="2" filter="url(#sh)"/>`
+    s += `<rect x="${cx0 + 70}" y="${y - 26}" width="180" height="5" rx="3" fill="${RED}" opacity="0.85"/>`
+    s += `<rect x="${cx - 135}" y="${y}" width="270" height="270" rx="18" fill="url(#tile)"/>` }
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
-    <defs><radialGradient id="bg" cx="50%" cy="0%" r="80%"><stop offset="0" stop-color="#1a0f14"/><stop offset="60%" stop-color="${BGD}"/></radialGradient></defs>
+    <defs>
+      <radialGradient id="bg" cx="50%" cy="0%" r="85%"><stop offset="0" stop-color="#1d1016"/><stop offset="55%" stop-color="#0e0a10"/><stop offset="100%" stop-color="${BGD}"/></radialGradient>
+      <linearGradient id="card" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d1d28"/><stop offset="1" stop-color="#121219"/></linearGradient>
+      <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#ece9e1"/></linearGradient>
+      <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.55"/></filter>
+    </defs>
     <rect width="${W}" height="${H}" fill="url(#bg)"/>${s}</svg>`
 }
 function fgSvg(j) {
@@ -106,7 +112,7 @@ async function dayVideo(j, idx) {
   inputs.push('-loop', '1', '-t', '5', '-i', fgPng)
   const fgIdx = 1 + present.length
 
-  const scales = present.map((_, k) => `[${k + 1}:v]scale=270:270:force_original_aspect_ratio=decrease,pad=270:270:(ow-iw)/2:(oh-ih)/2:color=white,setpts=PTS-STARTPTS[g${k}]`)
+  const scales = present.map((_, k) => `[${k + 1}:v]scale=270:270:force_original_aspect_ratio=increase,crop=270:270,setpts=PTS-STARTPTS[g${k}]`)
   let chain = '', prev = '0:v'
   present.forEach((cellI, k) => { const { cx, y } = cells(cellI); const X = cx - 135, Y = y; const lbl = `b${k}`; chain += `[${prev}][g${k}]overlay=${X}:${Y}[${lbl}];`; prev = lbl })
   chain += `[${prev}][${fgIdx}:v]overlay=0:0[v]`
