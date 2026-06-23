@@ -37,7 +37,7 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
 const wrap = (s, n = 14) => { const w = s.split(/\s+/), L = []; let c = ''; for (const x of w) { if ((c + ' ' + x).trim().length > n) { L.push(c.trim()); c = x } else c += ' ' + x } if (c.trim()) L.push(c.trim()); return L.slice(0, 2) }
 
 // Grille : 3 colonnes × 2 rangées
-const CX = [190, 540, 890], ROW_Y = [255, 745], CARD = 290
+const CX = [190, 540, 890], ROW_Y = [250, 745], CARD = 270
 const cells = i => ({ cx: CX[i % 3], y: ROW_Y[Math.floor(i / 3)] })
 
 // ── Couverture (image, thème sombre premium) ──
@@ -64,27 +64,28 @@ async function cover() {
 // Fond sombre + cartes (avec zone photo blanche pour les illustrations)
 function bgSvg() {
   let s = ''
-  for (let i = 0; i < 6; i++) { const { cx, y } = cells(i); const cx0 = cx - 165
-    s += `<rect x="${cx0}" y="${y - 22}" width="330" height="408" rx="30" fill="${CARDC}" stroke="${RED}" stroke-opacity="0.22" stroke-width="2"/>`
-    s += `<rect x="${cx - 145}" y="${y}" width="290" height="290" rx="20" fill="#ffffff"/>` }
+  for (let i = 0; i < 6; i++) { const { cx, y } = cells(i); const cx0 = cx - 160
+    s += `<rect x="${cx0}" y="${y - 26}" width="320" height="416" rx="30" fill="${CARDC}" stroke="${RED}" stroke-opacity="0.22" stroke-width="2"/>`
+    s += `<rect x="${cx - 135}" y="${y}" width="270" height="270" rx="18" fill="#ffffff"/>` }
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
     <defs><radialGradient id="bg" cx="50%" cy="0%" r="80%"><stop offset="0" stop-color="#1a0f14"/><stop offset="60%" stop-color="${BGD}"/></radialGradient></defs>
     <rect width="${W}" height="${H}" fill="url(#bg)"/>${s}</svg>`
 }
 function fgSvg(j) {
   let s = ''
-  for (let i = 0; i < j.ex.length; i++) { const { cx, y } = cells(i); const cx0 = cx - 165
-    // badge numéroté
-    s += `<circle cx="${cx0 + 4}" cy="${y - 18}" r="30" fill="${RED}"/><text x="${cx0 + 4}" y="${y - 8}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="32" fill="#fff">${i + 1}</text>`
+  for (let i = 0; i < j.ex.length; i++) { const { cx, y } = cells(i)
+    // badge numéroté, dans le coin haut-gauche de la tuile
+    const bx = cx - 135 + 30, by = y + 30
+    s += `<circle cx="${bx}" cy="${by}" r="27" fill="${RED}"/><text x="${bx}" y="${by + 11}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="30" fill="#fff">${i + 1}</text>`
     const lines = wrap(j.ex[i][1].toUpperCase())
-    lines.forEach((l, k) => s += `<text x="${cx}" y="${y + CARD + 48 + k * 32}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="27" fill="${WHITE}">${esc(l)}</text>`)
-    s += `<text x="${cx}" y="${y + CARD + 48 + lines.length * 32 + 6}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="25" fill="${RED}">3 × 10-12</text>` }
+    lines.forEach((l, k) => s += `<text x="${cx}" y="${y + CARD + 52 + k * 33}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="27" fill="${WHITE}">${esc(l)}</text>`)
+    s += `<text x="${cx}" y="${y + CARD + 52 + lines.length * 33 + 4}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="25" fill="${RED}">3 × 10-12</text>` }
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
     <text x="${W/2}" y="115" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="58" fill="${WHITE}">${esc(j.t)}</text>
     <rect x="${W/2-70}" y="142" width="140" height="6" rx="3" fill="${RED}"/>
     ${s}
-    <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-145}" y="1276" width="52" height="52"/>
-    <text x="${W/2-78}" y="1312" font-family="Arial Black,Arial" font-weight="900" font-size="32" fill="${WHITE}">muscletraining.uk</text>
+    <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-150}" y="1270" width="60" height="60"/>
+    <text x="${W/2-78}" y="1310" font-family="Arial Black,Arial" font-weight="900" font-size="34" fill="${WHITE}">muscletraining.uk</text>
   </svg>`
 }
 
@@ -105,9 +106,9 @@ async function dayVideo(j, idx) {
   inputs.push('-loop', '1', '-t', '5', '-i', fgPng)
   const fgIdx = 1 + present.length
 
-  const scales = present.map((_, k) => `[${k + 1}:v]scale=290:290:force_original_aspect_ratio=decrease,pad=290:290:(ow-iw)/2:(oh-ih)/2:color=white,setpts=PTS-STARTPTS[g${k}]`)
+  const scales = present.map((_, k) => `[${k + 1}:v]scale=270:270:force_original_aspect_ratio=decrease,pad=270:270:(ow-iw)/2:(oh-ih)/2:color=white,setpts=PTS-STARTPTS[g${k}]`)
   let chain = '', prev = '0:v'
-  present.forEach((cellI, k) => { const { cx, y } = cells(cellI); const X = cx - 145, Y = y; const lbl = `b${k}`; chain += `[${prev}][g${k}]overlay=${X}:${Y}[${lbl}];`; prev = lbl })
+  present.forEach((cellI, k) => { const { cx, y } = cells(cellI); const X = cx - 135, Y = y; const lbl = `b${k}`; chain += `[${prev}][g${k}]overlay=${X}:${Y}[${lbl}];`; prev = lbl })
   chain += `[${prev}][${fgIdx}:v]overlay=0:0[v]`
   const filter = scales.join(';') + ';' + chain
   execFileSync('ffmpeg', ['-y', ...inputs, '-filter_complex', filter, '-map', '[v]', '-r', '20', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out], { stdio: ['ignore', 'ignore', 'pipe'] })

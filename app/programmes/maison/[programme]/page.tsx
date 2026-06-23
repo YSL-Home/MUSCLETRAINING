@@ -5,6 +5,7 @@ import Breadcrumb from '@/components/Breadcrumb'
 import AffiliateRecommendations from '@/components/AffiliateRecommendations'
 import { getProgrammeBySlug, getProgrammesByMode } from '@/data/programmes'
 import { getExerciseBySlug } from '@/data/exercises'
+import ExerciseGif from '@/components/ExerciseGif'
 import { programmeSchema } from '@/lib/schema'
 
 export async function generateStaticParams() {
@@ -114,10 +115,14 @@ export default async function ProgrammeMaisonPage({ params }: { params: Promise<
                   {jour.exercices.map((ex, i) => {
                     const exData = getExerciseBySlug(ex.slug)
                     return (
-                      <div key={i} className="px-6 py-4 flex items-start gap-4 hover:bg-[#0C0C1A] transition-colors">
-                        <div className="w-6 h-6 rounded-full bg-green-100 text-green-700 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
-                          {i + 1}
-                        </div>
+                      <div key={i} className="px-6 py-4 flex items-center gap-4 hover:bg-[#0C0C1A] transition-colors">
+                        {exData ? (
+                          <Link href={`/exercice/${ex.slug}`} className="w-20 flex-shrink-0">
+                            <ExerciseGif slug={ex.slug} />
+                          </Link>
+                        ) : (
+                          <div className="w-6 h-6 rounded-full bg-green-100 text-green-700 text-xs font-bold flex items-center justify-center flex-shrink-0">{i + 1}</div>
+                        )}
                         <div className="flex-1 min-w-0">
                           {exData ? (
                             <Link href={`/exercice/${ex.slug}`} className="font-semibold text-[#EDE8E0] hover:text-green-600 transition-colors">
