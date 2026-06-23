@@ -83,34 +83,38 @@ async function cover() {
   fs.writeFileSync(path.join(outDir, 'slide-0.jpg'), b); return b
 }
 
-// Fond sombre + cartes (avec zone photo blanche pour les illustrations)
-function bgSvg() {
+// Fond éditorial : dégradé décentré + bande diagonale + watermark du jour + cartes
+function bgSvg(j) {
   let s = ''
   for (let i = 0; i < 6; i++) { const { cx, y } = cells(i); const cx0 = cx - 160
-    s += `<rect x="${cx0}" y="${y - 26}" width="320" height="446" rx="30" fill="url(#card)" stroke="${RED}" stroke-opacity="0.28" stroke-width="2" filter="url(#sh)"/>`
-    s += `<rect x="${cx0 + 70}" y="${y - 26}" width="180" height="5" rx="3" fill="${RED}" opacity="0.85"/>`
-    s += `<rect x="${cx - 135}" y="${y}" width="270" height="270" rx="18" fill="url(#tile)"/>` }
+    s += `<rect x="${cx0}" y="${y - 26}" width="320" height="446" rx="26" fill="url(#card)" stroke="${RED}" stroke-opacity="0.3" stroke-width="2" filter="url(#sh)"/>`
+    s += `<polygon points="${cx0},${y - 26} ${cx0 + 100},${y - 26} ${cx0},${y + 74}" fill="${RED}"/>`
+    s += `<rect x="${cx - 135}" y="${y}" width="270" height="270" rx="14" fill="url(#tile)"/>` }
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
     <defs>
-      <radialGradient id="bg" cx="50%" cy="0%" r="85%"><stop offset="0" stop-color="#1d1016"/><stop offset="55%" stop-color="#0e0a10"/><stop offset="100%" stop-color="${BGD}"/></radialGradient>
-      <linearGradient id="card" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d1d28"/><stop offset="1" stop-color="#121219"/></linearGradient>
+      <radialGradient id="bg" cx="26%" cy="-8%" r="105%"><stop offset="0" stop-color="#261019"/><stop offset="48%" stop-color="#0e0a10"/><stop offset="100%" stop-color="${BGD}"/></radialGradient>
+      <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#20202c"/><stop offset="1" stop-color="#101017"/></linearGradient>
       <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#ece9e1"/></linearGradient>
-      <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.55"/></filter>
+      <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="9" stdDeviation="14" flood-color="#000000" flood-opacity="0.6"/></filter>
     </defs>
-    <rect width="${W}" height="${H}" fill="url(#bg)"/>${s}</svg>`
+    <rect width="${W}" height="${H}" fill="url(#bg)"/>
+    <polygon points="0,158 ${W},66 ${W},210 0,318" fill="#000000" opacity="0.22"/>
+    <text x="${W - 24}" y="690" text-anchor="end" font-family="${DISPLAY}" font-size="640" fill="#ffffff" opacity="0.035">${j.n}</text>
+    ${s}</svg>`
 }
 function fgSvg(j) {
   let s = ''
-  for (let i = 0; i < j.ex.length; i++) { const { cx, y } = cells(i)
-    const bx = cx - 135 + 32, by = y + 32
-    s += `<circle cx="${bx}" cy="${by}" r="28" fill="${RED}"/><text x="${bx}" y="${by + 13}" text-anchor="middle" font-family="${DISPLAY}" font-size="34" fill="#fff">${i + 1}</text>`
+  for (let i = 0; i < j.ex.length; i++) { const { cx, y } = cells(i); const cx0 = cx - 160
+    s += `<text x="${cx0 + 20}" y="${y + 12}" font-family="${DISPLAY}" font-size="42" fill="#ffffff">${i + 1}</text>`
     const lines = wrap(j.ex[i][1].toUpperCase(), 14)
     lines.forEach((l, k) => s += `<text x="${cx}" y="${y + CARD + 52 + k * 33}" text-anchor="middle" font-family="${DISPLAY}" font-size="31" fill="${WHITE}" letter-spacing="0.5">${esc(l)}</text>`)
     s += `<text x="${cx}" y="${y + CARD + 52 + lines.length * 33 + 8}" text-anchor="middle" font-family="${COND}" font-size="30" fill="${RED}" letter-spacing="1">3 × 10-12</text>` }
+  const fw = Math.min(700, 26 + j.focus.length * 33)
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
-    <text x="${W/2}" y="92" text-anchor="middle" font-family="${DISPLAY}" font-size="78" fill="${WHITE}" letter-spacing="3">JOUR <tspan fill="${RED}">${j.n}</tspan></text>
-    <text x="${W/2}" y="148" text-anchor="middle" font-family="${COND}" font-size="46" fill="${GREY}" letter-spacing="4">${esc(j.focus)}</text>
-    <rect x="${W/2-60}" y="166" width="120" height="5" rx="3" fill="${RED}"/>
+    <polygon points="44,50 322,50 298,152 20,152" fill="${RED}"/>
+    <text x="170" y="121" text-anchor="middle" font-family="${DISPLAY}" font-size="56" fill="#ffffff" letter-spacing="1">JOUR ${j.n}</text>
+    <text x="352" y="116" font-family="${COND}" font-size="66" fill="${WHITE}" letter-spacing="2">${esc(j.focus)}</text>
+    <rect x="354" y="130" width="${fw}" height="5" rx="3" fill="${RED}"/>
     ${s}
     <rect x="${W/2-56}" y="1228" width="112" height="112" rx="22" fill="#050507" stroke="${RED}" stroke-opacity="0.35" stroke-width="2"/>
     <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-48}" y="1236" width="96" height="96"/>
@@ -120,8 +124,8 @@ function fgSvg(j) {
 // ── Vidéo d'un jour (illustrations animées) ──
 async function dayVideo(j, idx) {
   const out = path.join(outDir, `slide-${idx}.mp4`)
-  const bgPng = path.join(outDir, `_bg.png`), fgPng = path.join(outDir, `_fg${idx}.png`)
-  await sharp(Buffer.from(bgSvg())).png().toFile(bgPng)
+  const bgPng = path.join(outDir, `_bg${idx}.png`), fgPng = path.join(outDir, `_fg${idx}.png`)
+  await sharp(Buffer.from(bgSvg(j))).png().toFile(bgPng)
   await sharp(Buffer.from(fgSvg(j))).png().toFile(fgPng)
   // télécharge les gifs
   const gifs = []
@@ -142,13 +146,13 @@ async function dayVideo(j, idx) {
   execFileSync('ffmpeg', ['-y', ...inputs, '-filter_complex', filter, '-map', '[v]', '-r', '60', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out], { stdio: ['ignore', 'ignore', 'pipe'] })
   for (const g of gifs) if (g) { try { fs.unlinkSync(g) } catch {} }
   try { fs.unlinkSync(fgPng) } catch {}
+  try { fs.unlinkSync(bgPng) } catch {}
   return out
 }
 
 // ── Build ──
 const media = [{ type: 'photo', file: await cover().then(() => path.join(outDir, 'slide-0.jpg')) }]
 for (let i = 0; i < PROG.jours.length; i++) media.push({ type: 'video', file: await dayVideo(PROG.jours[i], i + 1) })
-try { fs.unlinkSync(path.join(outDir, '_bg.png')) } catch {}
 console.log(`✅ ${media.length} slides (1 photo + ${media.length - 1} vidéos)`)
 
 // ── Post Telegram ──
