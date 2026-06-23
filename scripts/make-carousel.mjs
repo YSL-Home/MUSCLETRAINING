@@ -46,6 +46,8 @@ async function cover() {
     <defs>
       <radialGradient id="glow" cx="50%" cy="32%" r="65%"><stop offset="0" stop-color="#3a0f14"/><stop offset="55%" stop-color="#120a10"/><stop offset="100%" stop-color="${BGD}"/></radialGradient>
       <linearGradient id="rg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF6B7A"/><stop offset="1" stop-color="${RED}"/></linearGradient>
+      <linearGradient id="btn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF5A68"/><stop offset="1" stop-color="#D32638"/></linearGradient>
+      <filter id="btnsh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#E63946" flood-opacity="0.45"/></filter>
     </defs>
     <rect width="${W}" height="${H}" fill="url(#glow)"/>
     <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-95}" y="150" width="190" height="190"/>
@@ -54,8 +56,11 @@ async function cover() {
     <text x="${W/2}" y="790" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="120" fill="${WHITE}">PARFAIT</text>
     <rect x="${W/2-90}" y="840" width="180" height="7" rx="4" fill="${RED}"/>
     <text x="${W/2}" y="930" text-anchor="middle" font-family="Arial" font-size="44" fill="${GREY}">4 jours · prise de muscle · salle</text>
-    <rect x="${W/2-230}" y="1180" width="460" height="86" rx="43" fill="${RED}"/>
-    <text x="${W/2}" y="1236" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="40" fill="#ffffff">PROGRAMME GRATUIT →</text>
+    <g filter="url(#btnsh)">
+      <rect x="${W/2-285}" y="1160" width="570" height="96" rx="48" fill="url(#btn)"/>
+      <rect x="${W/2-285}" y="1162" width="570" height="46" rx="48" fill="#ffffff" opacity="0.12"/>
+    </g>
+    <text x="${W/2}" y="1220" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="42" fill="#ffffff" letter-spacing="1">PROGRAMME GRATUIT  →</text>
   </svg>`
   const b = await sharp(Buffer.from(svg)).jpeg({ quality: 92 }).toBuffer()
   fs.writeFileSync(path.join(outDir, 'slide-0.jpg'), b); return b
