@@ -14,7 +14,7 @@ import { execFileSync } from 'child_process'
 
 const BASE = 'https://www.muscletraining.uk'
 const GIF_BASE = 'https://raw.githubusercontent.com/JahelCuadrado/ExerciseGymGifsDB/main'
-const W = 1080, H = 1350, BGD = '#0b0b12', CARDC = '#16161f', RED = '#E63946', WHITE = '#F5F1EA', GREY = '#8A9BB5'
+const W = 1080, H = 1920, BGD = '#0b0b12', CARDC = '#16161f', RED = '#E63946', WHITE = '#F5F1EA', GREY = '#8A9BB5'
 
 const PROG = {
   slug: 'full-body-parfait',
@@ -50,9 +50,10 @@ const LOGO_B64 = fs.readFileSync(LOGO_PATH).toString('base64')
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 const wrap = (s, n = 14) => { const w = s.split(/\s+/), L = []; let c = ''; for (const x of w) { if ((c + ' ' + x).trim().length > n) { L.push(c.trim()); c = x } else c += ' ' + x } if (c.trim()) L.push(c.trim()); return L.slice(0, 2) }
 
-// Liste éditoriale : 2 colonnes × 3 rangées, cartes horizontales (illustration + infos)
-const COLS = [40, 560], ROWS = [210, 545, 880], CW = 480, CH = 310, TILE = 220
-const cells = i => { const c = i % 2, r = Math.floor(i / 2); const x = COLS[c], y = ROWS[r]; return { x, y, tx: x + 24, ty: y + 45, txt: x + 264 } }
+// Liste éditoriale : 1 colonne pleine largeur, 6 cartes horizontales (illustration + infos)
+const CARD_X = 40, CW = 1000, CH = 226, TILE = 186
+const ROWS = [290, 538, 786, 1034, 1282, 1530]
+const cells = i => { const x = CARD_X, y = ROWS[i]; return { x, y, tx: x + 20, ty: y + 20, txt: x + 232 } }
 
 // ── Couverture (image, thème sombre premium) ──
 async function cover() {
@@ -64,19 +65,19 @@ async function cover() {
       <filter id="btnsh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#E63946" flood-opacity="0.45"/></filter>
     </defs>
     <rect width="${W}" height="${H}" fill="url(#glow)"/>
-    <polygon points="0,0 240,0 0,240" fill="${RED}" opacity="0.10"/>
-    <polygon points="${W},${H} ${W-240},${H} ${W},${H-240}" fill="${RED}" opacity="0.10"/>
-    <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-180}" y="86" width="360" height="360"/>
-    <text x="${W/2}" y="510" text-anchor="middle" font-family="${DISPLAY}" font-size="104" fill="${WHITE}" letter-spacing="8">PROGRAMME</text>
-    <text x="${W/2}" y="680" text-anchor="middle" font-family="${DISPLAY}" font-size="186" fill="url(#rg)" letter-spacing="2">FULL BODY</text>
-    <text x="${W/2}" y="810" text-anchor="middle" font-family="${DISPLAY}" font-size="138" fill="${WHITE}">PARFAIT</text>
-    <rect x="${W/2-90}" y="852" width="180" height="7" rx="4" fill="${RED}"/>
-    <text x="${W/2}" y="936" text-anchor="middle" font-family="${COND}" font-size="50" fill="${GREY}" letter-spacing="3">4 JOURS · PRISE DE MUSCLE · SALLE</text>
+    <polygon points="0,0 300,0 0,300" fill="${RED}" opacity="0.10"/>
+    <polygon points="${W},${H} ${W-300},${H} ${W},${H-300}" fill="${RED}" opacity="0.10"/>
+    <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-210}" y="200" width="420" height="420"/>
+    <text x="${W/2}" y="850" text-anchor="middle" font-family="${DISPLAY}" font-size="110" fill="${WHITE}" letter-spacing="8">PROGRAMME</text>
+    <text x="${W/2}" y="1040" text-anchor="middle" font-family="${DISPLAY}" font-size="200" fill="url(#rg)" letter-spacing="2">FULL BODY</text>
+    <text x="${W/2}" y="1185" text-anchor="middle" font-family="${DISPLAY}" font-size="148" fill="${WHITE}">PARFAIT</text>
+    <rect x="${W/2-95}" y="1235" width="190" height="7" rx="4" fill="${RED}"/>
+    <text x="${W/2}" y="1330" text-anchor="middle" font-family="${COND}" font-size="54" fill="${GREY}" letter-spacing="3">4 JOURS · PRISE DE MUSCLE · SALLE</text>
     <g filter="url(#btnsh)">
-      <rect x="${W/2-310}" y="1158" width="620" height="98" rx="49" fill="url(#btn)"/>
-      <rect x="${W/2-310}" y="1160" width="620" height="47" rx="49" fill="#ffffff" opacity="0.12"/>
+      <rect x="${W/2-330}" y="1640" width="660" height="104" rx="52" fill="url(#btn)"/>
+      <rect x="${W/2-330}" y="1642" width="660" height="50" rx="52" fill="#ffffff" opacity="0.12"/>
     </g>
-    <text x="${W/2}" y="1224" text-anchor="middle" font-family="${DISPLAY}" font-size="46" fill="#ffffff" letter-spacing="2">PROGRAMME GRATUIT →</text>
+    <text x="${W/2}" y="1710" text-anchor="middle" font-family="${DISPLAY}" font-size="48" fill="#ffffff" letter-spacing="2">PROGRAMME GRATUIT →</text>
   </svg>`
   const b = await sharp(Buffer.from(svg)).jpeg({ quality: 96, chromaSubsampling: "4:4:4" }).toBuffer()
   fs.writeFileSync(path.join(outDir, 'slide-0.jpg'), b); return b
@@ -86,8 +87,8 @@ async function cover() {
 function bgSvg(j) {
   let s = ''
   for (let i = 0; i < 6; i++) { const { x, y, tx, ty } = cells(i)
-    s += `<rect x="${x}" y="${y}" width="${CW}" height="${CH}" rx="24" fill="url(#card)" fill-opacity="0.66" stroke="${RED}" stroke-opacity="0.35" stroke-width="2" filter="url(#sh)"/>`
-    s += `<polygon points="${x},${y} ${x + 92},${y} ${x},${y + 86}" fill="${RED}"/>`
+    s += `<rect x="${x}" y="${y}" width="${CW}" height="${CH}" rx="22" fill="url(#card)" fill-opacity="0.62" stroke="${RED}" stroke-opacity="0.35" stroke-width="2" filter="url(#sh)"/>`
+    s += `<polygon points="${x},${y} ${x + 86},${y} ${x},${y + 80}" fill="${RED}"/>`
     s += `<rect x="${tx}" y="${ty}" width="${TILE}" height="${TILE}" rx="14" fill="url(#tile)"/>` }
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
     <defs>
@@ -105,22 +106,22 @@ function bgSvg(j) {
 function fgSvg(j) {
   let s = ''
   for (let i = 0; i < j.ex.length; i++) { const { x, y, txt } = cells(i)
-    s += `<text x="${x + 20}" y="${y + 56}" font-family="${DISPLAY}" font-size="44" fill="#ffffff">${i + 1}</text>`
-    const lines = wrap(j.ex[i][1].toUpperCase(), 12)
-    const ny = y + (lines.length === 1 ? 150 : 128)
-    lines.forEach((l, k) => s += `<text x="${txt}" y="${ny + k * 42}" font-family="${DISPLAY}" font-size="38" fill="${WHITE}" letter-spacing="0.5">${esc(l)}</text>`)
-    const ry = ny + lines.length * 42 + 14
-    s += `<rect x="${txt}" y="${ry - 24}" width="56" height="5" rx="3" fill="${RED}"/>`
-    s += `<text x="${txt}" y="${ry + 26}" font-family="${COND}" font-size="40" fill="${RED}" letter-spacing="1">3 × 10-12</text>`
-    s += `<text x="${txt + 150}" y="${ry + 24}" font-family="${COND}" font-size="28" fill="${GREY}" letter-spacing="2">REPS</text>` }
-  const fw = Math.min(700, 26 + j.focus.length * 33)
+    s += `<text x="${x + 16}" y="${y + 54}" font-family="${DISPLAY}" font-size="44" fill="#ffffff">${i + 1}</text>`
+    const lines = wrap(j.ex[i][1].toUpperCase(), 18)
+    const ny = y + (lines.length === 1 ? 108 : 90)
+    lines.forEach((l, k) => s += `<text x="${txt}" y="${ny + k * 48}" font-family="${DISPLAY}" font-size="46" fill="${WHITE}" letter-spacing="0.5">${esc(l)}</text>`)
+    const ry = ny + lines.length * 48 + 8
+    s += `<rect x="${txt}" y="${ry - 30}" width="64" height="6" rx="3" fill="${RED}"/>`
+    s += `<text x="${txt}" y="${ry + 14}" font-family="${COND}" font-size="46" fill="${RED}" letter-spacing="1">3 × 10-12</text>`
+    s += `<text x="${txt + 178}" y="${ry + 12}" font-family="${COND}" font-size="30" fill="${GREY}" letter-spacing="2">SÉRIES × REPS</text>` }
+  const fw = Math.min(660, 26 + j.focus.length * 32)
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
-    <polygon points="44,46 322,46 298,148 20,148" fill="${RED}"/>
-    <text x="170" y="117" text-anchor="middle" font-family="${DISPLAY}" font-size="56" fill="#ffffff" letter-spacing="1">JOUR ${j.n}</text>
-    <text x="352" y="112" font-family="${COND}" font-size="66" fill="${WHITE}" letter-spacing="2">${esc(j.focus)}</text>
-    <rect x="354" y="126" width="${fw}" height="5" rx="3" fill="${RED}"/>
+    <polygon points="48,58 360,58 334,170 22,170" fill="${RED}"/>
+    <text x="191" y="137" text-anchor="middle" font-family="${DISPLAY}" font-size="62" fill="#ffffff" letter-spacing="1">JOUR ${j.n}</text>
+    <text x="392" y="132" font-family="${COND}" font-size="72" fill="${WHITE}" letter-spacing="2">${esc(j.focus)}</text>
+    <rect x="394" y="148" width="${fw}" height="6" rx="3" fill="${RED}"/>
     ${s}
-    <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-60}" y="1222" width="120" height="120"/>
+    <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-70}" y="1762" width="140" height="140"/>
   </svg>`
 }
 
