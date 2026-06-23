@@ -88,7 +88,6 @@ function bgSvg(j) {
   let s = ''
   for (let i = 0; i < 6; i++) { const { x, y, tx, ty } = cells(i)
     s += `<rect x="${x}" y="${y}" width="${CW}" height="${CH}" rx="22" fill="url(#card)" fill-opacity="0.62" stroke="${RED}" stroke-opacity="0.35" stroke-width="2" filter="url(#sh)"/>`
-    s += `<polygon points="${x},${y} ${x + 86},${y} ${x},${y + 80}" fill="${RED}"/>`
     s += `<rect x="${tx}" y="${ty}" width="${TILE}" height="${TILE}" rx="14" fill="url(#tile)"/>` }
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
     <defs>
@@ -105,8 +104,8 @@ function bgSvg(j) {
 }
 function fgSvg(j) {
   let s = ''
-  for (let i = 0; i < j.ex.length; i++) { const { x, y, txt } = cells(i)
-    s += `<text x="${x + 16}" y="${y + 54}" font-family="${DISPLAY}" font-size="44" fill="#ffffff">${i + 1}</text>`
+  for (let i = 0; i < j.ex.length; i++) { const { x, y, tx, ty, txt } = cells(i)
+    s += `<circle cx="${tx + 30}" cy="${ty + 30}" r="30" fill="${RED}"/><text x="${tx + 30}" y="${ty + 43}" text-anchor="middle" font-family="${DISPLAY}" font-size="36" fill="#ffffff">${i + 1}</text>`
     const lines = wrap(j.ex[i][1].toUpperCase(), 18)
     const ny = y + (lines.length === 1 ? 108 : 90)
     lines.forEach((l, k) => s += `<text x="${txt}" y="${ny + k * 48}" font-family="${DISPLAY}" font-size="46" fill="${WHITE}" letter-spacing="0.5">${esc(l)}</text>`)
