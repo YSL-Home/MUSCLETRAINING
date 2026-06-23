@@ -134,12 +134,12 @@ async function dayVideo(j, idx) {
   inputs.push('-loop', '1', '-t', '5', '-i', fgPng)
   const fgIdx = 1 + present.length
 
-  const scales = present.map((_, k) => `[${k + 1}:v]scale=270:270:force_original_aspect_ratio=increase,crop=270:270,minterpolate=fps=30:mi_mode=blend,setpts=PTS-STARTPTS[g${k}]`)
+  const scales = present.map((_, k) => `[${k + 1}:v]scale=270:270:force_original_aspect_ratio=increase,crop=270:270,minterpolate=fps=60:mi_mode=blend,setpts=PTS-STARTPTS[g${k}]`)
   let chain = '', prev = '0:v'
   present.forEach((cellI, k) => { const { cx, y } = cells(cellI); const X = cx - 135, Y = y; const lbl = `b${k}`; chain += `[${prev}][g${k}]overlay=${X}:${Y}[${lbl}];`; prev = lbl })
   chain += `[${prev}][${fgIdx}:v]overlay=0:0[v]`
   const filter = scales.join(';') + ';' + chain
-  execFileSync('ffmpeg', ['-y', ...inputs, '-filter_complex', filter, '-map', '[v]', '-r', '30', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out], { stdio: ['ignore', 'ignore', 'pipe'] })
+  execFileSync('ffmpeg', ['-y', ...inputs, '-filter_complex', filter, '-map', '[v]', '-r', '60', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out], { stdio: ['ignore', 'ignore', 'pipe'] })
   for (const g of gifs) if (g) { try { fs.unlinkSync(g) } catch {} }
   try { fs.unlinkSync(fgPng) } catch {}
   return out
