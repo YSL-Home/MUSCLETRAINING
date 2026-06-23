@@ -16,18 +16,63 @@ const BASE = 'https://www.muscletraining.uk'
 const GIF_BASE = 'https://raw.githubusercontent.com/JahelCuadrado/ExerciseGymGifsDB/main'
 const W = 1080, H = 1920, BGD = '#0b0b12', CARDC = '#16161f', RED = '#E63946', WHITE = '#F5F1EA', GREY = '#8A9BB5'
 
-const PROG = {
-  slug: 'full-body-parfait',
-  titre: ['PROGRAMME', 'FULL BODY', 'PARFAIT'],
-  link: `${BASE}/programmes/salle/prise-masse-rapide-salle`,
-  caption: 'Tu veux prendre du muscle ? Fais ça. 💪',
-  jours: [
-    { n: 1, focus: 'POITRINE & TRICEPS', ex: [['developpe-couche-barre','Développé couché'],['developpe-incline-barre','Développé incliné'],['ecarte-halteres','Écartés poitrine'],['extension-triceps-poulie','Pushdown triceps'],['skull-crusher','Extension allongée'],['dips','Dips']] },
-    { n: 2, focus: 'DOS & BICEPS', ex: [['tirage-poitrine','Pulldown barre'],['tirage-horizontal','Rowing câble'],['rowing-haltere','Rowing haltère'],['curl-barre','Curl barre'],['curl-marteau','Curl marteau'],['curl-pupitre','Curl prédicateur']] },
-    { n: 3, focus: 'JAMBES', ex: [['hack-squat','Squat hack'],['leg-extension','Extension jambes'],['presse-cuisses','Presse à jambes'],['leg-curl-allonge','Curl allongé'],['mollets-assis','Mollets assis'],['souleve-de-terre','Soulevé de terre']] },
-    { n: 4, focus: 'ÉPAULES & BRAS', ex: [['developpe-militaire','Développé militaire'],['elevations-laterales','Élévations latérales'],['developpe-halteres-epaules','Développé haltères'],['extension-triceps-poulie','Pushdown triceps'],['curl-barre','Curl barre'],['curl-marteau','Curl marteau']] },
-  ],
-}
+// Banque de programmes/séances — un différent à chaque post (rotation)
+const PROGRAMS = [
+  {
+    slug: 'full-body-parfait', titre: ['PROGRAMME', 'FULL BODY', 'PARFAIT'], sub: '4 JOURS · PRISE DE MUSCLE · SALLE',
+    link: `${BASE}/programmes/salle/prise-masse-rapide-salle`, caption: 'Tu veux prendre du muscle ? Fais ça. 💪',
+    jours: [
+      { n: 1, focus: 'POITRINE & TRICEPS', ex: [['developpe-couche-barre','Développé couché'],['developpe-incline-barre','Développé incliné'],['ecarte-halteres','Écartés poitrine'],['extension-triceps-poulie','Pushdown triceps'],['skull-crusher','Extension allongée'],['dips','Dips']] },
+      { n: 2, focus: 'DOS & BICEPS', ex: [['tirage-poitrine','Pulldown barre'],['tirage-horizontal','Rowing câble'],['rowing-haltere','Rowing haltère'],['curl-barre','Curl barre'],['curl-marteau','Curl marteau'],['curl-pupitre','Curl prédicateur']] },
+      { n: 3, focus: 'JAMBES', ex: [['hack-squat','Squat hack'],['leg-extension','Extension jambes'],['presse-cuisses','Presse à jambes'],['leg-curl-allonge','Curl allongé'],['mollets-assis','Mollets assis'],['souleve-de-terre','Soulevé de terre']] },
+      { n: 4, focus: 'ÉPAULES & BRAS', ex: [['developpe-militaire','Développé militaire'],['elevations-laterales','Élévations latérales'],['developpe-halteres-epaules','Développé haltères'],['extension-triceps-poulie','Pushdown triceps'],['curl-barre','Curl barre'],['curl-marteau','Curl marteau']] },
+    ],
+  },
+  {
+    slug: 'push-pull-legs', titre: ['PROGRAMME', 'PUSH PULL', 'LEGS'], sub: '3 JOURS · HYPERTROPHIE · SALLE',
+    link: `${BASE}/programmes/salle/ppl-intermediaire-salle`, caption: 'Le split le plus efficace pour grossir. 💪',
+    jours: [
+      { n: 1, focus: 'PUSH (POUSSÉE)', ex: [['developpe-couche-barre','Développé couché'],['developpe-incline-barre','Développé incliné'],['developpe-militaire','Développé militaire'],['elevations-laterales','Élévations latérales'],['extension-triceps-poulie','Pushdown triceps'],['dips','Dips']] },
+      { n: 2, focus: 'PULL (TIRAGE)', ex: [['tractions','Tractions'],['rowing-barre','Rowing barre'],['tirage-poitrine','Tirage poitrine'],['tirage-horizontal','Rowing câble'],['curl-barre','Curl barre'],['curl-marteau','Curl marteau']] },
+      { n: 3, focus: 'LEGS (JAMBES)', ex: [['squat-barre','Squat barre'],['hack-squat','Squat hack'],['presse-cuisses','Presse à jambes'],['leg-extension','Extension jambes'],['leg-curl-allonge','Curl allongé'],['mollets-assis','Mollets assis']] },
+    ],
+  },
+  {
+    slug: 'haut-bas', titre: ['PROGRAMME', 'HAUT', 'BAS'], sub: '2 JOURS · FORCE & VOLUME · SALLE',
+    link: `${BASE}/programmes/salle/upper-lower-intermediaire`, caption: 'Haut / Bas : équilibre parfait. 💪',
+    jours: [
+      { n: 1, focus: 'HAUT DU CORPS', ex: [['developpe-couche-barre','Développé couché'],['rowing-barre','Rowing barre'],['developpe-militaire','Développé militaire'],['tractions','Tractions'],['curl-barre','Curl barre'],['dips','Dips']] },
+      { n: 2, focus: 'BAS DU CORPS', ex: [['squat-barre','Squat barre'],['souleve-de-terre','Soulevé de terre'],['presse-cuisses','Presse à jambes'],['leg-extension','Extension jambes'],['leg-curl-allonge','Curl allongé'],['mollets-assis','Mollets assis']] },
+    ],
+  },
+  {
+    slug: 'special-pectoraux', titre: ['SÉANCE', 'PECTORAUX', ''], sub: '6 EXERCICES · POITRINE',
+    link: `${BASE}/muscles/pectoraux`, caption: 'Des pecs plus larges ? Cette séance. 💪',
+    jours: [{ focus: 'PECTORAUX', ex: [['developpe-couche-barre','Développé couché'],['developpe-incline-barre','Développé incliné'],['developpe-couche-halteres','Développé haltères'],['ecarte-halteres','Écartés haltères'],['dips','Dips'],['pompes','Pompes']] }],
+  },
+  {
+    slug: 'special-dos', titre: ['SÉANCE', 'DOS', ''], sub: '6 EXERCICES · DOS LARGE',
+    link: `${BASE}/muscles/dos`, caption: 'Un dos en V, ça se construit ici. 💪',
+    jours: [{ focus: 'DOS', ex: [['tractions','Tractions'],['rowing-barre','Rowing barre'],['tirage-poitrine','Tirage poitrine'],['tirage-horizontal','Rowing câble'],['rowing-haltere','Rowing haltère'],['souleve-de-terre','Soulevé de terre']] }],
+  },
+  {
+    slug: 'special-bras', titre: ['SÉANCE', 'BRAS', ''], sub: '6 EXERCICES · BICEPS & TRICEPS',
+    link: `${BASE}/muscles/biceps`, caption: 'Des bras qui remplissent les manches. 💪',
+    jours: [{ focus: 'BICEPS & TRICEPS', ex: [['curl-barre','Curl barre'],['curl-marteau','Curl marteau'],['curl-pupitre','Curl prédicateur'],['extension-triceps-poulie','Pushdown triceps'],['skull-crusher','Extension allongée'],['dips','Dips']] }],
+  },
+  {
+    slug: 'special-jambes', titre: ['SÉANCE', 'JAMBES', ''], sub: '6 EXERCICES · QUADRI & ISCHIO',
+    link: `${BASE}/muscles/quadriceps`, caption: 'Ne saute plus le leg day. 🦵',
+    jours: [{ focus: 'JAMBES', ex: [['squat-barre','Squat barre'],['hack-squat','Squat hack'],['presse-cuisses','Presse à jambes'],['leg-extension','Extension jambes'],['leg-curl-allonge','Curl allongé'],['mollets-assis','Mollets assis']] }],
+  },
+  {
+    slug: 'special-epaules', titre: ['SÉANCE', 'ÉPAULES', ''], sub: '6 EXERCICES · DELTOÏDES',
+    link: `${BASE}/muscles/epaules`, caption: 'Des épaules larges = silhouette en V. 💪',
+    jours: [{ focus: 'ÉPAULES', ex: [['developpe-militaire','Développé militaire'],['developpe-halteres-epaules','Développé haltères'],['elevations-laterales','Élévations latérales'],['oiseau-halteres','Oiseau haltères'],['face-pull','Face pull'],['haussements-epaules','Haussements épaules']] }],
+  },
+]
+const pickIdx = Math.floor(Date.now() / 864e5) % PROGRAMS.length
+const PROG = PROGRAMS[Number(process.env.PROG_INDEX ?? pickIdx) % PROGRAMS.length]
 
 // Installe les polices d'affichage pour librsvg (fontconfig)
 function ensureFonts() {
@@ -68,11 +113,11 @@ async function cover() {
     <polygon points="0,0 300,0 0,300" fill="${RED}" opacity="0.10"/>
     <polygon points="${W},${H} ${W-300},${H} ${W},${H-300}" fill="${RED}" opacity="0.10"/>
     <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-210}" y="200" width="420" height="420"/>
-    <text x="${W/2}" y="850" text-anchor="middle" font-family="${DISPLAY}" font-size="110" fill="${WHITE}" letter-spacing="8">PROGRAMME</text>
-    <text x="${W/2}" y="1040" text-anchor="middle" font-family="${DISPLAY}" font-size="200" fill="url(#rg)" letter-spacing="2">FULL BODY</text>
-    <text x="${W/2}" y="1185" text-anchor="middle" font-family="${DISPLAY}" font-size="148" fill="${WHITE}">PARFAIT</text>
-    <rect x="${W/2-95}" y="1235" width="190" height="7" rx="4" fill="${RED}"/>
-    <text x="${W/2}" y="1330" text-anchor="middle" font-family="${COND}" font-size="54" fill="${GREY}" letter-spacing="3">4 JOURS · PRISE DE MUSCLE · SALLE</text>
+    <text x="${W/2}" y="850" text-anchor="middle" font-family="${DISPLAY}" font-size="110" fill="${WHITE}" letter-spacing="8">${esc(PROG.titre[0])}</text>
+    <text x="${W/2}" y="1040" text-anchor="middle" font-family="${DISPLAY}" font-size="${PROG.titre[1].length > 7 ? 178 : 220}" fill="url(#rg)" letter-spacing="2">${esc(PROG.titre[1])}</text>
+    ${PROG.titre[2] ? `<text x="${W/2}" y="1185" text-anchor="middle" font-family="${DISPLAY}" font-size="148" fill="${WHITE}">${esc(PROG.titre[2])}</text>` : ''}
+    <rect x="${W/2-95}" y="${PROG.titre[2] ? 1235 : 1110}" width="190" height="7" rx="4" fill="${RED}"/>
+    <text x="${W/2}" y="${PROG.titre[2] ? 1330 : 1205}" text-anchor="middle" font-family="${COND}" font-size="54" fill="${GREY}" letter-spacing="3">${esc(PROG.sub)}</text>
     <g filter="url(#btnsh)">
       <rect x="${W/2-330}" y="1640" width="660" height="104" rx="52" fill="url(#btn)"/>
       <rect x="${W/2-330}" y="1642" width="660" height="50" rx="52" fill="#ffffff" opacity="0.12"/>
@@ -118,7 +163,7 @@ function fgSvg(j) {
   const fw = Math.min(660, 26 + j.focus.length * 32)
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
     <polygon points="48,58 360,58 334,170 22,170" fill="${RED}"/>
-    <text x="191" y="137" text-anchor="middle" font-family="${DISPLAY}" font-size="62" fill="#ffffff" letter-spacing="1">JOUR ${j.n}</text>
+    <text x="191" y="137" text-anchor="middle" font-family="${DISPLAY}" font-size="${j.n ? 62 : 54}" fill="#ffffff" letter-spacing="1">${j.n ? `JOUR ${j.n}` : 'SÉANCE'}</text>
     <text x="392" y="132" font-family="${COND}" font-size="72" fill="${WHITE}" letter-spacing="2">${esc(j.focus)}</text>
     <rect x="394" y="148" width="${fw}" height="6" rx="3" fill="${RED}"/>
     ${s}
