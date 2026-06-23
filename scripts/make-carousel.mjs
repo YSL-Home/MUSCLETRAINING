@@ -22,12 +22,25 @@ const PROG = {
   link: `${BASE}/programmes/salle/prise-masse-rapide-salle`,
   caption: 'Tu veux prendre du muscle ? Fais ça. 💪',
   jours: [
-    { t: 'JOUR 1 · POITRINE & TRICEPS', ex: [['developpe-couche-barre','Développé couché'],['developpe-incline-barre','Développé incliné'],['ecarte-halteres','Écartés poitrine'],['extension-triceps-poulie','Pushdown triceps'],['skull-crusher','Extension allongée'],['dips','Dips']] },
-    { t: 'JOUR 2 · DOS & BICEPS', ex: [['tirage-poitrine','Pulldown barre'],['tirage-horizontal','Rowing câble'],['rowing-haltere','Rowing haltère'],['curl-barre','Curl barre'],['curl-marteau','Curl marteau'],['curl-pupitre','Curl prédicateur']] },
-    { t: 'JOUR 3 · JAMBES', ex: [['hack-squat','Squat hack'],['leg-extension','Extension jambes'],['presse-cuisses','Presse à jambes'],['leg-curl-allonge','Curl allongé'],['mollets-assis','Mollets assis'],['souleve-de-terre','Soulevé de terre']] },
-    { t: 'JOUR 4 · ÉPAULES & BRAS', ex: [['developpe-militaire','Développé militaire'],['elevations-laterales','Élévations latérales'],['developpe-halteres-epaules','Développé haltères'],['extension-triceps-poulie','Pushdown triceps'],['curl-barre','Curl barre'],['curl-marteau','Curl marteau']] },
+    { n: 1, focus: 'POITRINE & TRICEPS', ex: [['developpe-couche-barre','Développé couché'],['developpe-incline-barre','Développé incliné'],['ecarte-halteres','Écartés poitrine'],['extension-triceps-poulie','Pushdown triceps'],['skull-crusher','Extension allongée'],['dips','Dips']] },
+    { n: 2, focus: 'DOS & BICEPS', ex: [['tirage-poitrine','Pulldown barre'],['tirage-horizontal','Rowing câble'],['rowing-haltere','Rowing haltère'],['curl-barre','Curl barre'],['curl-marteau','Curl marteau'],['curl-pupitre','Curl prédicateur']] },
+    { n: 3, focus: 'JAMBES', ex: [['hack-squat','Squat hack'],['leg-extension','Extension jambes'],['presse-cuisses','Presse à jambes'],['leg-curl-allonge','Curl allongé'],['mollets-assis','Mollets assis'],['souleve-de-terre','Soulevé de terre']] },
+    { n: 4, focus: 'ÉPAULES & BRAS', ex: [['developpe-militaire','Développé militaire'],['elevations-laterales','Élévations latérales'],['developpe-halteres-epaules','Développé haltères'],['extension-triceps-poulie','Pushdown triceps'],['curl-barre','Curl barre'],['curl-marteau','Curl marteau']] },
   ],
 }
+
+// Installe les polices d'affichage pour librsvg (fontconfig)
+function ensureFonts() {
+  const dir = process.platform === 'darwin' ? path.join(process.env.HOME, 'Library/Fonts') : path.join(process.env.HOME, '.fonts')
+  try { fs.mkdirSync(dir, { recursive: true }) } catch {}
+  for (const f of ['Anton-Regular.ttf', 'BebasNeue-Regular.ttf']) {
+    const src = path.resolve(process.cwd(), 'assets', 'fonts', f), dst = path.join(dir, f)
+    try { if (fs.existsSync(src) && !fs.existsSync(dst)) fs.copyFileSync(src, dst) } catch {}
+  }
+  try { execFileSync('fc-cache', ['-f', dir], { stdio: 'ignore' }) } catch {}
+}
+ensureFonts()
+const DISPLAY = 'Anton', COND = 'Bebas Neue'
 
 const outDir = path.resolve(process.cwd(), 'public', 'carousels', PROG.slug)
 fs.mkdirSync(outDir, { recursive: true })
@@ -51,18 +64,20 @@ async function cover() {
       <filter id="btnsh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#E63946" flood-opacity="0.45"/></filter>
     </defs>
     <rect width="${W}" height="${H}" fill="url(#glow)"/>
+    <polygon points="0,0 240,0 0,240" fill="${RED}" opacity="0.10"/>
+    <polygon points="${W},${H} ${W-240},${H} ${W},${H-240}" fill="${RED}" opacity="0.10"/>
     <rect x="${W/2-118}" y="132" width="236" height="236" rx="34" fill="#050507" stroke="${RED}" stroke-opacity="0.4" stroke-width="2.5"/>
     <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-100}" y="150" width="200" height="200"/>
-    <text x="${W/2}" y="500" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="92" fill="${WHITE}" letter-spacing="6">PROGRAMME</text>
-    <text x="${W/2}" y="660" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="158" fill="url(#rg)">FULL BODY</text>
-    <text x="${W/2}" y="790" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="120" fill="${WHITE}">PARFAIT</text>
-    <rect x="${W/2-90}" y="840" width="180" height="7" rx="4" fill="${RED}"/>
-    <text x="${W/2}" y="930" text-anchor="middle" font-family="Arial" font-size="44" fill="${GREY}">4 jours · prise de muscle · salle</text>
+    <text x="${W/2}" y="510" text-anchor="middle" font-family="${DISPLAY}" font-size="104" fill="${WHITE}" letter-spacing="8">PROGRAMME</text>
+    <text x="${W/2}" y="680" text-anchor="middle" font-family="${DISPLAY}" font-size="186" fill="url(#rg)" letter-spacing="2">FULL BODY</text>
+    <text x="${W/2}" y="810" text-anchor="middle" font-family="${DISPLAY}" font-size="138" fill="${WHITE}">PARFAIT</text>
+    <rect x="${W/2-90}" y="852" width="180" height="7" rx="4" fill="${RED}"/>
+    <text x="${W/2}" y="936" text-anchor="middle" font-family="${COND}" font-size="50" fill="${GREY}" letter-spacing="3">4 JOURS · PRISE DE MUSCLE · SALLE</text>
     <g filter="url(#btnsh)">
       <rect x="${W/2-310}" y="1158" width="620" height="98" rx="49" fill="url(#btn)"/>
       <rect x="${W/2-310}" y="1160" width="620" height="47" rx="49" fill="#ffffff" opacity="0.12"/>
     </g>
-    <text x="${W/2}" y="1220" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="38" fill="#ffffff">PROGRAMME GRATUIT →</text>
+    <text x="${W/2}" y="1224" text-anchor="middle" font-family="${DISPLAY}" font-size="46" fill="#ffffff" letter-spacing="2">PROGRAMME GRATUIT →</text>
   </svg>`
   const b = await sharp(Buffer.from(svg)).jpeg({ quality: 92 }).toBuffer()
   fs.writeFileSync(path.join(outDir, 'slide-0.jpg'), b); return b
@@ -87,15 +102,15 @@ function bgSvg() {
 function fgSvg(j) {
   let s = ''
   for (let i = 0; i < j.ex.length; i++) { const { cx, y } = cells(i)
-    // badge numéroté, dans le coin haut-gauche de la tuile
-    const bx = cx - 135 + 30, by = y + 30
-    s += `<circle cx="${bx}" cy="${by}" r="27" fill="${RED}"/><text x="${bx}" y="${by + 11}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="30" fill="#fff">${i + 1}</text>`
-    const lines = wrap(j.ex[i][1].toUpperCase(), 13)
-    lines.forEach((l, k) => s += `<text x="${cx}" y="${y + CARD + 50 + k * 32}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="26" fill="${WHITE}">${esc(l)}</text>`)
-    s += `<text x="${cx}" y="${y + CARD + 50 + lines.length * 32 + 6}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="25" fill="${RED}">3 × 10-12</text>` }
+    const bx = cx - 135 + 32, by = y + 32
+    s += `<circle cx="${bx}" cy="${by}" r="28" fill="${RED}"/><text x="${bx}" y="${by + 13}" text-anchor="middle" font-family="${DISPLAY}" font-size="34" fill="#fff">${i + 1}</text>`
+    const lines = wrap(j.ex[i][1].toUpperCase(), 14)
+    lines.forEach((l, k) => s += `<text x="${cx}" y="${y + CARD + 52 + k * 33}" text-anchor="middle" font-family="${DISPLAY}" font-size="31" fill="${WHITE}" letter-spacing="0.5">${esc(l)}</text>`)
+    s += `<text x="${cx}" y="${y + CARD + 52 + lines.length * 33 + 8}" text-anchor="middle" font-family="${COND}" font-size="30" fill="${RED}" letter-spacing="1">3 × 10-12</text>` }
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
-    <text x="${W/2}" y="115" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="58" fill="${WHITE}">${esc(j.t)}</text>
-    <rect x="${W/2-70}" y="142" width="140" height="6" rx="3" fill="${RED}"/>
+    <text x="${W/2}" y="92" text-anchor="middle" font-family="${DISPLAY}" font-size="78" fill="${WHITE}" letter-spacing="3">JOUR <tspan fill="${RED}">${j.n}</tspan></text>
+    <text x="${W/2}" y="148" text-anchor="middle" font-family="${COND}" font-size="46" fill="${GREY}" letter-spacing="4">${esc(j.focus)}</text>
+    <rect x="${W/2-60}" y="166" width="120" height="5" rx="3" fill="${RED}"/>
     ${s}
     <rect x="${W/2-56}" y="1228" width="112" height="112" rx="22" fill="#050507" stroke="${RED}" stroke-opacity="0.35" stroke-width="2"/>
     <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-48}" y="1236" width="96" height="96"/>
@@ -119,12 +134,12 @@ async function dayVideo(j, idx) {
   inputs.push('-loop', '1', '-t', '5', '-i', fgPng)
   const fgIdx = 1 + present.length
 
-  const scales = present.map((_, k) => `[${k + 1}:v]scale=270:270:force_original_aspect_ratio=increase,crop=270:270,setpts=PTS-STARTPTS[g${k}]`)
+  const scales = present.map((_, k) => `[${k + 1}:v]scale=270:270:force_original_aspect_ratio=increase,crop=270:270,minterpolate=fps=30:mi_mode=blend,setpts=PTS-STARTPTS[g${k}]`)
   let chain = '', prev = '0:v'
   present.forEach((cellI, k) => { const { cx, y } = cells(cellI); const X = cx - 135, Y = y; const lbl = `b${k}`; chain += `[${prev}][g${k}]overlay=${X}:${Y}[${lbl}];`; prev = lbl })
   chain += `[${prev}][${fgIdx}:v]overlay=0:0[v]`
   const filter = scales.join(';') + ';' + chain
-  execFileSync('ffmpeg', ['-y', ...inputs, '-filter_complex', filter, '-map', '[v]', '-r', '20', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out], { stdio: ['ignore', 'ignore', 'pipe'] })
+  execFileSync('ffmpeg', ['-y', ...inputs, '-filter_complex', filter, '-map', '[v]', '-r', '30', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out], { stdio: ['ignore', 'ignore', 'pipe'] })
   for (const g of gifs) if (g) { try { fs.unlinkSync(g) } catch {} }
   try { fs.unlinkSync(fgPng) } catch {}
   return out
