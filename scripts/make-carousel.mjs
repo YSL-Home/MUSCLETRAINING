@@ -78,7 +78,7 @@ async function cover() {
     </g>
     <text x="${W/2}" y="1224" text-anchor="middle" font-family="${DISPLAY}" font-size="46" fill="#ffffff" letter-spacing="2">PROGRAMME GRATUIT →</text>
   </svg>`
-  const b = await sharp(Buffer.from(svg)).jpeg({ quality: 92 }).toBuffer()
+  const b = await sharp(Buffer.from(svg)).jpeg({ quality: 96, chromaSubsampling: "4:4:4" }).toBuffer()
   fs.writeFileSync(path.join(outDir, 'slide-0.jpg'), b); return b
 }
 
@@ -86,7 +86,7 @@ async function cover() {
 function bgSvg(j) {
   let s = ''
   for (let i = 0; i < 6; i++) { const { x, y, tx, ty } = cells(i)
-    s += `<rect x="${x}" y="${y}" width="${CW}" height="${CH}" rx="24" fill="url(#card)" stroke="${RED}" stroke-opacity="0.3" stroke-width="2" filter="url(#sh)"/>`
+    s += `<rect x="${x}" y="${y}" width="${CW}" height="${CH}" rx="24" fill="url(#card)" fill-opacity="0.66" stroke="${RED}" stroke-opacity="0.35" stroke-width="2" filter="url(#sh)"/>`
     s += `<polygon points="${x},${y} ${x + 92},${y} ${x},${y + 86}" fill="${RED}"/>`
     s += `<rect x="${tx}" y="${ty}" width="${TILE}" height="${TILE}" rx="14" fill="url(#tile)"/>` }
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
@@ -99,7 +99,7 @@ function bgSvg(j) {
     </defs>
     <rect width="${W}" height="${H}" fill="url(#bg)"/>
     <polygon points="0,150 ${W},58 ${W},196 0,300" fill="#000000" opacity="0.22"/>
-    <image href="data:image/png;base64,${LOGO_B64}" x="${(W-H)/2}" y="0" width="${H}" height="${H}" opacity="0.10" filter="url(#blur)" preserveAspectRatio="xMidYMid slice"/>
+    <image href="data:image/png;base64,${LOGO_B64}" x="${(W-H)/2}" y="0" width="${H}" height="${H}" opacity="0.30" preserveAspectRatio="xMidYMid slice"/>
     ${s}</svg>`
 }
 function fgSvg(j) {
@@ -146,7 +146,7 @@ async function dayVideo(j, idx) {
   present.forEach((cellI, k) => { const { tx, ty } = cells(cellI); const lbl = `b${k}`; chain += `[${prev}][g${k}]overlay=${tx}:${ty}[${lbl}];`; prev = lbl })
   chain += `[${prev}][${fgIdx}:v]overlay=0:0[v]`
   const filter = scales.join(';') + ';' + chain
-  execFileSync('ffmpeg', ['-y', ...inputs, '-filter_complex', filter, '-map', '[v]', '-r', '60', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out], { stdio: ['ignore', 'ignore', 'pipe'] })
+  execFileSync('ffmpeg', ['-y', ...inputs, '-filter_complex', filter, '-map', '[v]', '-r', '60', '-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out], { stdio: ['ignore', 'ignore', 'pipe'] })
   for (const g of gifs) if (g) { try { fs.unlinkSync(g) } catch {} }
   try { fs.unlinkSync(fgPng) } catch {}
   try { fs.unlinkSync(bgPng) } catch {}
