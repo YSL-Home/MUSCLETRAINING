@@ -99,7 +99,7 @@ function bgSvg(j) {
     </defs>
     <rect width="${W}" height="${H}" fill="url(#bg)"/>
     <polygon points="0,150 ${W},58 ${W},196 0,300" fill="#000000" opacity="0.22"/>
-    <image href="data:image/png;base64,${LOGO_B64}" x="${(W-1240)/2}" y="${(H-1240)/2}" width="1240" height="1240" opacity="0.10" filter="url(#blur)"/>
+    <image href="data:image/png;base64,${LOGO_B64}" x="${(W-H)/2}" y="0" width="${H}" height="${H}" opacity="0.10" filter="url(#blur)" preserveAspectRatio="xMidYMid slice"/>
     ${s}</svg>`
 }
 function fgSvg(j) {
