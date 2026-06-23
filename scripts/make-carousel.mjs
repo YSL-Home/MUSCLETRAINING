@@ -57,10 +57,10 @@ async function cover() {
     <rect x="${W/2-90}" y="840" width="180" height="7" rx="4" fill="${RED}"/>
     <text x="${W/2}" y="930" text-anchor="middle" font-family="Arial" font-size="44" fill="${GREY}">4 jours · prise de muscle · salle</text>
     <g filter="url(#btnsh)">
-      <rect x="${W/2-285}" y="1160" width="570" height="96" rx="48" fill="url(#btn)"/>
-      <rect x="${W/2-285}" y="1162" width="570" height="46" rx="48" fill="#ffffff" opacity="0.12"/>
+      <rect x="${W/2-310}" y="1158" width="620" height="98" rx="49" fill="url(#btn)"/>
+      <rect x="${W/2-310}" y="1160" width="620" height="47" rx="49" fill="#ffffff" opacity="0.12"/>
     </g>
-    <text x="${W/2}" y="1220" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="42" fill="#ffffff" letter-spacing="1">PROGRAMME GRATUIT  →</text>
+    <text x="${W/2}" y="1220" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="38" fill="#ffffff">PROGRAMME GRATUIT →</text>
   </svg>`
   const b = await sharp(Buffer.from(svg)).jpeg({ quality: 92 }).toBuffer()
   fs.writeFileSync(path.join(outDir, 'slide-0.jpg'), b); return b
@@ -70,7 +70,7 @@ async function cover() {
 function bgSvg() {
   let s = ''
   for (let i = 0; i < 6; i++) { const { cx, y } = cells(i); const cx0 = cx - 160
-    s += `<rect x="${cx0}" y="${y - 26}" width="320" height="416" rx="30" fill="url(#card)" stroke="${RED}" stroke-opacity="0.28" stroke-width="2" filter="url(#sh)"/>`
+    s += `<rect x="${cx0}" y="${y - 26}" width="320" height="446" rx="30" fill="url(#card)" stroke="${RED}" stroke-opacity="0.28" stroke-width="2" filter="url(#sh)"/>`
     s += `<rect x="${cx0 + 70}" y="${y - 26}" width="180" height="5" rx="3" fill="${RED}" opacity="0.85"/>`
     s += `<rect x="${cx - 135}" y="${y}" width="270" height="270" rx="18" fill="url(#tile)"/>` }
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
@@ -88,9 +88,9 @@ function fgSvg(j) {
     // badge numéroté, dans le coin haut-gauche de la tuile
     const bx = cx - 135 + 30, by = y + 30
     s += `<circle cx="${bx}" cy="${by}" r="27" fill="${RED}"/><text x="${bx}" y="${by + 11}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="30" fill="#fff">${i + 1}</text>`
-    const lines = wrap(j.ex[i][1].toUpperCase())
-    lines.forEach((l, k) => s += `<text x="${cx}" y="${y + CARD + 52 + k * 33}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="27" fill="${WHITE}">${esc(l)}</text>`)
-    s += `<text x="${cx}" y="${y + CARD + 52 + lines.length * 33 + 4}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="25" fill="${RED}">3 × 10-12</text>` }
+    const lines = wrap(j.ex[i][1].toUpperCase(), 13)
+    lines.forEach((l, k) => s += `<text x="${cx}" y="${y + CARD + 50 + k * 32}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="26" fill="${WHITE}">${esc(l)}</text>`)
+    s += `<text x="${cx}" y="${y + CARD + 50 + lines.length * 32 + 6}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="25" fill="${RED}">3 × 10-12</text>` }
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
     <text x="${W/2}" y="115" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="58" fill="${WHITE}">${esc(j.t)}</text>
     <rect x="${W/2-70}" y="142" width="140" height="6" rx="3" fill="${RED}"/>
