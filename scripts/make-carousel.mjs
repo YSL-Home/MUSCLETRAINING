@@ -32,7 +32,8 @@ const PROG = {
 const outDir = path.resolve(process.cwd(), 'public', 'carousels', PROG.slug)
 fs.mkdirSync(outDir, { recursive: true })
 const MAP = (() => { const s = fs.readFileSync(path.resolve(process.cwd(), 'components', 'ExerciseGif.tsx'), 'utf8'); const m = {}; for (const x of s.matchAll(/'([^']+)':\s*`\$\{BASE\}\/([^`]+)`/g)) m[x[1]] = x[2]; return m })()
-const LOGO_B64 = fs.readFileSync(path.resolve(process.cwd(), 'public', 'logo-512.png')).toString('base64')
+const LOGO_PATH = ['public/brand-logo.png', 'public/logo-512.png'].map(p => path.resolve(process.cwd(), p)).find(fs.existsSync)
+const LOGO_B64 = fs.readFileSync(LOGO_PATH).toString('base64')
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 const wrap = (s, n = 14) => { const w = s.split(/\s+/), L = []; let c = ''; for (const x of w) { if ((c + ' ' + x).trim().length > n) { L.push(c.trim()); c = x } else c += ' ' + x } if (c.trim()) L.push(c.trim()); return L.slice(0, 2) }
 
@@ -95,8 +96,7 @@ function fgSvg(j) {
     <text x="${W/2}" y="115" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="58" fill="${WHITE}">${esc(j.t)}</text>
     <rect x="${W/2-70}" y="142" width="140" height="6" rx="3" fill="${RED}"/>
     ${s}
-    <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-150}" y="1270" width="60" height="60"/>
-    <text x="${W/2-78}" y="1310" font-family="Arial Black,Arial" font-weight="900" font-size="34" fill="${WHITE}">muscletraining.uk</text>
+    <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-48}" y="1248" width="96" height="96"/>
   </svg>`
 }
 
