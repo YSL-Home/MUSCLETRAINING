@@ -1,5 +1,88 @@
 [
   {
+    "categorie": "Technique",
+    "contenu": [
+      {
+        "content": "Introduction : pourquoi la technique est cruciale",
+        "type": "h2"
+      },
+      {
+        "content": "Le développé couché est un exercice fondamental pour développer la force et la masse musculaire de la poitrine, des épaules et des triceps. Cependant, une technique incorrecte peut non seulement ralentir ta progression, mais également augmenter le risque de blessures. Dans cet article, nous allons explorer les erreurs les plus courantes qui ruinent ta progression au développé couché et comment les éviter.",
+        "type": "p"
+      },
+      {
+        "content": "Erreur n°1 : position incorrecte sur le banc",
+        "type": "h2"
+      },
+      {
+        "content": "La position sur le banc est essentielle pour une technique correcte. Il est important de s'assurer que tes pieds sont bien ancrés sur le sol, que ton dos est plat contre le banc et que tes épaules sont décontractées.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Tes pieds doivent être posés à plat sur le sol, avec les genoux légèrement fléchis",
+          "Ton dos doit être plat contre le banc, sans courbure excessive",
+          "Tes épaules doivent être décontractées, sans tension excessive"
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Erreur n°2 : prise incorrecte de la barre",
+        "type": "h2"
+      },
+      {
+        "content": "La prise de la barre est également cruciale pour une technique correcte. Il est important de s'assurer que tes mains sont positionnées correctement et que tu as une prise ferme mais pas trop serrée.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Tes mains doivent être positionnées légèrement plus larges que les épaules",
+          "Tu dois avoir une prise ferme, mais pas trop serrée, pour éviter de blesser tes mains ou tes poignets",
+          "Tu dois sentir que la barre est bien équilibrée dans tes mains, sans pencher d'un côté ou de l'autre"
+        ],
+        "type": "ol"
+      },
+      {
+        "content": "Pour améliorer ta prise, essaye de faire des exercices de préhension, tels que des extensions de poignets ou des flexions de doigts, pour renforcer tes mains et tes poignets.",
+        "type": "tip"
+      },
+      {
+        "content": "Erreur n°3 : mouvement incorrect",
+        "type": "h2"
+      },
+      {
+        "content": "Le mouvement incorrect peut également ralentir ta progression et augmenter le risque de blessures. Il est important de s'assurer que tu abaisses la barre de manière contrôlée et que tu la remontes en utilisant les muscles ciblés.",
+        "type": "p"
+      },
+      {
+        "content": "N'oublie pas de respirer correctement pendant l'exercice, en inspirant lorsque tu abaisses la barre et en expirant lorsque tu la remontes.",
+        "type": "warning"
+      },
+      {
+        "content": "Conclusion : comment éviter les erreurs et améliorer ta technique",
+        "type": "h2"
+      },
+      {
+        "content": "En évitant les erreurs courantes et en améliorant ta technique, tu peux rapidement progresser au développé couché et développer une force et une masse musculaire impressionnantes. N'oublie pas de toujours écouter ton corps et de ne pas hésiter à demander de l'aide si tu as des doutes ou des inquiétudes.",
+        "type": "p"
+      }
+    ],
+    "datePublication": "2026-06-23",
+    "description": "Améliore ta technique et évite les erreurs courantes pour progresser rapidement au développé couché",
+    "descriptionSeo": "Découvre les erreurs à éviter pour améliorer ta technique de développé couché et booster ta progression en musculation",
+    "image": "/blog/erreurs-developpe-couche.jpg",
+    "slug": "erreurs-developpe-couche",
+    "tags": [
+      "developpe-couche-barre",
+      "developpe-couche",
+      "musculation",
+      "technique",
+      "erreur"
+    ],
+    "tempsLecture": 8,
+    "titre": "Les erreurs qui ruinent ta progression au développé couché : comment les éviter"
+  },
+  {
     "categorie": "Conseils",
     "contenu": [
       {
