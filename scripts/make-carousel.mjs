@@ -51,7 +51,8 @@ async function cover() {
       <filter id="btnsh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#E63946" flood-opacity="0.45"/></filter>
     </defs>
     <rect width="${W}" height="${H}" fill="url(#glow)"/>
-    <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-95}" y="150" width="190" height="190"/>
+    <rect x="${W/2-118}" y="132" width="236" height="236" rx="34" fill="#050507" stroke="${RED}" stroke-opacity="0.4" stroke-width="2.5"/>
+    <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-100}" y="150" width="200" height="200"/>
     <text x="${W/2}" y="500" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="92" fill="${WHITE}" letter-spacing="6">PROGRAMME</text>
     <text x="${W/2}" y="660" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="158" fill="url(#rg)">FULL BODY</text>
     <text x="${W/2}" y="790" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="120" fill="${WHITE}">PARFAIT</text>
@@ -96,7 +97,8 @@ function fgSvg(j) {
     <text x="${W/2}" y="115" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="58" fill="${WHITE}">${esc(j.t)}</text>
     <rect x="${W/2-70}" y="142" width="140" height="6" rx="3" fill="${RED}"/>
     ${s}
-    <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-48}" y="1248" width="96" height="96"/>
+    <rect x="${W/2-56}" y="1228" width="112" height="112" rx="22" fill="#050507" stroke="${RED}" stroke-opacity="0.35" stroke-width="2"/>
+    <image href="data:image/png;base64,${LOGO_B64}" x="${W/2-48}" y="1236" width="96" height="96"/>
   </svg>`
 }
 
