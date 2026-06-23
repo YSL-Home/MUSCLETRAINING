@@ -95,10 +95,11 @@ function bgSvg(j) {
       <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#20202c"/><stop offset="1" stop-color="#101017"/></linearGradient>
       <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#ece9e1"/></linearGradient>
       <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="9" stdDeviation="14" flood-color="#000000" flood-opacity="0.6"/></filter>
+      <filter id="blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6"/></filter>
     </defs>
     <rect width="${W}" height="${H}" fill="url(#bg)"/>
     <polygon points="0,150 ${W},58 ${W},196 0,300" fill="#000000" opacity="0.22"/>
-    <text x="${W - 16}" y="${H/2 + 230}" text-anchor="end" font-family="${DISPLAY}" font-size="680" fill="#ffffff" opacity="0.03">${j.n}</text>
+    <image href="data:image/png;base64,${LOGO_B64}" x="${(W-1240)/2}" y="${(H-1240)/2}" width="1240" height="1240" opacity="0.10" filter="url(#blur)"/>
     ${s}</svg>`
 }
 function fgSvg(j) {
