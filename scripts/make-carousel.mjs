@@ -105,13 +105,16 @@ function bgSvg(j) {
 function fgSvg(j) {
   let s = ''
   for (let i = 0; i < j.ex.length; i++) { const { x, y, txt } = cells(i)
-    s += `<text x="${txt}" y="${y + 52}" font-family="${COND}" font-size="32" fill="${RED}" letter-spacing="4">EXERCICE ${String(i + 1).padStart(2, '0')}</text>`
-    const lines = wrap(j.ex[i][1].toUpperCase(), 18)
-    const ny = y + (lines.length === 1 ? 118 : 102)
-    lines.forEach((l, k) => s += `<text x="${txt}" y="${ny + k * 46}" font-family="${DISPLAY}" font-size="44" fill="${WHITE}" letter-spacing="0.5">${esc(l)}</text>`)
-    const ry = ny + lines.length * 46 + 6
-    s += `<text x="${txt}" y="${ry + 12}" font-family="${COND}" font-size="44" fill="${RED}" letter-spacing="1">3 × 10-12</text>`
-    s += `<text x="${txt + 172}" y="${ry + 10}" font-family="${COND}" font-size="28" fill="${GREY}" letter-spacing="2">SÉRIES × REPS</text>` }
+    const num = String(i + 1).padStart(2, '0')
+    s += `<text x="${txt}" y="${y + 96}" font-family="${DISPLAY}" font-size="72" fill="#ffffff">${num}</text>`
+    s += `<rect x="${txt + 96}" y="${y + 44}" width="5" height="56" rx="2" fill="${RED}"/>`
+    const nameX = txt + 120
+    const lines = wrap(j.ex[i][1].toUpperCase(), 15)
+    const ny = y + (lines.length === 1 ? 86 : 70)
+    lines.forEach((l, k) => s += `<text x="${nameX}" y="${ny + k * 42}" font-family="${DISPLAY}" font-size="40" fill="${WHITE}" letter-spacing="0.5">${esc(l)}</text>`)
+    const ry = y + 150
+    s += `<text x="${nameX}" y="${ry + 22}" font-family="${COND}" font-size="44" fill="${RED}" letter-spacing="1">3 × 10-12</text>`
+    s += `<text x="${nameX + 172}" y="${ry + 20}" font-family="${COND}" font-size="28" fill="${GREY}" letter-spacing="2">SÉRIES × REPS</text>` }
   const fw = Math.min(660, 26 + j.focus.length * 32)
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
     <polygon points="48,58 360,58 334,170 22,170" fill="${RED}"/>
