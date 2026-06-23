@@ -45,6 +45,13 @@ jobs:
         run: node scripts/make-reel.mjs
         continue-on-error: true
 
+      - name: Générer + poster le carrousel programme (rotation)
+        run: node scripts/make-carousel.mjs
+        continue-on-error: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
       - name: Commit & push
         id: commit
         run: |
