@@ -1,5 +1,88 @@
 [
   {
+    "categorie": "Programmes",
+    "contenu": [
+      {
+        "content": "Introduction aux programmes de musculation",
+        "type": "h2"
+      },
+      {
+        "content": "Les programmes de musculation sont essentiels pour atteindre vos objectifs de fitness, que ce soit pour augmenter la masse musculaire, améliorer la force ou simplement pour rester en forme. Il existe deux types de programmes principaux : les programmes full body et les programmes split. Mais quel est le meilleur pour vous ?",
+        "type": "p"
+      },
+      {
+        "content": "Les programmes full body",
+        "type": "h2"
+      },
+      {
+        "content": "Les programmes full body sont conçus pour travailler tous les groupes musculaires en une seule séance d'entraînement. Ils sont idéaux pour les débutants ou pour ceux qui ont peu de temps à consacrer à la musculation. Les avantages des programmes full body incluent une meilleure efficacité, une réduction du temps d'entraînement et une amélioration de la coordination musculaire.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Travaillez tous les groupes musculaires en une seule séance",
+          "Idéal pour les débutants ou pour ceux qui ont peu de temps",
+          "Améliore la coordination musculaire et la force globale"
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Les programmes split",
+        "type": "h2"
+      },
+      {
+        "content": "Les programmes split sont conçus pour travailler des groupes musculaires spécifiques en séances distinctes. Ils sont idéaux pour les personnes plus avancées qui cherchent à cibler des muscles spécifiques ou à améliorer leur masse musculaire. Les avantages des programmes split incluent une meilleure spécialisation, une augmentation de la masse musculaire et une amélioration de la définition musculaire.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Permet de cibler des muscles spécifiques",
+          "Idéal pour les personnes plus avancées",
+          "Augmente la masse musculaire et améliore la définition musculaire"
+        ],
+        "type": "ol"
+      },
+      {
+        "content": "Comment choisir le meilleur programme pour votre niveau",
+        "type": "h2"
+      },
+      {
+        "content": "Pour choisir le meilleur programme, vous devez prendre en compte votre niveau de musculation, vos objectifs et votre disponibilité. Si vous êtes débutant, un programme full body peut être le meilleur choix. Si vous êtes plus avancé, un programme split peut être plus adapté à vos besoins.",
+        "type": "p"
+      },
+      {
+        "content": "N'oubliez pas de consulter un professionnel de la musculation avant de commencer tout programme d'entraînement pour vous assurer que vous êtes en bonne santé et que vous pouvez suivre le programme sans risque.",
+        "type": "tip"
+      },
+      {
+        "content": "Conseils pour les débutants",
+        "type": "h2"
+      },
+      {
+        "content": "Si vous êtes débutant, il est important de commencer avec un programme full body pour vous habituer aux exercices et aux mouvements. Vous pouvez également commencer avec des poids légers et augmenter progressivement la charge à mesure que vous vous sentez plus à l'aise.",
+        "type": "p"
+      },
+      {
+        "content": "N'oubliez pas de toujours écouter votre corps et de ne pas vous pousser trop loin, surtout si vous êtes débutant. La musculation doit être une expérience positive et amusante, pas une source de douleur ou de frustration.",
+        "type": "warning"
+      }
+    ],
+    "datePublication": "2026-06-24",
+    "description": "Découvrez les différences entre les programmes full body et split, et choisissez celui qui convient le mieux à votre niveau et à vos objectifs de musculation.",
+    "descriptionSeo": "Programme de musculation full body ou split : conseils pour choisir le meilleur programme en fonction de votre niveau et de vos objectifs de fitness",
+    "image": "/blog/full-body-ou-split-quel-programme-pour-quel-niveau.jpg",
+    "slug": "full-body-ou-split-quel-programme-pour-quel-niveau",
+    "tags": [
+      "full-body",
+      "split",
+      "programme-musculation",
+      "niveau-debutant",
+      "niveau-avance"
+    ],
+    "tempsLecture": 8,
+    "titre": "Full Body ou Split : Quel Programme pour Quel Niveau ?"
+  },
+  {
     "categorie": "Technique",
     "contenu": [
       {
