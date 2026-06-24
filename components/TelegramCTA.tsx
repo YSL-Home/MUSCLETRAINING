@@ -11,7 +11,7 @@ export default function TelegramCTA() {
       </svg>
       <div className="flex-1 min-w-0">
         <p className="font-bold text-sm" style={{ color: '#EDE8E0' }}>📲 Rejoins le canal Telegram</p>
-        <p className="text-xs" style={{ color: '#8A9BB5' }}>1 conseil musculation par semaine, gratuit.</p>
+        <p className="text-xs" style={{ color: '#8A9BB5' }}>3 conseils musculation par semaine, gratuit.</p>
       </div>
       <span className="text-xs font-bold px-3 py-1.5 rounded-full flex-shrink-0" style={{ background: '#229ED9', color: '#fff' }}>Rejoindre</span>
     </a>

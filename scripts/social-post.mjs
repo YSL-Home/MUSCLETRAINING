@@ -100,7 +100,7 @@ ${a.titre}
 📋 Le programme complet (exos, séries, progression) t'attend ici 👇
 ${link}
 
-📌 Enregistre ce post · 🔔 Abonne-toi pour +1 conseil/semaine
+📌 Enregistre ce post · 🔔 Abonne-toi : 3 conseils/semaine
 
 ${hashtags} ${HASH_BASE}`,
   // X / Twitter (≤280)
