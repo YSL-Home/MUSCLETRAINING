@@ -39,11 +39,11 @@ export default function HomePage() {
           <span className="text-2xl">🔥</span>
           <div><div className="font-black text-sm" style={{ color: '#EDE8E0' }}>Challenges 30 jours</div><div className="text-xs" style={{ color: '#8A9BB5' }}>Transforme ton corps</div></div>
         </Link>
-        <a href="https://t.me/muscletrainiing" target="_blank" rel="noopener noreferrer" className="rounded-2xl p-4 flex items-center gap-3 transition-all hover:-translate-y-0.5"
+        <Link href="/telegram" className="rounded-2xl p-4 flex items-center gap-3 transition-all hover:-translate-y-0.5"
           style={{ background: 'rgba(35,158,217,0.08)', border: '1px solid rgba(35,158,217,0.3)' }}>
           <svg className="w-7 h-7 flex-shrink-0" viewBox="0 0 24 24" fill="#229ED9"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.86 8.78c-.14.62-.51.77-1.03.48l-2.85-2.1-1.37 1.32c-.15.15-.28.28-.57.28l.2-2.9 5.27-4.76c.23-.2-.05-.32-.35-.12L8.4 13.5l-2.8-.88c-.61-.19-.62-.61.13-.9l10.95-4.22c.51-.18.96.12.78.66z"/></svg>
-          <div><div className="font-black text-sm" style={{ color: '#EDE8E0' }}>Canal Telegram</div><div className="text-xs" style={{ color: '#8A9BB5' }}>3 conseils/semaine, gratuit</div></div>
-        </a>
+          <div><div className="font-black text-sm" style={{ color: '#EDE8E0' }}>Programme PDF gratuit 🎁</div><div className="text-xs" style={{ color: '#8A9BB5' }}>+ 3 conseils/semaine sur Telegram</div></div>
+        </Link>
       </div>
 
       {/* ── BENTO GRID ROW 1 ── */}

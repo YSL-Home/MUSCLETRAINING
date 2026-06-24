@@ -81,6 +81,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticUrls,
     { url: `${BASE_URL}/calisthenics`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${BASE_URL}/telegram`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     ...CAL_PLANS.map((p): MetadataRoute.Sitemap[number] => ({
       url: `${BASE_URL}/calisthenics/${p.slug}`,
       lastModified: new Date(),
