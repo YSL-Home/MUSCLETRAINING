@@ -174,6 +174,7 @@ function fgSvg(j) {
 // ── Vidéo d'un jour (illustrations animées) ──
 async function dayVideo(j, idx) {
   const out = path.join(outDir, `slide-${idx}.mp4`)
+  const staticOut = path.join(outDir, `slide-${idx}-static.jpg`)
   const bgPng = path.join(outDir, `_bg${idx}.png`), fgPng = path.join(outDir, `_fg${idx}.png`)
   await sharp(Buffer.from(bgSvg(j))).png().toFile(bgPng)
   await sharp(Buffer.from(fgSvg(j))).png().toFile(fgPng)
@@ -182,6 +183,18 @@ async function dayVideo(j, idx) {
   for (let i = 0; i < j.ex.length; i++) { const slug = j.ex[i][0]; if (!MAP[slug]) { gifs.push(null); continue }
     const f = path.join(outDir, `_g${idx}_${i}.gif`); const r = await fetch(`${GIF_BASE}/${MAP[slug]}`); fs.writeFileSync(f, Buffer.from(await r.arrayBuffer())); gifs.push(f) }
 
+  // ── JPEG statique (pour le PDF) : bg + 1er frame de chaque GIF + fg ──
+  let base = fs.readFileSync(bgPng)
+  for (let i = 0; i < gifs.length; i++) {
+    if (!gifs[i]) continue
+    const { tx, ty } = cells(i)
+    const t = await sharp(gifs[i], { page: 0 }).resize(TILE, TILE, { fit: 'cover' }).png().toBuffer()
+    base = await sharp(base).composite([{ input: t, left: tx, top: ty }]).png().toBuffer()
+  }
+  await sharp(base).composite([{ input: fs.readFileSync(fgPng), left: 0, top: 0 }])
+    .jpeg({ quality: 92, chromaSubsampling: '4:4:4' }).toFile(staticOut)
+
+  // ── Vidéo animée ──
   const inputs = ['-loop', '1', '-t', '5', '-i', bgPng]
   const present = []
   gifs.forEach((g, i) => { if (g) { inputs.push('-ignore_loop', '0', '-t', '5', '-i', g); present.push(i) } })

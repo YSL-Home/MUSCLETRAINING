@@ -52,6 +52,12 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
+      - name: Régénérer le PDF du programme du jour (réutilise les images du carrousel)
+        run: node scripts/make-pdf.mjs
+        continue-on-error: true
+        env:
+          PROG_INDEX: ${{ github.run_number }}
+
       - name: Commit & push
         id: commit
         run: |

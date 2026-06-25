@@ -6,6 +6,7 @@ import { LanguageProvider } from '@/components/LanguageProvider'
 import { websiteSchema } from '@/lib/schema'
 import InstallPWA from '@/components/InstallPWA'
 import NativeApp from '@/components/NativeApp'
+import TelegramPopup from '@/components/TelegramPopup'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.muscletraining.uk'),
@@ -83,6 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <CookieConsent />
         <InstallPWA />
+        <TelegramPopup />
         <footer style={{ background: '#07070F', borderTop: '1px solid rgba(230,57,70,0.1)' }} className="mt-0 py-14">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 mb-10">
