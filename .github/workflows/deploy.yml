@@ -56,13 +56,26 @@ jobs:
 
       - name: Déployer le Bot Telegram (Cloudflare Worker)
         if: env.CF_API_TOKEN != ''
+        id: deploy_bot
         run: |
+          # Injecte le secret bot dans le Worker
           echo "${{ secrets.TELEGRAM_BOT_TOKEN }}" | npx wrangler@4 secret put TELEGRAM_BOT_TOKEN \
             --config workers/wrangler-bot.toml --name muscletraining-bot 2>/dev/null || true
-          npx wrangler@4 deploy workers/telegram-bot.js \
-            --config workers/wrangler-bot.toml \
-            --name muscletraining-bot
+          # Déploie et capture l'URL
+          DEPLOY_OUT=$(npx wrangler@4 deploy workers/telegram-bot.js \
+            --config workers/wrangler-bot.toml --name muscletraining-bot 2>&1)
+          echo "$DEPLOY_OUT"
+          BOT_URL=$(echo "$DEPLOY_OUT" | grep -oE 'https://muscletraining-bot\.[^ ]+workers\.dev' | head -1)
+          echo "bot_url=$BOT_URL" >> "$GITHUB_OUTPUT"
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        continue-on-error: true
+
+      - name: Enregistrer webhook Telegram → Worker
+        if: steps.deploy_bot.outputs.bot_url != ''
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/setWebhook" \
+            -H "Content-Type: application/json" \
+            -d "{\"url\": \"${{ steps.deploy_bot.outputs.bot_url }}\", \"allowed_updates\": [\"message\",\"callback_query\"]}" | jq .
         continue-on-error: true
