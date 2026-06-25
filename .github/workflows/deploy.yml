@@ -49,3 +49,16 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: node scripts/indexnow.mjs
         continue-on-error: true
+
+      - name: Déployer le Bot Telegram (Cloudflare Worker)
+        if: env.CF_API_TOKEN != ''
+        run: |
+          echo "${{ secrets.TELEGRAM_BOT_TOKEN }}" | npx wrangler@4 secret put TELEGRAM_BOT_TOKEN \
+            --config workers/wrangler-bot.toml --name muscletraining-bot 2>/dev/null || true
+          npx wrangler@4 deploy workers/telegram-bot.js \
+            --config workers/wrangler-bot.toml \
+            --name muscletraining-bot
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        continue-on-error: true
