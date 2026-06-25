@@ -5,6 +5,7 @@ import Breadcrumb from '@/components/Breadcrumb'
 import ShareButtons from '@/components/ShareButtons'
 import AffiliateRecommendations from '@/components/AffiliateRecommendations'
 import TelegramCTA from '@/components/TelegramCTA'
+import AdUnit, { AdSidebar } from '@/components/AdUnit'
 import { linkifyText } from '@/lib/linkify'
 import { ARTICLES, getArticleBySlug } from '@/data/articles'
 import type { Section } from '@/data/articles'
@@ -177,6 +178,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
             <div className="h-px bg-[rgba(255,255,255,0.06)] mb-8" />
 
+            {/* Annonce mid-article */}
+            <AdUnit slot={process.env.NEXT_PUBLIC_AD_SLOT_BLOG_MID ?? ''} format="fluid" className="mb-8" />
+
             {/* Contenu */}
             <div className="prose-sport">
               {(() => { const used = new Set<string>(); return article.contenu.map((section, idx) => renderSection(section, idx, used)) })()}
@@ -216,6 +220,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                   </div>
                 </div>
               )}
+
+              {/* Annonce sidebar */}
+              <AdSidebar slot={process.env.NEXT_PUBLIC_AD_SLOT_BLOG_BAS ?? ''} />
 
               {/* CTA Exercices */}
               <div className="rounded-2xl p-4 text-center" style={{ background: '#b8d40015', border: '1px solid #b8d40030' }}>

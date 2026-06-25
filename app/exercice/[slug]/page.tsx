@@ -11,6 +11,7 @@ import PRInput from '@/components/PRInput'
 import ProgressionMap from '@/components/ProgressionMap'
 import AffiliateRecommendations from '@/components/AffiliateRecommendations'
 import TelegramCTA from '@/components/TelegramCTA'
+import AdUnit, { AdSidebar } from '@/components/AdUnit'
 import { getExerciseBySlug, EXERCISES } from '@/data/exercises'
 import { getMuscleById } from '@/data/muscles'
 import { exerciseSchema, breadcrumbSchema, aggregateRatingSchema, faqSchema } from '@/lib/schema'
@@ -133,6 +134,9 @@ export default async function ExercisePage({ params }: { params: Promise<{ slug:
               <YouTubeEmbed videoId={exercise.videoYoutube} title={`Technique : ${exercise.nom}`} />
             </div>
 
+            {/* Annonce après vidéo */}
+            <AdUnit slot={process.env.NEXT_PUBLIC_AD_SLOT_EX_VIDEO ?? ''} format="auto" className="mb-8" />
+
             {/* Instructions */}
             <div className="mb-10">
               <h2 className="text-xl font-bold text-[#EDE8E0] mb-5 flex items-center gap-2">
@@ -228,6 +232,9 @@ export default async function ExercisePage({ params }: { params: Promise<{ slug:
 
               {/* Record perso (PR) */}
               <PRInput slug={exercise.slug} nom={exercise.nom} />
+
+              {/* Annonce sidebar */}
+              <AdSidebar slot={process.env.NEXT_PUBLIC_AD_SLOT_EX_SIDEBAR ?? ''} />
 
               {/* Matériel */}
               <div className="bg-[#0C0C1A] rounded-2xl border border-[rgba(230,57,70,0.1)] p-5">
