@@ -134,7 +134,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div style={{ borderTop: '1px solid rgba(230,57,70,0.08)' }} className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
               <span className="text-xs" style={{ color: '#3A4152' }}>© {new Date().getFullYear()} Muscle Training — Tous droits réservés</span>
               <div className="flex gap-5">
-                {[['faq','FAQ'],['cgu','CGU']].map(([href, label]) => (
+                {[['faq','FAQ'],['cgu','CGU'],['privacy','Confidentialité'],['about','À propos'],['contact','Contact']].map(([href, label]) => (
                   <a key={href} href={`/${href}`} className="text-xs transition-colors hover:text-[#E63946]" style={{ color: '#3A4152' }}>{label}</a>
                 ))}
               </div>
