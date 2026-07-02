@@ -142,8 +142,8 @@ export default function MuscleMap() {
                 </feMerge>
               </filter>
               <radialGradient id="mm-head" cx="50%" cy="40%" r="50%">
-                <stop offset="0%" stopColor="#d49060"/>
-                <stop offset="100%" stopColor="#b06030"/>
+                <stop offset="0%" stopColor="#9090A0"/>
+                <stop offset="100%" stopColor="#6A6A7A"/>
               </radialGradient>
             </defs>
 
@@ -152,7 +152,7 @@ export default function MuscleMap() {
               const item = view === 'front' ? FRONT_PATHS[key] : BACK_PATHS[key]
               if (!item) return null
               return (
-                <g key={key} style={{ fill: '#c07848' }}>
+                <g key={key} style={{ fill: '#7A7A8E' }}>
                   {item.paths.map((d, i) => <path key={i} d={d}/>)}
                 </g>
               )
@@ -176,7 +176,7 @@ export default function MuscleMap() {
                       ? '#E63946'
                       : isHovered
                         ? '#FFFFFF'
-                        : '#bf7248',
+                        : '#6A6A7E',
                     cursor: 'pointer',
                     transition: 'fill 0.15s ease',
                     filter: isActive ? 'url(#mm-glow)' : isHovered ? 'url(#mm-glow)' : undefined,
@@ -196,7 +196,7 @@ export default function MuscleMap() {
                 <g
                   key={key}
                   style={{
-                    fill: key === 'hair' ? '#2a1800' : key === 'neck' ? '#c07848' : undefined,
+                    fill: key === 'hair' ? '#7A7A8E' : key === 'neck' ? '#7A7A8E' : undefined,
                     ...(key === 'head' ? {} : {}),
                   }}
                 >
