@@ -72,7 +72,7 @@ jobs:
           if [ -n "$(git status --porcelain data/generated-articles.json)" ]; then
             git config user.name  "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add data/generated-articles.json public/blog/ public/reels/ public/downloads/ public/carousels/
+            git add data/generated-articles.json public/blog/ public/reels/ public/downloads/
             git commit -m "📝 Nouvel article auto + Reel (moteur de contenu hebdo)"
             git push
             echo "new=true" >> "$GITHUB_OUTPUT"
