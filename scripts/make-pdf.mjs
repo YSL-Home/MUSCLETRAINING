@@ -13,6 +13,7 @@ import { execFileSync } from 'child_process'
 
 const GIF_BASE = 'https://raw.githubusercontent.com/JahelCuadrado/ExerciseGymGifsDB/main'
 const W = 1080, H = 1920, BGD = '#0b0b12', RED = '#E63946', WHITE = '#F5F1EA', GREY = '#8A9BB5'
+const EXERCISE_IMAGES = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), 'data', 'exercise-images.json'), 'utf8'))
 const TG_URL = 'https://t.me/muscletrainiing'
 const TG_HANDLE = '@muscletrainiing'
 const SITE = 'muscletraining.uk'
@@ -143,6 +144,13 @@ function fgSvg(j) {
 }
 
 async function thumb(slug) {
+  const aiSrc = EXERCISE_IMAGES[slug]
+  if (aiSrc) {
+    const aiPath = path.resolve(process.cwd(), 'public', ...aiSrc.split('/').filter(Boolean))
+    if (fs.existsSync(aiPath)) {
+      return sharp(aiPath).resize(TILE, TILE, { fit: 'cover', position: 'center' }).png().toBuffer()
+    }
+  }
   if(!MAP[slug]) return null
   try {
     const r=await fetch(`${GIF_BASE}/${MAP[slug]}`); if(!r.ok) return null

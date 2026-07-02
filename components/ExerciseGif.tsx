@@ -1,3 +1,5 @@
+import AI_IMAGES from '@/data/exercise-images.json'
+
 const BASE = 'https://raw.githubusercontent.com/JahelCuadrado/ExerciseGymGifsDB/main'
 
 const EXERCISE_IMAGES: Record<string, string> = {
@@ -142,8 +144,26 @@ interface ExerciseGifProps {
 }
 
 export default function ExerciseGif({ slug, className = '' }: ExerciseGifProps) {
-  const src = EXERCISE_IMAGES[slug] ?? FALLBACK
+  const aiSrc = (AI_IMAGES as Record<string, string | null>)[slug]
 
+  if (aiSrc) {
+    return (
+      <div
+        className={`relative w-full overflow-hidden rounded-xl bg-[#f5f0e8] ${className}`}
+        style={{ aspectRatio: '9/16' }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={aiSrc}
+          alt={slug.replace(/-/g, ' ')}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+    )
+  }
+
+  const src = EXERCISE_IMAGES[slug] ?? FALLBACK
   return (
     <div
       className={`relative w-full overflow-hidden rounded-xl bg-slate-900 ${className}`}

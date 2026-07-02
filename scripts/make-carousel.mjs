@@ -15,6 +15,7 @@ import { execFileSync } from 'child_process'
 const BASE = 'https://www.muscletraining.uk'
 const GIF_BASE = 'https://raw.githubusercontent.com/JahelCuadrado/ExerciseGymGifsDB/main'
 const W = 1080, H = 1920, BGD = '#0b0b12', CARDC = '#16161f', RED = '#E63946', WHITE = '#F5F1EA', GREY = '#8A9BB5'
+const EXERCISE_IMAGES = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), 'data', 'exercise-images.json'), 'utf8'))
 
 // Banque de programmes/séances — un différent à chaque post (rotation)
 const PROGRAMS = [
@@ -171,43 +172,76 @@ function fgSvg(j) {
   </svg>`
 }
 
-// ── Vidéo d'un jour (illustrations animées) ──
+// ── Obtenir un thumbnail 186×186 pour un exercice (image IA → GIF fallback) ──
+async function getExerciseThumb(slug) {
+  const aiSrc = EXERCISE_IMAGES[slug]
+  if (aiSrc) {
+    const aiPath = path.resolve(process.cwd(), 'public', ...aiSrc.split('/').filter(Boolean))
+    if (fs.existsSync(aiPath)) {
+      return sharp(aiPath).resize(TILE, TILE, { fit: 'cover', position: 'center' }).png().toBuffer()
+    }
+  }
+  if (!MAP[slug]) return null
+  try {
+    const r = await fetch(`${GIF_BASE}/${MAP[slug]}`)
+    if (!r.ok) return null
+    return sharp(Buffer.from(await r.arrayBuffer()), { page: 0 }).resize(TILE, TILE, { fit: 'cover' }).png().toBuffer()
+  } catch { return null }
+}
+
+// ── Vidéo d'un jour (illustrations IA avec effet zoom, fallback GIF) ──
 async function dayVideo(j, idx) {
   const out = path.join(outDir, `slide-${idx}.mp4`)
   const staticOut = path.join(outDir, `slide-${idx}-static.jpg`)
   const bgPng = path.join(outDir, `_bg${idx}.png`), fgPng = path.join(outDir, `_fg${idx}.png`)
   await sharp(Buffer.from(bgSvg(j))).png().toFile(bgPng)
   await sharp(Buffer.from(fgSvg(j))).png().toFile(fgPng)
-  // télécharge les gifs
-  const gifs = []
-  for (let i = 0; i < j.ex.length; i++) { const slug = j.ex[i][0]; if (!MAP[slug]) { gifs.push(null); continue }
-    const f = path.join(outDir, `_g${idx}_${i}.gif`); const r = await fetch(`${GIF_BASE}/${MAP[slug]}`); fs.writeFileSync(f, Buffer.from(await r.arrayBuffer())); gifs.push(f) }
 
-  // ── JPEG statique (pour le PDF) : bg + 1er frame de chaque GIF + fg ──
+  // Récupérer les thumbnails (IA ou GIF 1er frame)
+  const thumbs = []
+  for (let i = 0; i < j.ex.length; i++) {
+    const buf = await getExerciseThumb(j.ex[i][0])
+    if (buf) {
+      const f = path.join(outDir, `_t${idx}_${i}.png`)
+      fs.writeFileSync(f, buf)
+      thumbs.push({ cellIdx: i, file: f })
+    } else { thumbs.push(null) }
+  }
+
+  // ── JPEG statique (pour le PDF) ──
   let base = fs.readFileSync(bgPng)
-  for (let i = 0; i < gifs.length; i++) {
-    if (!gifs[i]) continue
-    const { tx, ty } = cells(i)
-    const t = await sharp(gifs[i], { page: 0 }).resize(TILE, TILE, { fit: 'cover' }).png().toBuffer()
-    base = await sharp(base).composite([{ input: t, left: tx, top: ty }]).png().toBuffer()
+  for (const t of thumbs) {
+    if (!t) continue
+    const { tx, ty } = cells(t.cellIdx)
+    base = await sharp(base).composite([{ input: t.file, left: tx, top: ty }]).png().toBuffer()
   }
   await sharp(base).composite([{ input: fs.readFileSync(fgPng), left: 0, top: 0 }])
     .jpeg({ quality: 92, chromaSubsampling: '4:4:4' }).toFile(staticOut)
 
-  // ── Vidéo animée ──
+  // ── Vidéo avec effet Ken Burns sur chaque illustration ──
+  const present = thumbs.filter(Boolean)
   const inputs = ['-loop', '1', '-t', '5', '-i', bgPng]
-  const present = []
-  gifs.forEach((g, i) => { if (g) { inputs.push('-ignore_loop', '0', '-t', '5', '-i', g); present.push(i) } })
+  present.forEach(t => inputs.push('-loop', '1', '-t', '5', '-i', t.file))
   inputs.push('-loop', '1', '-t', '5', '-i', fgPng)
   const fgIdx = 1 + present.length
 
-  const scales = present.map((_, k) => `[${k + 1}:v]scale=${TILE}:${TILE}:force_original_aspect_ratio=increase,crop=${TILE}:${TILE},minterpolate=fps=60:mi_mode=blend,setpts=PTS-STARTPTS[g${k}]`)
+  const zooms = present.map((t, k) =>
+    `[${k + 1}:v]zoompan=z='min(zoom+0.0008,1.25)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=150:s=${TILE}x${TILE}:fps=30[z${k}]`
+  )
   let chain = '', prev = '0:v'
-  present.forEach((cellI, k) => { const { tx, ty } = cells(cellI); const lbl = `b${k}`; chain += `[${prev}][g${k}]overlay=${tx}:${ty}[${lbl}];`; prev = lbl })
+  present.forEach((t, k) => {
+    const { tx, ty } = cells(t.cellIdx)
+    chain += `[${prev}][z${k}]overlay=${tx}:${ty}[b${k}];`
+    prev = `b${k}`
+  })
   chain += `[${prev}][${fgIdx}:v]overlay=0:0[v]`
-  const filter = scales.join(';') + ';' + chain
-  execFileSync('ffmpeg', ['-y', ...inputs, '-filter_complex', filter, '-map', '[v]', '-r', '60', '-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out], { stdio: ['ignore', 'ignore', 'pipe'] })
-  for (const g of gifs) if (g) { try { fs.unlinkSync(g) } catch {} }
+  const filter = zooms.join(';') + ';' + chain
+
+  execFileSync('ffmpeg', ['-y', ...inputs, '-filter_complex', filter, '-map', '[v]',
+    '-r', '30', '-c:v', 'libx264', '-preset', 'fast', '-crf', '20',
+    '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out], { stdio: ['ignore', 'ignore', 'pipe'] })
+
+  for (const t of thumbs) if (t) { try { fs.unlinkSync(t.file) } catch {} }
   try { fs.unlinkSync(fgPng) } catch {}
   try { fs.unlinkSync(bgPng) } catch {}
   return out

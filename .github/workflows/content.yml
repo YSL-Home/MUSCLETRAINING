@@ -57,6 +57,9 @@ jobs:
         continue-on-error: true
         env:
           PROG_INDEX: ${{ github.run_number }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          PIN_PDF: '1'
 
       - name: Upload YouTube Short (Reel → Shorts)
         run: node scripts/youtube-upload.mjs
