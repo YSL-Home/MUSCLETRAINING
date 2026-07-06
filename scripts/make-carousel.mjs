@@ -11,6 +11,7 @@ import fs from 'fs'
 import path from 'path'
 import sharp from 'sharp'
 import { execFileSync } from 'child_process'
+import { svgThumb } from './_svgThumb.mjs'
 
 const BASE = 'https://www.muscletraining.uk'
 const GIF_BASE = 'https://raw.githubusercontent.com/JahelCuadrado/ExerciseGymGifsDB/main'
@@ -172,7 +173,7 @@ function fgSvg(j) {
   </svg>`
 }
 
-// ── Obtenir un thumbnail 186×186 pour un exercice (image IA → GIF fallback) ──
+// ── Obtenir un thumbnail 186×186 pour un exercice (image IA → SVG mannequin fallback) ──
 async function getExerciseThumb(slug) {
   const aiSrc = EXERCISE_IMAGES[slug]
   if (aiSrc) {
@@ -181,12 +182,7 @@ async function getExerciseThumb(slug) {
       return sharp(aiPath).resize(TILE, TILE, { fit: 'cover', position: 'center' }).png().toBuffer()
     }
   }
-  if (!MAP[slug]) return null
-  try {
-    const r = await fetch(`${GIF_BASE}/${MAP[slug]}`)
-    if (!r.ok) return null
-    return sharp(Buffer.from(await r.arrayBuffer()), { page: 0 }).resize(TILE, TILE, { fit: 'cover' }).png().toBuffer()
-  } catch { return null }
+  return sharp(Buffer.from(svgThumb(slug))).resize(TILE, TILE, { fit: 'contain', background: '#0f0f1a' }).png().toBuffer()
 }
 
 // ── Vidéo d'un jour (illustrations IA avec effet zoom, fallback GIF) ──

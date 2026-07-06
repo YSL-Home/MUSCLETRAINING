@@ -10,6 +10,7 @@ import path from 'path'
 import sharp from 'sharp'
 import { PDFDocument } from 'pdf-lib'
 import { execFileSync } from 'child_process'
+import { svgThumb } from './_svgThumb.mjs'
 
 const GIF_BASE = 'https://raw.githubusercontent.com/JahelCuadrado/ExerciseGymGifsDB/main'
 const W = 1080, H = 1920, BGD = '#0b0b12', RED = '#E63946', WHITE = '#F5F1EA', GREY = '#8A9BB5'
@@ -151,11 +152,7 @@ async function thumb(slug) {
       return sharp(aiPath).resize(TILE, TILE, { fit: 'cover', position: 'center' }).png().toBuffer()
     }
   }
-  if(!MAP[slug]) return null
-  try {
-    const r=await fetch(`${GIF_BASE}/${MAP[slug]}`); if(!r.ok) return null
-    return sharp(Buffer.from(await r.arrayBuffer()),{page:0}).resize(TILE,TILE,{fit:'cover'}).png().toBuffer()
-  } catch { return null }
+  return sharp(Buffer.from(svgThumb(slug))).resize(TILE, TILE, { fit: 'contain', background: '#0f0f1a' }).png().toBuffer()
 }
 
 // Génère un JPEG de slide jour (fallback si pas de static pré-généré)
