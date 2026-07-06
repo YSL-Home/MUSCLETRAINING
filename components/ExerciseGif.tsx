@@ -1,5 +1,4 @@
 import AI_IMAGES from '@/data/exercise-images.json'
-import ExerciseMuscleMap from './ExerciseMuscleMap'
 
 const BASE = 'https://raw.githubusercontent.com/JahelCuadrado/ExerciseGymGifsDB/main'
 
@@ -164,5 +163,19 @@ export default function ExerciseGif({ slug, className = '' }: ExerciseGifProps) 
     )
   }
 
-  return <ExerciseMuscleMap slug={slug} className={className} />
+  const gifSrc = EXERCISE_IMAGES[slug] || FALLBACK
+  return (
+    <div
+      className={`relative w-full overflow-hidden rounded-xl bg-[#0f0f1a] ${className}`}
+      style={{ aspectRatio: '9/16' }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={gifSrc}
+        alt={slug.replace(/-/g, ' ')}
+        className="w-full h-full object-contain"
+        loading="lazy"
+      />
+    </div>
+  )
 }

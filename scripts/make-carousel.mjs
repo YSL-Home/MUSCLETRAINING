@@ -173,8 +173,9 @@ function fgSvg(j) {
   </svg>`
 }
 
-// ── Obtenir un thumbnail 186×186 pour un exercice (image IA → SVG mannequin fallback) ──
+// ── Obtenir un thumbnail 186×186 pour un exercice (image IA → GIF 1er frame → SVG mannequin) ──
 async function getExerciseThumb(slug) {
+  // 1. Photo IA locale
   const aiSrc = EXERCISE_IMAGES[slug]
   if (aiSrc) {
     const aiPath = path.resolve(process.cwd(), 'public', ...aiSrc.split('/').filter(Boolean))
@@ -182,6 +183,18 @@ async function getExerciseThumb(slug) {
       return sharp(aiPath).resize(TILE, TILE, { fit: 'cover', position: 'center' }).png().toBuffer()
     }
   }
+  // 2. Premier frame du GIF de la base de données
+  const gifRelPath = MAP[slug]
+  if (gifRelPath) {
+    try {
+      const res = await fetch(`${GIF_BASE}/${gifRelPath}`)
+      if (res.ok) {
+        const buf = Buffer.from(await res.arrayBuffer())
+        return sharp(buf, { animated: false }).resize(TILE, TILE, { fit: 'cover', position: 'center' }).png().toBuffer()
+      }
+    } catch {}
+  }
+  // 3. SVG mannequin last resort
   return sharp(Buffer.from(svgThumb(slug))).resize(TILE, TILE, { fit: 'contain', background: '#0f0f1a' }).png().toBuffer()
 }
 
