@@ -1,23 +1,14 @@
 import type { MuscleId } from '@/data/muscles'
 
+const RED = '#E63946'
 const MUSCLE_COLORS: Record<MuscleId, string> = {
-  pectoraux: '#ef4444',
-  dos: '#3b82f6',
-  epaules: '#8b5cf6',
-  biceps: '#06b6d4',
-  triceps: '#f59e0b',
-  'avant-bras': '#84cc16',
-  abdominaux: '#b8d400',
-  lombaires: '#a78bfa',
-  quadriceps: '#10b981',
-  'ischio-jambiers': '#0ea5e9',
-  fessiers: '#ec4899',
-  mollets: '#14b8a6',
-  trapezes: '#64748b',
+  pectoraux: RED, dos: RED, epaules: RED, biceps: RED, triceps: RED,
+  'avant-bras': RED, abdominaux: RED, lombaires: RED, quadriceps: RED,
+  'ischio-jambiers': RED, fessiers: RED, mollets: RED, trapezes: RED,
 }
 
-const NEUTRAL = '#e2e8f0'
-const NEUTRAL_SECONDARY = '#cbd5e1'
+const NEUTRAL = '#6A6A7E'
+const NEUTRAL_SECONDARY = '#7A7A8E'
 
 interface Props {
   primaires: MuscleId[]
