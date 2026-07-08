@@ -18,88 +18,88 @@ const OUT_DIR = path.resolve(process.cwd(), 'public', 'exercise-images')
 const MAP_PATH = path.resolve(process.cwd(), 'data', 'exercise-images.json')
 fs.mkdirSync(OUT_DIR, { recursive: true })
 
-// slug → description du mouvement (angle, position, équipement)
+// slug → [description du mouvement, muscle ciblé en rouge]
 const EXERCISES = {
-  'developpe-couche-barre':     'muscular athlete lying on a flat bench performing a barbell bench press in a dark gym',
-  'developpe-incline-barre':    'muscular athlete lying on a 45-degree incline bench pressing a barbell upward in a dark gym',
-  'developpe-couche-halteres':  'muscular athlete lying on a flat bench pressing two dumbbells upward in a dark gym',
-  'ecarte-halteres':            'muscular athlete lying on a flat bench performing a dumbbell fly with arms spread wide in a dark gym',
-  'pompes':                     'muscular athlete in a push-up position with arms extended on gym floor',
-  'pompes-serrees':             'muscular athlete performing close-grip diamond push-ups on gym floor',
-  'pompes-declinees':           'muscular athlete performing decline push-ups with feet elevated on a bench in dark gym',
-  'pike-push-up':               'muscular athlete performing pike push-up with hips raised high in dark gym',
-  'archer-push-up':             'muscular athlete performing archer push-up with one arm extended to the side on gym floor',
-  'pseudo-planche-push-up':     'muscular athlete performing pseudo planche push-up with hands turned outward on gym floor',
-  'pullover':                   'muscular athlete lying on a flat bench lowering a dumbbell behind head (pullover) in dark gym',
-  'skull-crusher':              'muscular athlete lying on a bench lowering a barbell toward forehead (skull crusher) in dark gym',
-  'dips':                       'muscular athlete between parallel bars lowering and pushing the body performing dips in dark gym',
-  'dips-banc':                  'muscular athlete performing bench dips with hands on a bench and legs extended in dark gym',
-  'tractions':                  'muscular athlete hanging from a pull-up bar pulling body upward with overhand grip in dark gym',
-  'tractions-supination':       'muscular athlete hanging from a bar performing chin-up with underhand grip in dark gym',
-  'souleve-de-terre':           'muscular athlete standing lifting a heavy barbell from the floor with straight back in dark gym',
-  'rowing-barre':               'muscular athlete bent forward at 45 degrees performing a bent-over barbell row in dark gym',
-  'rowing-haltere':             'muscular athlete with one knee on a bench performing a single-arm dumbbell row in dark gym',
-  'tirage-poitrine':            'muscular athlete seated at a lat pulldown machine pulling bar down to chest in dark gym',
-  'tirage-horizontal':          'muscular athlete seated at a cable row machine pulling handle toward abdomen in dark gym',
-  'tirage-menton':              'muscular athlete standing performing an upright barbell row pulling to chin height in dark gym',
-  'superman':                   'muscular athlete lying face down on gym mat raising arms and legs simultaneously (superman exercise)',
-  'good-morning':               'muscular athlete standing with barbell on shoulders bending forward performing good morning in dark gym',
-  'extension-lombaires':        'muscular athlete on a hyperextension bench performing back extension in dark gym',
-  'muscle-up':                  'muscular athlete on a pull-up bar performing a muscle-up explosive pull to push transition in dark gym',
-  'skin-the-cat':               'muscular athlete hanging from gymnastics rings performing skin the cat movement in dark gym',
-  'front-lever-tuck':           'muscular athlete on a pull-up bar holding a tuck front lever position in dark gym',
-  'elevations-laterales':       'muscular athlete standing raising two dumbbells to the sides at shoulder height in dark gym',
-  'haussements-epaules':        'muscular athlete standing shrugging shoulders upward with a heavy barbell in dark gym',
-  'oiseau-halteres':            'muscular athlete bent forward raising two dumbbells to the sides performing rear delt fly in dark gym',
-  'face-pull':                  'muscular athlete pulling a cable rope toward the face at head height in dark gym',
-  'curl-barre':                 'muscular athlete standing curling a barbell upward with both arms in dark gym',
-  'curl-halteres-alternes':     'muscular athlete standing performing alternating dumbbell curls in dark gym',
-  'curl-marteau':               'muscular athlete standing performing hammer curls with neutral grip dumbbells in dark gym',
-  'curl-inverse':               'muscular athlete standing performing reverse barbell curl with overhand grip in dark gym',
-  'curl-pupitre':               'muscular athlete arms resting on a preacher curl pad curling a barbell upward in dark gym',
-  'developpe-militaire':        'muscular athlete standing performing an overhead barbell military press above head in dark gym',
-  'developpe-halteres-epaules': 'muscular athlete seated performing an overhead dumbbell shoulder press in dark gym',
-  'developpe-arnold':           'muscular athlete seated performing Arnold press with dumbbells rotating wrists in dark gym',
-  'hack-squat':                 'muscular athlete on a hack squat machine pushing sled upward at 45 degrees in dark gym',
-  'leg-extension':              'muscular athlete seated on a leg extension machine extending legs forward in dark gym',
-  'presse-cuisses':             'muscular athlete on a 45-degree leg press machine pushing sled away in dark gym',
-  'leg-curl-allonge':           'muscular athlete lying face down on a leg curl machine curling heels toward glutes in dark gym',
-  'leg-curl-assis':             'muscular athlete seated on a sitting leg curl machine curling legs downward in dark gym',
-  'mollets-assis':              'muscular athlete seated with a barbell across knees performing a seated calf raise in dark gym',
-  'mollets-debout':             'muscular athlete standing on a calf raise machine performing standing calf raise in dark gym',
-  'squat-barre':                'muscular athlete feet shoulder-width apart performing a barbell back squat in dark gym',
-  'squat-goblet':               'muscular athlete standing performing goblet squat holding a kettlebell in front in dark gym',
-  'fentes-avant':               'muscular athlete performing forward lunges with dumbbells in dark gym',
-  'fentes-bulgares':            'muscular athlete performing Bulgarian split squat with rear foot elevated on bench in dark gym',
-  'hip-thrust':                 'muscular athlete performing barbell hip thrust with upper back on bench in dark gym',
-  'rdl':                        'muscular athlete performing Romanian deadlift with barbell hinging at hips in dark gym',
-  'pistol-squat':               'muscular athlete performing a pistol squat single-leg squat with one leg extended forward in dark gym',
-  'planche':                    'muscular athlete holding plank position on gym mat with straight body',
-  'planche-laterale':           'muscular athlete holding side plank position on gym mat with one arm',
-  'planche-commando':           'muscular athlete performing commando plank alternating forearm to hand in dark gym',
-  'crunch':                     'muscular athlete lying on gym mat performing abdominal crunch raising shoulders',
-  'mountain-climbers':          'muscular athlete in plank position performing mountain climbers bringing knees to chest on gym mat',
-  'releve-de-jambes':           'muscular athlete lying flat performing hanging leg raises holding pull-up bar in dark gym',
-  'russian-twist':              'muscular athlete seated on gym mat performing Russian twist with medicine ball',
-  'v-up':                       'muscular athlete lying on gym mat performing V-up raising legs and torso simultaneously',
-  'ab-wheel-rollout':           'muscular athlete kneeling performing ab wheel rollout extending forward on gym mat',
-  'dragon-flag':                'muscular athlete lying on a bench performing dragon flag lowering straight body in dark gym',
-  'l-sit':                      'muscular athlete on parallel bars holding L-sit position with legs extended horizontal in dark gym',
-  'hollow-body':                'muscular athlete lying on gym mat holding hollow body position with arms and legs raised',
-  'pallof-press':               'muscular athlete standing sideways at cable machine performing Pallof press in dark gym',
-  'dead-bug':                   'muscular athlete lying on gym mat performing dead bug exercise with opposite arm and leg extended',
-  'bird-dog':                   'muscular athlete on all fours performing bird dog extending opposite arm and leg on gym mat',
-  'dips-tremplin':              'muscular athlete performing dips on a dip station in dark gym',
-  'pompes-diamant':             'muscular athlete performing diamond push-ups with hands forming diamond shape on gym floor',
-  'hundred-pilates':            'muscular athlete lying on a mat performing the Pilates hundred exercise legs raised at 45 degrees',
-  'roll-up':                    'muscular athlete performing Pilates roll-up slowly rising from lying to seated position on mat',
-  'teaser-pilates':             'muscular athlete performing Pilates teaser balancing on tailbone with legs and arms raised',
-  'clamshell':                  'muscular athlete lying on side on mat performing clamshell exercise with knees bent',
-  'swimming-pilates':           'muscular athlete lying face down on mat performing Pilates swimming exercise alternating arms and legs',
+  'developpe-couche-barre':     ['lying on a flat bench performing a barbell bench press', 'pectoral muscles (chest)'],
+  'developpe-incline-barre':    ['lying on a 45° incline bench pressing a barbell upward', 'upper pectoral muscles'],
+  'developpe-couche-halteres':  ['lying on a flat bench pressing two dumbbells upward', 'pectoral muscles (chest)'],
+  'ecarte-halteres':            ['lying on a flat bench performing a dumbbell fly, arms spread wide', 'pectoral muscles (chest)'],
+  'pompes':                     ['in a push-up position, arms fully extended', 'pectoral muscles (chest)'],
+  'pompes-serrees':             ['performing close-grip diamond push-ups', 'triceps brachii'],
+  'pompes-declinees':           ['performing decline push-ups with feet elevated on a bench', 'upper pectoral muscles'],
+  'pike-push-up':               ['performing a pike push-up with hips raised high', 'anterior deltoid (front shoulder)'],
+  'archer-push-up':             ['performing an archer push-up with one arm extended to the side', 'pectoral muscles'],
+  'pseudo-planche-push-up':     ['performing a pseudo planche push-up with hands turned outward', 'pectoral muscles and anterior deltoid'],
+  'pullover':                   ['lying on a flat bench lowering a dumbbell behind head (pullover)', 'latissimus dorsi (lats)'],
+  'skull-crusher':              ['lying on a bench lowering a barbell toward forehead (skull crusher)', 'triceps brachii'],
+  'dips':                       ['between parallel bars lowering and pushing the body (dips)', 'triceps brachii'],
+  'dips-banc':                  ['performing bench dips with hands on a bench, legs extended', 'triceps brachii'],
+  'tractions':                  ['hanging from a pull-up bar pulling body upward, overhand grip', 'latissimus dorsi (lats)'],
+  'tractions-supination':       ['hanging from a bar pulling body upward, underhand grip (chin-up)', 'latissimus dorsi and biceps'],
+  'souleve-de-terre':           ['standing lifting a barbell from the floor with straight back', 'hamstrings and erector spinae'],
+  'rowing-barre':               ['bent forward at 45° performing a bent-over barbell row', 'latissimus dorsi and upper back'],
+  'rowing-haltere':             ['one knee on a bench performing a single-arm dumbbell row', 'latissimus dorsi'],
+  'tirage-poitrine':            ['seated at a lat pulldown machine pulling bar down to chest', 'latissimus dorsi (lats)'],
+  'tirage-horizontal':          ['seated at a cable row machine pulling handle toward abdomen', 'latissimus dorsi and rhomboids'],
+  'tirage-menton':              ['standing performing an upright barbell row pulling to chin height', 'lateral deltoid and trapezius'],
+  'superman':                   ['lying face down raising arms and legs simultaneously (superman)', 'erector spinae (lower back)'],
+  'good-morning':               ['standing with barbell on shoulders bending forward (good morning)', 'erector spinae and hamstrings'],
+  'extension-lombaires':        ['on a hyperextension bench performing back extension', 'erector spinae (lower back)'],
+  'muscle-up':                  ['on a pull-up bar performing an explosive muscle-up', 'latissimus dorsi and triceps'],
+  'skin-the-cat':               ['hanging from gymnastics rings performing skin the cat', 'latissimus dorsi and serratus'],
+  'front-lever-tuck':           ['on a pull-up bar holding a tuck front lever position', 'latissimus dorsi and abs'],
+  'elevations-laterales':       ['standing raising two dumbbells to the sides at shoulder height', 'lateral deltoid (side shoulder)'],
+  'haussements-epaules':        ['standing shrugging shoulders upward with a heavy barbell', 'trapezius muscles'],
+  'oiseau-halteres':            ['bent forward raising two dumbbells to the sides (rear delt fly)', 'posterior deltoid (rear shoulder)'],
+  'face-pull':                  ['pulling a cable rope toward the face at head height', 'posterior deltoid and upper trapezius'],
+  'curl-barre':                 ['standing curling a barbell upward with both arms', 'biceps brachii'],
+  'curl-halteres-alternes':     ['standing performing alternating dumbbell curls', 'biceps brachii'],
+  'curl-marteau':               ['standing performing hammer curls with neutral grip dumbbells', 'brachioradialis and biceps'],
+  'curl-inverse':               ['standing performing reverse barbell curl with overhand grip', 'brachioradialis and forearms'],
+  'curl-pupitre':               ['arms on a preacher curl pad curling a barbell upward', 'biceps brachii'],
+  'developpe-militaire':        ['standing performing an overhead barbell press above head', 'anterior deltoid (front shoulder)'],
+  'developpe-halteres-epaules': ['seated performing an overhead dumbbell shoulder press', 'deltoid muscles (shoulders)'],
+  'developpe-arnold':           ['seated performing Arnold press rotating dumbbells', 'deltoid muscles (all three heads)'],
+  'hack-squat':                 ['on a hack squat machine pushing sled upward at 45°', 'quadriceps (front of thighs)'],
+  'leg-extension':              ['seated on a leg extension machine extending legs forward', 'quadriceps (front of thighs)'],
+  'presse-cuisses':             ['on a 45° leg press machine pushing sled away', 'quadriceps and glutes'],
+  'leg-curl-allonge':           ['lying face down on a leg curl machine curling heels toward glutes', 'hamstrings (back of thighs)'],
+  'leg-curl-assis':             ['seated on a sitting leg curl machine curling legs downward', 'hamstrings (back of thighs)'],
+  'mollets-assis':              ['seated with a barbell across knees performing seated calf raise', 'soleus (calf muscles)'],
+  'mollets-debout':             ['standing on a calf raise machine performing standing calf raise', 'gastrocnemius (calf muscles)'],
+  'squat-barre':                ['feet shoulder-width apart performing a barbell back squat', 'quadriceps (front of thighs)'],
+  'squat-goblet':               ['standing performing goblet squat holding a kettlebell in front', 'quadriceps and glutes'],
+  'fentes-avant':               ['performing forward lunges with dumbbells', 'quadriceps and glutes'],
+  'fentes-bulgares':            ['performing Bulgarian split squat with rear foot elevated on bench', 'quadriceps and glutes'],
+  'hip-thrust':                 ['performing barbell hip thrust with upper back on bench', 'gluteus maximus (glutes)'],
+  'rdl':                        ['performing Romanian deadlift with barbell hinging at hips', 'hamstrings and gluteus maximus'],
+  'pistol-squat':               ['performing a pistol squat, one leg extended forward', 'quadriceps and glutes'],
+  'planche':                    ['holding plank position with straight body', 'core muscles (abdominals and obliques)'],
+  'planche-laterale':           ['holding side plank position on one arm', 'obliques (side core muscles)'],
+  'planche-commando':           ['performing commando plank alternating forearm to hand', 'core muscles and shoulders'],
+  'crunch':                     ['lying on mat performing abdominal crunch raising shoulders', 'rectus abdominis (abs)'],
+  'mountain-climbers':          ['in plank position performing mountain climbers bringing knees to chest', 'core muscles and hip flexors'],
+  'releve-de-jambes':           ['hanging from a pull-up bar performing leg raises', 'rectus abdominis (lower abs)'],
+  'russian-twist':              ['seated on mat performing Russian twist with medicine ball', 'obliques (side core muscles)'],
+  'v-up':                       ['lying on mat performing V-up raising legs and torso simultaneously', 'rectus abdominis (abs)'],
+  'ab-wheel-rollout':           ['kneeling performing ab wheel rollout extending forward', 'rectus abdominis and core'],
+  'dragon-flag':                ['lying on a bench performing dragon flag lowering straight body', 'rectus abdominis (entire core)'],
+  'l-sit':                      ['on parallel bars holding L-sit with legs extended horizontal', 'rectus abdominis and hip flexors'],
+  'hollow-body':                ['lying on mat holding hollow body with arms and legs raised', 'core muscles (abs)'],
+  'pallof-press':               ['standing sideways at cable machine performing Pallof press', 'obliques and core stabilizers'],
+  'dead-bug':                   ['lying on mat performing dead bug with opposite arm and leg extended', 'core muscles (transverse abdominis)'],
+  'bird-dog':                   ['on all fours extending opposite arm and leg (bird dog)', 'erector spinae and core'],
+  'dips-tremplin':              ['performing dips on a dip station', 'triceps brachii and pectoral muscles'],
+  'pompes-diamant':             ['performing diamond push-ups with hands forming diamond shape', 'triceps brachii'],
+  'hundred-pilates':            ['lying on mat performing Pilates hundred, legs raised at 45°', 'rectus abdominis (abs)'],
+  'roll-up':                    ['performing Pilates roll-up rising from lying to seated', 'rectus abdominis (abs)'],
+  'teaser-pilates':             ['performing Pilates teaser balancing on tailbone, legs and arms raised', 'rectus abdominis and hip flexors'],
+  'clamshell':                  ['lying on side on mat performing clamshell with knees bent', 'gluteus medius (outer glutes)'],
+  'swimming-pilates':           ['lying face down performing Pilates swimming alternating arms and legs', 'erector spinae and gluteus maximus'],
 }
 
-const BASE_PROMPT = (movement) =>
-  `Professional gym exercise photo: ${movement}. Black tank top and shorts. Dark moody cinematic gym lighting with equipment in background. High quality fitness photography, photorealistic, sharp focus.`
+const BASE_PROMPT = (movement, muscle) =>
+  `3D CGI fitness illustration. A fully gray matte plastic mannequin character (completely gray from head to toe, seamless anatomy model) wearing a black fitted tank top and black shorts, ${movement}. Warm beige sandy gym room background with subtle equipment visible. ONLY the ${muscle} is highlighted in bright crimson red #E63946. Every other body part remains flat gray matte. Professional fitness poster lighting. Photorealistic 3D CGI render. Portrait 9:16.`
 
 const imageMap = JSON.parse(fs.readFileSync(MAP_PATH, 'utf8'))
 const targetSlug = process.env.SLUG
@@ -113,14 +113,14 @@ const toGenerate = Object.entries(EXERCISES).filter(([slug]) => {
 if (!toGenerate.length) { console.log('✅ Toutes les images déjà générées.'); process.exit(0) }
 console.log(`📸 ${toGenerate.length} image(s) à générer…`)
 
-async function generateOne(slug, movement) {
+async function generateOne(slug, movement, muscle) {
   console.log(`  → ${slug}`)
-  const prompt = BASE_PROMPT(movement)
+  const prompt = BASE_PROMPT(movement, muscle)
 
   const startRes = await fetch('https://api.developer.pixelcut.ai/v1/images/generate', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'X-API-KEY': API_KEY },
-    body: JSON.stringify({ prompt, model: 'flux-2-klein-4b', aspect_ratio: '4:3', output_format: 'jpg' }),
+    body: JSON.stringify({ prompt, model: 'imagen-4-ultra', aspect_ratio: '9:16', output_format: 'jpg' }),
   })
   if (!startRes.ok) {
     const err = await startRes.text()
@@ -154,8 +154,8 @@ async function generateOne(slug, movement) {
   console.log(`    ✅ ${slug}.jpg (${Math.round(buf.length / 1024)} Ko)`)
 }
 
-for (const [slug, movement] of toGenerate) {
-  await generateOne(slug, movement)
+for (const [slug, [movement, muscle]] of toGenerate) {
+  await generateOne(slug, movement, muscle)
 }
 
 console.log('\n🎉 Génération terminée.')
