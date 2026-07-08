@@ -145,6 +145,7 @@ function fgSvg(j) {
 }
 
 async function thumb(slug) {
+  // 1. Photo IA locale
   const aiSrc = EXERCISE_IMAGES[slug]
   if (aiSrc) {
     const aiPath = path.resolve(process.cwd(), 'public', ...aiSrc.split('/').filter(Boolean))
@@ -152,6 +153,18 @@ async function thumb(slug) {
       return sharp(aiPath).resize(TILE, TILE, { fit: 'cover', position: 'center' }).png().toBuffer()
     }
   }
+  // 2. Premier frame du GIF (base de données GitHub)
+  const gifRelPath = MAP[slug]
+  if (gifRelPath) {
+    try {
+      const res = await fetch(`${GIF_BASE}/${gifRelPath}`)
+      if (res.ok) {
+        const buf = Buffer.from(await res.arrayBuffer())
+        return sharp(buf, { animated: false }).resize(TILE, TILE, { fit: 'cover', position: 'center' }).png().toBuffer()
+      }
+    } catch {}
+  }
+  // 3. SVG mannequin dernier recours
   return sharp(Buffer.from(svgThumb(slug))).resize(TILE, TILE, { fit: 'contain', background: '#0f0f1a' }).png().toBuffer()
 }
 
