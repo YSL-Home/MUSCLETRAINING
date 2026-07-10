@@ -130,3 +130,18 @@ html.is-offline body::before {
   letter-spacing: 0.03em;
 }
 html.is-offline body { padding-top: 26px; }
+
+/* ── Muscle illustration — pulsation rouge animée ── */
+@keyframes ml-muscle-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(230,57,70,0.15));
+    opacity: 1;
+  }
+  50% {
+    filter: drop-shadow(0 0 14px rgba(230,57,70,0.75)) brightness(1.12);
+    opacity: 0.88;
+  }
+}
+.ml-muscle-animated {
+  animation: ml-muscle-glow 2.2s ease-in-out infinite;
+}
