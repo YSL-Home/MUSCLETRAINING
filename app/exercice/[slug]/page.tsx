@@ -194,13 +194,13 @@ export default async function ExercisePage({ params }: { params: Promise<{ slug:
               {/* Muscles ciblés */}
               <div className="bg-[#0C0C1A] rounded-2xl border border-[rgba(230,57,70,0.1)] p-5">
                 <h3 className="font-bold text-[#EDE8E0] mb-3">Muscles ciblés</h3>
-                {/* Mannequin 3D compact animé — muscles en pulsation */}
+                {/* Grand GIF animé mouvement — visuel principal */}
                 <div className="mb-3">
-                  <ExerciseMuscleMap slug={exercise.slug} compact animated />
-                </div>
-                {/* Grand GIF animé mouvement */}
-                <div className="mb-4">
                   <ExerciseGif slug={exercise.slug} />
+                </div>
+                {/* Mannequin 3D compact — anatomie, muscles en pulsation */}
+                <div className="mb-4">
+                  <ExerciseMuscleMap slug={exercise.slug} compact animated />
                 </div>
                 {musclePrincipal && (
                   <div className="mb-3">
