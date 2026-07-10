@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Breadcrumb from '@/components/Breadcrumb'
 import YouTubeEmbed from '@/components/YouTubeEmbed'
 import ExerciseCard from '@/components/ExerciseCard'
-import MuscleIllustration from '@/components/MuscleIllustration'
 import ExerciseGif from '@/components/ExerciseGif'
 import FavoriteButton from '@/components/FavoriteButton'
 import PRInput from '@/components/PRInput'
@@ -193,33 +192,52 @@ export default async function ExercisePage({ params }: { params: Promise<{ slug:
             <div className="sticky top-24 space-y-5">
               {/* Muscles ciblés */}
               <div className="bg-[#0C0C1A] rounded-2xl border border-[rgba(230,57,70,0.1)] p-5">
-                <h3 className="font-bold text-[#EDE8E0] mb-4">Muscles ciblés</h3>
-                {/* Illustration exercice */}
+                <h3 className="font-bold text-[#EDE8E0] mb-3">Muscles ciblés</h3>
+                {/* Graphique activation musculaire — en premier, toujours visible */}
+                <div className="relative mb-4 rounded-xl overflow-hidden" style={{
+                  background: '#06080f',
+                  border: '1px solid rgba(99,120,160,0.18)',
+                }}>
+                  <div style={{ height: 2, background: 'linear-gradient(90deg, transparent, #3b82f6 40%, #60a5fa 50%, #3b82f6 60%, transparent)' }}/>
+                  <div style={{ padding: '11px 14px 13px' }}>
+                    <div style={{ fontSize: 8, fontWeight: 800, color: '#4a7cc7', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 10 }}>
+                      ◉ Activation musculaire
+                    </div>
+                    {[
+                      ...exercise.musclesPrimaires.map(id => ({ id, pct: 100, primary: true })),
+                      ...exercise.musclesSecondaires.slice(0, 3).map(id => ({ id, pct: 45, primary: false })),
+                    ].slice(0, 5).map(({ id, pct, primary }, i) => {
+                      const m = getMuscleById(id)
+                      return (
+                        <div key={id} style={{ marginBottom: i === 4 ? 0 : 7 }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 3 }}>
+                            <span style={{ fontSize: 9, color: primary ? '#c4cdd9' : '#6378a0', fontWeight: primary ? 600 : 400 }}>
+                              {m?.nom ?? id}
+                            </span>
+                            <span style={{ fontSize: 8, fontWeight: 700, color: primary ? '#E63946' : '#8a6a3a' }}>
+                              {pct}%
+                            </span>
+                          </div>
+                          <div style={{ height: 5, background: 'rgba(255,255,255,0.05)', borderRadius: 3, overflow: 'hidden' }}>
+                            <div className={primary ? 'ml-bar-primary' : 'ml-bar-secondary'} style={{
+                              height: '100%',
+                              width: `${pct}%`,
+                              background: primary
+                                ? 'linear-gradient(90deg, #b01e28, #E63946 60%, #ff5c68)'
+                                : 'linear-gradient(90deg, #6b3a10, #c47a3a)',
+                              borderRadius: 3,
+                              transformOrigin: 'left center',
+                              animationDelay: `${i * 0.1}s`,
+                            }}/>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+                {/* Grand GIF animé */}
                 <div className="mb-4">
                   <ExerciseGif slug={exercise.slug} />
-                </div>
-                {/* Schéma anatomique animé — muscles ciblés en pulsation */}
-                <div className="relative mb-4 rounded-xl overflow-hidden" style={{
-                  background: '#080d14',
-                  border: '1px solid rgba(99,120,160,0.2)',
-                }}>
-                  {/* Ligne accent dégradé bleu-nuit */}
-                  <div style={{ height: 2, background: 'linear-gradient(90deg, transparent, #3b82f6 40%, #60a5fa 50%, #3b82f6 60%, transparent)' }}/>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '14px 12px 10px', gap: 6 }}>
-                    <div className="ml-muscle-animated">
-                      <MuscleIllustration
-                        primaires={exercise.musclesPrimaires}
-                        secondaires={exercise.musclesSecondaires}
-                        size={88}
-                      />
-                    </div>
-                    <div style={{
-                      fontSize: 9, fontWeight: 800, letterSpacing: '0.12em',
-                      textTransform: 'uppercase', color: '#3b82f6',
-                    }}>
-                      ◉ Zones actives
-                    </div>
-                  </div>
                 </div>
                 {musclePrincipal && (
                   <div className="mb-3">

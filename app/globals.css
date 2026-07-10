@@ -131,17 +131,14 @@ html.is-offline body::before {
 }
 html.is-offline body { padding-top: 26px; }
 
-/* ── Muscle illustration — pulsation rouge animée ── */
-@keyframes ml-muscle-glow {
-  0%, 100% {
-    filter: drop-shadow(0 0 2px rgba(230,57,70,0.15));
-    opacity: 1;
-  }
-  50% {
-    filter: drop-shadow(0 0 14px rgba(230,57,70,0.75)) brightness(1.12);
-    opacity: 0.88;
-  }
+/* ── Muscle activation bars — animation fill depuis la gauche ── */
+@keyframes ml-bar-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
 }
-.ml-muscle-animated {
-  animation: ml-muscle-glow 2.2s ease-in-out infinite;
+.ml-bar-primary {
+  animation: ml-bar-grow 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.ml-bar-secondary {
+  animation: ml-bar-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
