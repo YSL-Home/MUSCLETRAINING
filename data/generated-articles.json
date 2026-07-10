@@ -3,6 +3,94 @@
     "categorie": "Technique",
     "contenu": [
       {
+        "content": "Introduction au Muscle-up",
+        "type": "h2"
+      },
+      {
+        "content": "Le muscle-up est un exercice de gymnastique qui consiste à passer d'une position de suspension aux barres parallèles à une position de flexion sur les barres, en utilisant uniquement les bras et les épaules. C'est un exercice complexe qui nécessite de la force, de la technique et de la coordination. Dans cet article, nous allons te présenter les étapes clés pour apprendre à réaliser un muscle-up de manière efficace et sécuritaire.",
+        "type": "p"
+      },
+      {
+        "content": "Étape 1 : Développer la Force et l'Endurance",
+        "type": "h2"
+      },
+      {
+        "content": "Avant de commencer à travailler sur le muscle-up, il est essentiel de développer la force et l'endurance nécessaires pour réaliser l'exercice. Cela peut être fait en pratiquant des exercices tels que les tractions, les flexions sur barres parallèles et les pompes. Il est également important de travailler sur la force et la stabilité des épaules et du dos.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Traction : 3 séries de 8-12 répétitions",
+          "Flexion sur barres parallèles : 3 séries de 8-12 répétitions",
+          "Pompe : 3 séries de 12-15 répétitions"
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Étape 2 : Apprendre la Technique de Base",
+        "type": "h2"
+      },
+      {
+        "content": "Une fois que tu as développé la force et l'endurance nécessaires, il est temps d'apprendre la technique de base du muscle-up. Cela consiste à apprendre à passer de la position de suspension aux barres parallèles à la position de flexion sur les barres. Il est important de se concentrer sur la technique et de ne pas essayer de forcer l'exercice.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Commence par te suspendre aux barres parallèles avec les mains écartées de la largeur des épaules",
+          "Fais une traction pour te hisser vers le haut",
+          "Une fois que tu as atteint le sommet de la traction, commence à flexionner les coudes pour te mettre en position de flexion sur les barres",
+          "Maintiens la position de flexion pendant quelques secondes avant de redescendre"
+        ],
+        "type": "ol"
+      },
+      {
+        "content": "Il est important de se concentrer sur la technique et de ne pas essayer de forcer l'exercice. Si tu as du mal à réaliser le muscle-up, essaie de diviser l'exercice en plusieurs étapes et de travailler sur chaque étape séparément.",
+        "type": "tip"
+      },
+      {
+        "content": "Étape 3 : Améliorer la Technique et la Force",
+        "type": "h2"
+      },
+      {
+        "content": "Une fois que tu as maîtrisé la technique de base du muscle-up, il est temps d'améliorer la technique et la force. Cela peut être fait en pratiquant des exercices plus difficiles et en augmentant la difficulté de l'exercice.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Muscle-up avec des poids : ajoute des poids à ton harnais pour augmenter la difficulté de l'exercice",
+          "Muscle-up avec des barres parallèles inclinées : utilise des barres parallèles inclinées pour augmenter la difficulté de l'exercice",
+          "Muscle-up avec des rotations : ajoute des rotations à ton muscle-up pour augmenter la difficulté de l'exercice"
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Conclusion",
+        "type": "h2"
+      },
+      {
+        "content": "Le muscle-up est un exercice complexe qui nécessite de la force, de la technique et de la coordination. En suivant les étapes clés présentées dans cet article, tu peux apprendre à réaliser un muscle-up de manière efficace et sécuritaire. N'oublie pas de toujours te concentrer sur la technique et de ne pas essayer de forcer l'exercice.",
+        "type": "p"
+      }
+    ],
+    "datePublication": "2026-07-10",
+    "description": "Apprends à réaliser un muscle-up avec ce guide détaillé qui te présente les étapes clés pour améliorer tes compétences en gymnastique.",
+    "descriptionSeo": "Découvre comment faire un muscle-up avec notre guide de progression étape par étape, conçu pour les débutants et les avancés en gymnastique et musculation.",
+    "image": "/blog/guide-muscle-up-progression.jpg",
+    "slug": "guide-muscle-up-progression",
+    "tags": [
+      "muscle-up",
+      "gymnastique",
+      "musculation",
+      "technique",
+      "progression"
+    ],
+    "tempsLecture": 8,
+    "titre": "Maîtrise le Muscle-up : Le Guide de Progression Étape par Étape"
+  },
+  {
+    "categorie": "Technique",
+    "contenu": [
+      {
         "content": "Introduction aux dips : pourquoi les intégrer à ton entraînement ?",
         "type": "h2"
       },
