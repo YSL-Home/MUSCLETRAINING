@@ -148,54 +148,75 @@ export default function ExerciseGif({ slug, className = '' }: ExerciseGifProps) 
   const aiSrc = (AI_IMAGES as Record<string, string | null>)[slug]
   const gifSrc = EXERCISE_GIFS[slug]
 
-  // 1. GIF animé GitHub DB — priorité absolue (mouvement visible)
+  // 1. GIF animé GitHub DB — priorité absolue
   if (gifSrc) {
     return (
       <div
-        className={`relative w-full overflow-hidden rounded-xl flex items-center justify-center ${className}`}
-        style={{
-          aspectRatio: '9/16',
-          /* Centre crème clair → bords noirs : le fond blanc du GIF se fond naturellement */
-          background: 'radial-gradient(ellipse at 50% 42%, #e8e0d0 0%, #b09070 38%, #3a2410 65%, #0a0604 100%)',
-        }}
+        className={`relative w-full overflow-hidden rounded-2xl flex flex-col ${className}`}
+        style={{ aspectRatio: '9/16', background: '#08080f' }}
       >
-        {/* Vignette forte sur les bords */}
+        {/* Barre rouge haute — accent marque */}
+        <div style={{ height: 3, background: '#E63946', flexShrink: 0 }}/>
+
+        {/* Zone GIF — fond blanc intentionnel encadré */}
         <div style={{
-          position: 'absolute', inset: 0,
-          background: 'radial-gradient(ellipse at 50% 42%, transparent 30%, rgba(0,0,0,0.55) 75%, rgba(0,0,0,0.88) 100%)',
-          pointerEvents: 'none',
-          zIndex: 1,
-        }}/>
-        {/* Liseré rouge bas */}
-        <div style={{
-          position: 'absolute', bottom: 0, left: 0, right: 0, height: 3,
-          background: 'linear-gradient(90deg, transparent, #E63946 35%, #E63946 65%, transparent)',
-          zIndex: 3,
-        }}/>
-        {/* Badge "ANIMÉ" top-right */}
-        <div style={{
-          position: 'absolute', top: 12, right: 12,
-          background: 'rgba(230,57,70,0.9)',
-          color: '#fff', fontSize: 10, fontWeight: 700,
-          letterSpacing: '0.08em', padding: '3px 8px', borderRadius: 4,
-          zIndex: 3,
-        }}>▶ ANIMÉ</div>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={gifSrc}
-          alt={slug.replace(/-/g, ' ')}
-          style={{
-            width: '92%',
-            height: '92%',
-            objectFit: 'contain',
-            borderRadius: 10,
-            boxShadow: '0 0 48px rgba(0,0,0,0.7)',
-            filter: 'contrast(1.08) saturate(1.1)',
-            position: 'relative',
+          flex: 1,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: '#08080f',
+          position: 'relative',
+          padding: '16px 16px 12px',
+        }}>
+          {/* Halo rouge derrière le GIF */}
+          <div style={{
+            position: 'absolute',
+            width: '70%', height: '50%',
+            background: 'radial-gradient(ellipse, rgba(230,57,70,0.12) 0%, transparent 70%)',
+            top: '50%', left: '50%',
+            transform: 'translate(-50%, -50%)',
+            pointerEvents: 'none',
+          }}/>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={gifSrc}
+            alt={slug.replace(/-/g, ' ')}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain',
+              borderRadius: 12,
+              position: 'relative',
+              zIndex: 1,
+              filter: 'contrast(1.05) saturate(1.08)',
+            }}
+            loading="lazy"
+          />
+          {/* Badge top-right */}
+          <div style={{
+            position: 'absolute', top: 20, right: 20,
+            background: '#E63946',
+            color: '#fff', fontSize: 9, fontWeight: 800,
+            letterSpacing: '0.12em', padding: '4px 8px', borderRadius: 4,
             zIndex: 2,
-          }}
-          loading="lazy"
-        />
+          }}>▶ ANIMÉ</div>
+        </div>
+
+        {/* Footer info */}
+        <div style={{
+          flexShrink: 0,
+          padding: '10px 16px 12px',
+          background: 'linear-gradient(180deg, #0d0d1a 0%, #0a0a14 100%)',
+          borderTop: '1px solid rgba(230,57,70,0.15)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+        }}>
+          <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#E63946', flexShrink: 0 }}/>
+          <span style={{ color: '#EDE8E0', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+            {slug.replace(/-/g, ' ')}
+          </span>
+        </div>
       </div>
     )
   }

@@ -199,25 +199,22 @@ export default async function ExercisePage({ params }: { params: Promise<{ slug:
                   <ExerciseGif slug={exercise.slug} />
                 </div>
                 {/* GIF animé ou schéma muscles */}
-                <div className="relative flex justify-center mb-4 rounded-xl overflow-hidden" style={{
-                  background: 'radial-gradient(ellipse at 50% 30%, #1e1510 0%, #0e0b07 60%, #050403 100%)',
-                  border: '1px solid rgba(230,57,70,0.15)',
-                  padding: '12px',
+                <div className="relative mb-4 rounded-xl overflow-hidden" style={{
+                  background: '#0d1117',
+                  border: '1px solid rgba(99,120,160,0.18)',
                 }}>
-                  {/* Liseré rouge bas */}
-                  <div style={{
-                    position: 'absolute', bottom: 0, left: 0, right: 0, height: 2,
-                    background: 'linear-gradient(90deg, transparent, #E63946 40%, #E63946 60%, transparent)',
-                  }}/>
+                  {/* Accent bleu-nuit haut */}
+                  <div style={{ height: 2, background: 'linear-gradient(90deg, #1e3a5f, #3b82f6 50%, #1e3a5f)' }}/>
+                  <div style={{ display: 'flex', justifyContent: 'center', padding: '10px 10px 8px' }}>
                   {EXERCISE_GIFS[exercise.slug] ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={EXERCISE_GIFS[exercise.slug]}
                       alt={`Animation ${exercise.nom}`}
-                      className="rounded-lg"
                       style={{
-                        width: 160, height: 160, objectFit: 'contain',
-                        filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.6)) contrast(1.05)',
+                        width: 148, height: 148, objectFit: 'contain',
+                        borderRadius: 8,
+                        filter: 'contrast(1.06) saturate(1.08)',
                       }}
                       loading="lazy"
                     />
@@ -228,6 +225,7 @@ export default async function ExercisePage({ params }: { params: Promise<{ slug:
                       size={80}
                     />
                   )}
+                  </div>
                 </div>
                 {musclePrincipal && (
                   <div className="mb-3">
