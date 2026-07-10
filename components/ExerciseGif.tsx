@@ -146,12 +146,14 @@ interface ExerciseGifProps {
 
 export default function ExerciseGif({ slug, className = '' }: ExerciseGifProps) {
   const aiSrc = (AI_IMAGES as Record<string, string | null>)[slug]
+  const gifSrc = EXERCISE_GIFS[slug]
 
+  // 1. Photo IA Imagen 4 Ultra (si disponible)
   if (aiSrc) {
     return (
       <div
-        className={`relative w-full overflow-hidden rounded-xl bg-[#f5f0e8] ${className}`}
-        style={{ aspectRatio: '9/16' }}
+        className={`relative w-full overflow-hidden rounded-xl ${className}`}
+        style={{ aspectRatio: '9/16', background: '#0a0a14' }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -164,5 +166,58 @@ export default function ExerciseGif({ slug, className = '' }: ExerciseGifProps) 
     )
   }
 
+  // 2. GIF animé GitHub DB — fond "spotlight gym" crème → noir
+  if (gifSrc) {
+    return (
+      <div
+        className={`relative w-full overflow-hidden rounded-xl flex items-center justify-center ${className}`}
+        style={{
+          aspectRatio: '9/16',
+          /* Centre crème clair → bords noirs : le fond blanc du GIF se fond naturellement */
+          background: 'radial-gradient(ellipse at 50% 42%, #e8e0d0 0%, #b09070 38%, #3a2410 65%, #0a0604 100%)',
+        }}
+      >
+        {/* Vignette forte sur les bords */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'radial-gradient(ellipse at 50% 42%, transparent 30%, rgba(0,0,0,0.55) 75%, rgba(0,0,0,0.88) 100%)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}/>
+        {/* Liseré rouge bas */}
+        <div style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0, height: 3,
+          background: 'linear-gradient(90deg, transparent, #E63946 35%, #E63946 65%, transparent)',
+          zIndex: 3,
+        }}/>
+        {/* Badge "ANIMÉ" top-right */}
+        <div style={{
+          position: 'absolute', top: 12, right: 12,
+          background: 'rgba(230,57,70,0.9)',
+          color: '#fff', fontSize: 10, fontWeight: 700,
+          letterSpacing: '0.08em', padding: '3px 8px', borderRadius: 4,
+          zIndex: 3,
+        }}>▶ ANIMÉ</div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={gifSrc}
+          alt={slug.replace(/-/g, ' ')}
+          style={{
+            width: '92%',
+            height: '92%',
+            objectFit: 'contain',
+            borderRadius: 10,
+            boxShadow: '0 0 48px rgba(0,0,0,0.7)',
+            filter: 'contrast(1.08) saturate(1.1)',
+            position: 'relative',
+            zIndex: 2,
+          }}
+          loading="lazy"
+        />
+      </div>
+    )
+  }
+
+  // 3. Fallback SVG mannequin 3D
   return <ExerciseMuscleMap slug={slug} className={className} />
 }

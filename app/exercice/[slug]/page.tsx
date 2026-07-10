@@ -199,14 +199,26 @@ export default async function ExercisePage({ params }: { params: Promise<{ slug:
                   <ExerciseGif slug={exercise.slug} />
                 </div>
                 {/* GIF animé ou schéma muscles */}
-                <div className="flex justify-center mb-4 bg-[#0C0C1A] rounded-xl p-3">
+                <div className="relative flex justify-center mb-4 rounded-xl overflow-hidden" style={{
+                  background: 'radial-gradient(ellipse at 50% 30%, #1e1510 0%, #0e0b07 60%, #050403 100%)',
+                  border: '1px solid rgba(230,57,70,0.15)',
+                  padding: '12px',
+                }}>
+                  {/* Liseré rouge bas */}
+                  <div style={{
+                    position: 'absolute', bottom: 0, left: 0, right: 0, height: 2,
+                    background: 'linear-gradient(90deg, transparent, #E63946 40%, #E63946 60%, transparent)',
+                  }}/>
                   {EXERCISE_GIFS[exercise.slug] ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={EXERCISE_GIFS[exercise.slug]}
                       alt={`Animation ${exercise.nom}`}
                       className="rounded-lg"
-                      style={{ width: 160, height: 160, objectFit: 'cover' }}
+                      style={{
+                        width: 160, height: 160, objectFit: 'contain',
+                        filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.6)) contrast(1.05)',
+                      }}
                       loading="lazy"
                     />
                   ) : (
