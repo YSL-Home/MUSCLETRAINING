@@ -3,7 +3,7 @@ import ExerciseMuscleMap from './ExerciseMuscleMap'
 
 const BASE = 'https://raw.githubusercontent.com/JahelCuadrado/ExerciseGymGifsDB/main'
 
-const EXERCISE_IMAGES: Record<string, string> = {
+export const EXERCISE_GIFS: Record<string, string> = {
   // ── PECTORAUX ─────────────────────────────────────────────────────────
   'developpe-couche-barre':      `${BASE}/pectorals/barbell-bench-press.gif`,
   'developpe-couche-halteres':   `${BASE}/pectorals/dumbbell-bench-press.gif`,

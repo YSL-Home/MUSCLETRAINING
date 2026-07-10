@@ -5,7 +5,7 @@ import Breadcrumb from '@/components/Breadcrumb'
 import YouTubeEmbed from '@/components/YouTubeEmbed'
 import ExerciseCard from '@/components/ExerciseCard'
 import MuscleIllustration from '@/components/MuscleIllustration'
-import ExerciseGif from '@/components/ExerciseGif'
+import ExerciseGif, { EXERCISE_GIFS } from '@/components/ExerciseGif'
 import FavoriteButton from '@/components/FavoriteButton'
 import PRInput from '@/components/PRInput'
 import ProgressionMap from '@/components/ProgressionMap'
@@ -198,13 +198,24 @@ export default async function ExercisePage({ params }: { params: Promise<{ slug:
                 <div className="mb-4">
                   <ExerciseGif slug={exercise.slug} />
                 </div>
-                {/* Schéma muscles */}
+                {/* GIF animé ou schéma muscles */}
                 <div className="flex justify-center mb-4 bg-[#0C0C1A] rounded-xl p-3">
-                  <MuscleIllustration
-                    primaires={exercise.musclesPrimaires}
-                    secondaires={exercise.musclesSecondaires}
-                    size={80}
-                  />
+                  {EXERCISE_GIFS[exercise.slug] ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={EXERCISE_GIFS[exercise.slug]}
+                      alt={`Animation ${exercise.nom}`}
+                      className="rounded-lg"
+                      style={{ width: 160, height: 160, objectFit: 'cover' }}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <MuscleIllustration
+                      primaires={exercise.musclesPrimaires}
+                      secondaires={exercise.musclesSecondaires}
+                      size={80}
+                    />
+                  )}
                 </div>
                 {musclePrincipal && (
                   <div className="mb-3">
