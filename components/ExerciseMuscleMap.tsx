@@ -24,9 +24,9 @@ const BACK_CLICKABLE  = ['upperBack','lowerBack','triceps','deltoids','trapezius
 const FRONT_STRUCT    = ['hands','knees','ankles','feet','tibialis']
 const BACK_STRUCT     = ['hands','ankles','feet']
 
-interface Props { slug: string; className?: string }
+interface Props { slug: string; className?: string; compact?: boolean; animated?: boolean }
 
-export default function ExerciseMuscleMap({ slug, className = '' }: Props) {
+export default function ExerciseMuscleMap({ slug, className = '', compact = false, animated = false }: Props) {
   const exercise = EXERCISES.find(e => e.slug === slug)
   const primary  = exercise?.musclesPrimaires ?? []
 
@@ -43,7 +43,10 @@ export default function ExerciseMuscleMap({ slug, className = '' }: Props) {
   const paths    = view === 'front' ? FRONT_PATHS : BACK_PATHS
   const clickable = view === 'front' ? FRONT_CLICKABLE : BACK_CLICKABLE
   const struct   = view === 'front' ? FRONT_STRUCT : BACK_STRUCT
-  const vb       = view === 'front' ? '0 95 727 1280' : '718 95 727 1280'
+  // compact: crop to body (head→thighs), ~1:1.1 ratio; full: 9/16
+  const vb = compact
+    ? (view === 'front' ? '60 180 607 680' : '778 180 607 680')
+    : (view === 'front' ? '0 95 727 1280'  : '718 95 727 1280')
   const x0       = view === 'front' ? 0 : 718
   const W        = 727
 
@@ -53,7 +56,7 @@ export default function ExerciseMuscleMap({ slug, className = '' }: Props) {
   return (
     <div
       className={`relative w-full overflow-hidden rounded-xl flex items-center justify-center ${className}`}
-      style={{ aspectRatio: '9/16' }}
+      style={{ aspectRatio: compact ? '607/680' : '9/16' }}
     >
       <svg viewBox={vb} style={{ height: '100%', width: 'auto' }} xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -194,7 +197,16 @@ export default function ExerciseMuscleMap({ slug, className = '' }: Props) {
         </g>
 
         {/* Muscles ciblés rouges 3D + glow */}
-        <g fill="#E63946" filter="url(#emm-fr)">
+        {animated && (
+          <style>{`
+            @keyframes emm-red-pulse {
+              0%, 100% { opacity: 1; }
+              50% { opacity: 0.55; filter: url(#emm-fr) drop-shadow(0 0 18px rgba(230,57,70,0.9)); }
+            }
+            .emm-animated { animation: emm-red-pulse 1.8s ease-in-out infinite; }
+          `}</style>
+        )}
+        <g fill="#E63946" filter="url(#emm-fr)" className={animated ? 'emm-animated' : ''}>
           {redKeys.map(key => {
             const item = paths[key]; if (!item) return null
             return <g key={key}>{item.paths.map((d, i) => <path key={i} d={d}/>)}</g>
