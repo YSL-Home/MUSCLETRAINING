@@ -148,25 +148,7 @@ export default function ExerciseGif({ slug, className = '' }: ExerciseGifProps) 
   const aiSrc = (AI_IMAGES as Record<string, string | null>)[slug]
   const gifSrc = EXERCISE_GIFS[slug]
 
-  // 1. Photo IA Imagen 4 Ultra (si disponible)
-  if (aiSrc) {
-    return (
-      <div
-        className={`relative w-full overflow-hidden rounded-xl ${className}`}
-        style={{ aspectRatio: '9/16', background: '#0a0a14' }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={aiSrc}
-          alt={slug.replace(/-/g, ' ')}
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
-      </div>
-    )
-  }
-
-  // 2. GIF animé GitHub DB — fond "spotlight gym" crème → noir
+  // 1. GIF animé GitHub DB — priorité absolue (mouvement visible)
   if (gifSrc) {
     return (
       <div
@@ -212,6 +194,24 @@ export default function ExerciseGif({ slug, className = '' }: ExerciseGifProps) 
             position: 'relative',
             zIndex: 2,
           }}
+          loading="lazy"
+        />
+      </div>
+    )
+  }
+
+  // 2. Photo IA Imagen 4 Ultra (fallback si pas de GIF)
+  if (aiSrc) {
+    return (
+      <div
+        className={`relative w-full overflow-hidden rounded-xl ${className}`}
+        style={{ aspectRatio: '9/16', background: '#0a0a14' }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={aiSrc}
+          alt={slug.replace(/-/g, ' ')}
+          className="w-full h-full object-cover"
           loading="lazy"
         />
       </div>
