@@ -1,5 +1,94 @@
 [
   {
+    "categorie": "Programmes",
+    "contenu": [
+      {
+        "content": "Introduction au challenge 30 jours au poids du corps",
+        "type": "h2"
+      },
+      {
+        "content": "Le challenge 30 jours au poids du corps est un programme de fitness complet qui te permet de transformer ton corps en un mois. Ce programme est basé sur des exercices au poids du corps qui peuvent être réalisés n'importe où, sans équipement spécialisé. Les exercices au poids du corps sont excellents pour améliorer la force, la souplesse et l'équilibre.",
+        "type": "p"
+      },
+      {
+        "content": "Avantages du challenge 30 jours au poids du corps",
+        "type": "h2"
+      },
+      {
+        "content": [
+          "Amélioration de la force et de la souplesse",
+          "Perte de poids et amélioration de la composition corporelle",
+          "Meilleure coordination et équilibre",
+          "Augmentation de la confiance en soi",
+          "Programme gratuit et adaptable à tous les niveaux"
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Exercices du challenge 30 jours au poids du corps",
+        "type": "h2"
+      },
+      {
+        "content": "Voici quelques-uns des exercices que tu réaliseras pendant le challenge 30 jours au poids du corps :",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Pompes",
+          "Triceps dips (en utilisant une chaise ou un banc)",
+          "Squats",
+          "Lunges",
+          "Planche",
+          "Abdominaux"
+        ],
+        "type": "ol"
+      },
+      {
+        "content": "N'oublie pas de bien échauffer avant de commencer les exercices et de prendre des pauses régulières pour éviter les blessures.",
+        "type": "tip"
+      },
+      {
+        "content": "Conseils pour réussir le challenge 30 jours au poids du corps",
+        "type": "h2"
+      },
+      {
+        "content": "Pour réussir le challenge 30 jours au poids du corps, il est important de rester motivé et de suivre quelques conseils simples :",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Crée un emploi du temps et respecte-le",
+          "Trouve un partenaire de travail pour t'aider à rester motivé",
+          "Écoute ton corps et prends des pauses lorsque nécessaire",
+          "Hydrate-toi suffisamment et mange des aliments équilibrés"
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Conclusion",
+        "type": "h2"
+      },
+      {
+        "content": "Le challenge 30 jours au poids du corps est un programme de fitness complet et gratuit qui peut t'aider à transformer ton corps en un mois. En suivant les exercices et les conseils proposés, tu pourras améliorer ta force, ta souplesse et ta confiance en toi. Alors, qu'est-ce que tu attends ? Lance-toi dans le challenge 30 jours au poids du corps et vois les résultats pour toi-même !",
+        "type": "p"
+      }
+    ],
+    "datePublication": "2026-07-13",
+    "description": "Découvre comment transformer ton corps en 30 jours avec des exercices au poids du corps. Un programme complet pour améliorer ta force et ta souplesse.",
+    "descriptionSeo": "Challenge 30 jours au poids du corps pour transformer ton corps. Exercices pour améliorer la force et la souplesse. Programme complet et gratuit.",
+    "image": "/blog/challenge-30-jours-au-poids-du-corps.jpg",
+    "slug": "challenge-30-jours-au-poids-du-corps",
+    "tags": [
+      "musculation",
+      "poids du corps",
+      "challenge 30 jours",
+      "exercices gratuits",
+      "programme de fitness"
+    ],
+    "tempsLecture": 8,
+    "titre": "Transforme ton corps en 30 jours avec le challenge au poids du corps"
+  },
+  {
     "categorie": "Technique",
     "contenu": [
       {
