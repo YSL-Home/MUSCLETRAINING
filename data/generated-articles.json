@@ -1,5 +1,91 @@
 [
   {
+    "categorie": "Conseils",
+    "contenu": [
+      {
+        "content": "Introduction à la Prise de Masse et à la Sèche",
+        "type": "h2"
+      },
+      {
+        "content": "La prise de masse et la sèche sont deux approches différentes pour atteindre des objectifs de musculation. La prise de masse consiste à augmenter la quantité de muscles dans ton corps, tandis que la sèche vise à réduire la quantité de graisse corporelle tout en maintenant ou en augmentant la masse musculaire.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "La prise de masse est idéale pour les personnes qui veulent augmenter leur masse musculaire et améliorer leur force.",
+          "La sèche est idéale pour les personnes qui veulent réduire leur pourcentage de graisse corporelle et améliorer leur définition musculaire."
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Comment Choisir entre Prise de Masse et Sèche",
+        "type": "h2"
+      },
+      {
+        "content": "Pour choisir entre la prise de masse et la sèche, il est important de définir tes objectifs de musculation. Si tu veux augmenter ta masse musculaire, la prise de masse est probablement la meilleure approche. Si tu veux réduire ton pourcentage de graisse corporelle, la sèche est probablement la meilleure approche.",
+        "type": "p"
+      },
+      {
+        "content": "Il est important de noter que la prise de masse et la sèche ne sont pas mutuellement exclusives. Il est possible de combiner les deux approches pour atteindre des objectifs spécifiques.",
+        "type": "tip"
+      },
+      {
+        "content": "Les Bases de la Prise de Masse",
+        "type": "h2"
+      },
+      {
+        "content": "La prise de masse nécessite une alimentation riche en calories et en protéines pour soutenir la croissance musculaire. Il est également important de suivre un programme d'entraînement régulier pour stimuler la croissance musculaire.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Augmente ta consommation de calories pour soutenir la croissance musculaire.",
+          "Consomme suffisamment de protéines pour soutenir la synthèse des protéines musculaires.",
+          "Suivi un programme d'entraînement régulier pour stimuler la croissance musculaire."
+        ],
+        "type": "ol"
+      },
+      {
+        "content": "Les Bases de la Sèche",
+        "type": "h2"
+      },
+      {
+        "content": "La sèche nécessite une alimentation équilibrée et une réduction de la consommation de calories pour favoriser la perte de graisse. Il est également important de suivre un programme d'entraînement régulier pour maintenir la masse musculaire.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Réduise ta consommation de calories pour favoriser la perte de graisse.",
+          "Consomme suffisamment de protéines pour maintenir la masse musculaire.",
+          "Suivi un programme d'entraînement régulier pour maintenir la masse musculaire."
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Conclusion",
+        "type": "h2"
+      },
+      {
+        "content": "En résumé, la prise de masse et la sèche sont deux approches différentes pour atteindre des objectifs de musculation. Il est important de définir tes objectifs et de choisir la meilleure approche pour atteindre tes objectifs. N'oublie pas de consulter un professionnel de la santé avant de commencer tout programme de musculation.",
+        "type": "p"
+      }
+    ],
+    "datePublication": "2026-07-17",
+    "description": "Découvre les différences entre prise de masse et sèche, et apprends à choisir la meilleure approche pour atteindre tes objectifs de musculation.",
+    "descriptionSeo": "Prise de masse ou sèche ? Apprenez à choisir la bonne stratégie pour votre programme de musculation et atteindre vos objectifs de masse musculaire ou de perte de graisse.",
+    "image": "/blog/prise-de-masse-vs-seche.jpg",
+    "slug": "prise-de-masse-vs-seche",
+    "tags": [
+      "musculations",
+      "prise-de-masse",
+      "seche",
+      "objectifs",
+      "musculation"
+    ],
+    "tempsLecture": 8,
+    "titre": "Prise de Masse vs Sèche : Comment Choisir pour Tes Objectifs"
+  },
+  {
     "categorie": "Technique",
     "contenu": [
       {
