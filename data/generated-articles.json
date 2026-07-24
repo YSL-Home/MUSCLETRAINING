@@ -1,5 +1,84 @@
 [
   {
+    "categorie": "Conseils",
+    "contenu": [
+      {
+        "content": "Introduction à l'Échauffement en Musculation",
+        "type": "h2"
+      },
+      {
+        "content": "L'échauffement est souvent considéré comme une étape secondaire dans la préparation d'une séance de musculation. Cependant, il joue un rôle crucial dans la prévention des blessures, l'amélioration de la performance et la récupération. Un bon échauffement doit être ciblé, scientifique et adapté à tes objectifs de musculation.",
+        "type": "p"
+      },
+      {
+        "content": "Les Bases de l'Échauffement",
+        "type": "h2"
+      },
+      {
+        "content": "Un échauffement efficace commence par une compréhension des principes de base. Il doit inclure des exercices cardiovasculaires légers pour augmenter la température corporelle et des étirements dynamiques pour améliorer la flexibilité et la mobilité articulaire.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Marche sur place ou jogging léger",
+          "Étirements dynamiques des principaux groupes musculaires (jambes, bras, dos, épaules)",
+          "Mouvements de mobilité articulaire (genoux, hanches, épaules)"
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Conseils pour un Échauffement Efficace",
+        "type": "h2"
+      },
+      {
+        "content": "Pour maximiser l'efficacité de ton échauffement, il est essentiel de le personnaliser en fonction de tes objectifs et de tes besoins spécifiques. Par exemple, si tu te prépares pour une séance de musculation intense, tu devras peut-être ajouter des exercices de renforcement du core ou des étirements plus ciblés pour les muscles que tu vas solliciter.",
+        "type": "p"
+      },
+      {
+        "content": "N'oublie pas de boire suffisamment d'eau avant, pendant et après l'échauffement pour rester hydraté et performer au mieux.",
+        "type": "tip"
+      },
+      {
+        "content": "Exemples d'Échauffement pour Différents Objectifs",
+        "type": "h2"
+      },
+      {
+        "content": [
+          "Pour la musculation des jambes : marches sur place, étirements des ischio-jambiers, mouvements de flexion et d'extension du genou",
+          "Pour la musculation du haut du corps : rotations des épaules, étirements des pectoraux, mouvements de flexion et d'extension du coude",
+          "Pour une séance de cardio : jogging léger, sauts à la corde, étirements des muscles des jambes et des hanches"
+        ],
+        "type": "ol"
+      },
+      {
+        "content": "Conclusion et Astuces pour une Meilleure Performance",
+        "type": "h2"
+      },
+      {
+        "content": "En résumé, un échauffement parfait avant une séance de musculation est essentiel pour améliorer la performance, prévenir les blessures et favoriser la récupération. En personnalisant ton échauffement, en restant hydraté et en intégrant des exercices ciblés, tu seras en mesure de booster tes séances de musculation et d'atteindre tes objectifs plus rapidement.",
+        "type": "p"
+      },
+      {
+        "content": "N'oublie jamais d'écouter ton corps et de ne pas pousser trop fort, especialmente si tu es débutant. La sécurité et la santé doivent toujours être prioritaires.",
+        "type": "warning"
+      }
+    ],
+    "datePublication": "2026-07-24",
+    "description": "Apprends à préparer ton corps pour une séance de musculation efficace avec un échauffement ciblé et scientifique.",
+    "descriptionSeo": "Découvre les meilleures techniques d'échauffement pour la musculation, améliore ta flexibilité et réduit les risques de blessures.",
+    "image": "/blog/echauffement-parfait-avant-musculation.jpg",
+    "slug": "echauffement-parfait-avant-musculation",
+    "tags": [
+      "echauffement",
+      "musculation",
+      "preparation",
+      "performance",
+      "sante"
+    ],
+    "tempsLecture": 8,
+    "titre": "L'Échauffement Parfait avant une Séance de Musculation : Booste tes Performances"
+  },
+  {
     "categorie": "Nutrition",
     "contenu": [
       {
