@@ -1,0 +1,48 @@
+name: Enrich Exercise Intros
+
+on:
+  workflow_dispatch:
+    inputs:
+      batch:
+        description: 'Nombre d''exercices à traiter (défaut: 10)'
+        default: '10'
+      slug:
+        description: 'Slug d''un exercice précis (optionnel)'
+        default: ''
+  schedule:
+    # Chaque lundi à 06h00 UTC — traite 10 exercices/semaine jusqu'à complétion des 88
+    - cron: '0 6 * * 1'
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Générer les introductions
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          CF_AI_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          ARGS="--batch ${{ github.event.inputs.batch || '10' }}"
+          if [ -n "${{ github.event.inputs.slug }}" ]; then
+            ARGS="$ARGS --slug ${{ github.event.inputs.slug }}"
+          fi
+          node scripts/enrich-exercises.mjs $ARGS
+
+      - name: Commit & push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/exercise-intros.json
+          git diff --cached --quiet && echo "Rien à committer" && exit 0
+          git commit -m "chore: enrich exercise intros (batch automatique)"
+          git push

@@ -86,7 +86,7 @@ Réponds UNIQUEMENT avec un objet JSON valide (aucun texte autour) respectant EX
   "tags": string[] (3-6 tags pertinents en minuscule),
   "contenu": Section[] où Section = { "type": "h2"|"h3"|"p"|"ul"|"ol"|"tip"|"warning", "content": string | string[] }
 }
-Règles contenu : 900-1400 mots, 4-6 sections h2, paragraphes denses et concrets, au moins 1 "ul"/"ol", au moins 1 "tip". Ton : expert, direct, tutoiement. Pas de blabla.`
+Règles contenu : 1500-2200 mots, 6-8 sections h2, paragraphes denses et concrets (minimum 120 mots chacun), au moins 2 "ul"/"ol", au moins 2 "tip", au moins 1 "warning". Ton : expert, direct, tutoiement. Pas de blabla. Le contenu doit être actionnable et unique — évite les généralités.`
 
 // ── Appels fournisseurs ──────────────────────────────
 async function viaCloudflare() {

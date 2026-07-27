@@ -17,6 +17,7 @@ import OneRMCalculator from '@/components/OneRMCalculator'
 import ExerciseNotes from '@/components/ExerciseNotes'
 import FocusMode from '@/components/FocusMode'
 import ShareButtons from '@/components/ShareButtons'
+import ExerciseIntro from '@/components/ExerciseIntro'
 import { getExerciseBySlug, EXERCISES } from '@/data/exercises'
 import { getMuscleById } from '@/data/muscles'
 import { exerciseSchema, breadcrumbSchema, aggregateRatingSchema, faqSchema } from '@/lib/schema'
@@ -139,6 +140,9 @@ export default async function ExercisePage({ params }: { params: Promise<{ slug:
               title={exercise.nom}
               compact
             />
+
+            {/* Introduction éditoriale enrichie */}
+            <ExerciseIntro slug={exercise.slug} />
 
             {/* Vidéo YouTube */}
             <div className="mb-10">
