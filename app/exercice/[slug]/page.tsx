@@ -12,6 +12,11 @@ import ProgressionMap from '@/components/ProgressionMap'
 import AffiliateRecommendations from '@/components/AffiliateRecommendations'
 import TelegramCTA from '@/components/TelegramCTA'
 import AdUnit, { AdSidebar } from '@/components/AdUnit'
+import RestTimer from '@/components/RestTimer'
+import OneRMCalculator from '@/components/OneRMCalculator'
+import ExerciseNotes from '@/components/ExerciseNotes'
+import FocusMode from '@/components/FocusMode'
+import ShareButtons from '@/components/ShareButtons'
 import { getExerciseBySlug, EXERCISES } from '@/data/exercises'
 import { getMuscleById } from '@/data/muscles'
 import { exerciseSchema, breadcrumbSchema, aggregateRatingSchema, faqSchema } from '@/lib/schema'
@@ -126,7 +131,14 @@ export default async function ExercisePage({ params }: { params: Promise<{ slug:
               </span>
             </div>
 
-            <p className="text-[#8A9BB5] text-lg leading-relaxed mb-8">{exercise.descriptionCourte}</p>
+            <p className="text-[#8A9BB5] text-lg leading-relaxed mb-6">{exercise.descriptionCourte}</p>
+
+            {/* Partage */}
+            <ShareButtons
+              url={`https://www.muscletraining.uk/exercice/${exercise.slug}`}
+              title={exercise.nom}
+              compact
+            />
 
             {/* Vidéo YouTube */}
             <div className="mb-10">
@@ -228,6 +240,18 @@ export default async function ExercisePage({ params }: { params: Promise<{ slug:
 
               {/* Record perso (PR) */}
               <PRInput slug={exercise.slug} nom={exercise.nom} />
+
+              {/* Calculateur 1RM */}
+              <OneRMCalculator slug={exercise.slug} />
+
+              {/* Timer de repos */}
+              <RestTimer defaultSeconds={exercise.tempsRepos} />
+
+              {/* Mode séance focus */}
+              <FocusMode nom={exercise.nom} tempsRepos={exercise.tempsRepos} />
+
+              {/* Notes personnelles */}
+              <ExerciseNotes slug={exercise.slug} />
 
               {/* Annonce sidebar */}
               <AdSidebar slot={process.env.NEXT_PUBLIC_AD_SLOT_EX_SIDEBAR ?? ''} />

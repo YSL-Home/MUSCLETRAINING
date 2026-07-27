@@ -129,6 +129,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     ['/glossaire','Glossaire'],
                     ['/calculateurs','Calculateurs'],
                     ['/generateur','Générateur'],
+                    ['/nouveautes','Nouveautés'],
                     ['/blog','Blog'],
                   ].map(([href, label]) => (
                     <li key={href}><a href={href} className="text-sm transition-colors hover:text-[#E63946]" style={{ color: '#3A4152' }}>{label}</a></li>
