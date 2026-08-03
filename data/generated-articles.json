@@ -3,6 +3,112 @@
     "categorie": "Technique",
     "contenu": [
       {
+        "content": "Introduction au Pistol Squat",
+        "type": "h2"
+      },
+      {
+        "content": "Le pistol squat est un exercice avancé qui nécessite une grande force, flexibilité et équilibre. Il s’agit de réaliser un squat sur une jambe seule, en gardant l’autre jambe tendue devant soi. Cet exercice est idéal pour améliorer la force et la stabilité des jambes, ainsi que la flexibilité et la mobilité des hanches et des genoux.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Améliore la force et la puissance des jambes",
+          "Augmente la flexibilité et la mobilité des hanches et des genoux",
+          "Renforce les muscles du core et améliore l’équilibre"
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Prérequis pour le Pistol Squat",
+        "type": "h2"
+      },
+      {
+        "content": "Avant de commencer à travailler sur le pistol squat, il est important de posséder une certaine force et flexibilité dans les jambes et les hanches. Voici quelques prérequis à vérifier : une bonne maîtrise du squat classique, une flexibilité suffisante pour toucher les orteils et une force suffisante pour soulever son propre poids.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Squat classique : 10 répétitions avec un poids de 50 kg",
+          "Flexibilité : toucher les orteils avec les jambes tendues",
+          "Force : soulever son propre poids pendant 10 secondes"
+        ],
+        "type": "ol"
+      },
+      {
+        "content": "Progression pour le Pistol Squat",
+        "type": "h2"
+      },
+      {
+        "content": "La progression pour le pistol squat implique plusieurs étapes, allant du squat assisté au pistol squat complet. Voici les étapes à suivre : squat assisté avec une barre ou un mur, squat sur une jambe avec l’autre jambe appuyée sur un banc ou un tabouret, pistol squat avec l’aide d’un partenaire ou d’un élastique et enfin, pistol squat sans aide.",
+        "type": "p"
+      },
+      {
+        "content": "Il est important de commencer avec des étapes plus faciles et de progresser graduellement pour éviter les blessures et améliorer la technique.",
+        "type": "tip"
+      },
+      {
+        "content": "Conseils pour Améliorer la Technique",
+        "type": "h2"
+      },
+      {
+        "content": "Pour améliorer la technique du pistol squat, il est important de se concentrer sur la position des pieds, la stabilité du corps et la synchronisation des mouvements. Voici quelques conseils : garder les pieds parallèles et les orteils pointés vers l’avant, maintenir une position verticale du corps et synchroniser les mouvements des jambes et des bras.",
+        "type": "p"
+      },
+      {
+        "content": "Il est important de ne pas négliger la sécurité et de s’assurer que le sol est suffisamment large et stable pour éviter les chutes et les blessures.",
+        "type": "warning"
+      },
+      {
+        "content": "Exercices Complémentaires pour le Pistol Squat",
+        "type": "h2"
+      },
+      {
+        "content": "Il existe plusieurs exercices complémentaires qui peuvent aider à améliorer la force et la flexibilité nécessaires pour le pistol squat. Voici quelques exemples : squat classique, lunge, step-up, calf raise et hamstring curl.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Squat classique : 3 séries de 10 répétitions",
+          "Lunge : 3 séries de 10 répétitions par jambe",
+          "Step-up : 3 séries de 10 répétitions par jambe",
+          "Calf raise : 3 séries de 15 répétitions",
+          "Hamstring curl : 3 séries de 10 répétitions"
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Conclusion",
+        "type": "h2"
+      },
+      {
+        "content": "Le pistol squat est un exercice avancé qui nécessite une grande force, flexibilité et équilibre. En suivant les étapes de progression et les conseils de technique, vous pouvez améliorer votre force et votre flexibilité et réaliser un pistol squat sécuritaire et efficace. N’oubliez pas de toujours vous échauffer avant de commencer et de vous étirer après l’exercice pour éviter les blessures.",
+        "type": "p"
+      },
+      {
+        "content": "Il est important de rester patient et persévérant, car la maîtrise du pistol squat prend du temps et de la pratique.",
+        "type": "tip"
+      }
+    ],
+    "datePublication": "2026-08-03",
+    "description": "Apprends à réaliser un pistol squat avec une progression efficace et sécuritaire. Améliore ta force et ta flexibilité avec ces conseils d'experts.",
+    "descriptionSeo": "Découvre la méthode de progression pour maîtriser le pistol squat. Améliore ta musculation avec des exercices ciblés et des conseils de professionnels.",
+    "image": "/blog/pistol-squat-progression.jpg",
+    "slug": "pistol-squat-progression",
+    "tags": [
+      "pistol-squat",
+      "pistol squat",
+      "musculation",
+      "flexibilité",
+      "force",
+      "exercices"
+    ],
+    "tempsLecture": 8,
+    "titre": "Maîtrise le Pistol Squat : La Progression pour Y Arriver"
+  },
+  {
+    "categorie": "Technique",
+    "contenu": [
+      {
         "content": "Introduction aux tractions : pourquoi et comment commencer",
         "type": "h2"
       },
