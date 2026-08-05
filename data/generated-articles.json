@@ -3,6 +3,92 @@
     "categorie": "Technique",
     "contenu": [
       {
+        "content": "Introduction au gainage et à la planche",
+        "type": "h2"
+      },
+      {
+        "content": "Le gainage est une technique essentielle en musculation qui consiste à engager les muscles du core pour stabiliser le corps et maintenir une bonne posture. La planche est un exercice fondamental pour renforcer les abdos et améliorer le gainage. Dans cet article, nous allons explorer les secrets de la planche pour des abdos en béton et un gainage efficace.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Renforcement des abdos",
+          "Amélioration de la posture",
+          "Prévention des blessures",
+          "Meilleure stabilité et équilibre"
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Les bienfaits de la planche pour les abdos",
+        "type": "h2"
+      },
+      {
+        "content": "La planche est un exercice polyarticulaire qui sollicite plusieurs groupes musculaires, notamment les abdos, les obliques et les muscles du dos. En faisant la planche régulièrement, vous pouvez renforcer vos abdos et améliorer votre gainage. Cela peut également aider à prévenir les blessures et à améliorer votre posture.",
+        "type": "p"
+      },
+      {
+        "content": "Pour maximiser les bienfaits de la planche, assurez-vous de maintenir une bonne posture et de contracter vos abdos pendant tout l'exercice.",
+        "type": "tip"
+      },
+      {
+        "content": "Comment faire la planche correctement",
+        "type": "h2"
+      },
+      {
+        "content": [
+          "Commencez par vous mettre en position de planche, avec les mains écartées de la largeur des épaules et les pieds écartés de la largeur des hanches",
+          "Contractez vos abdos et vos muscles du dos pour maintenir une bonne posture",
+          "Maintenez la position pendant 30 à 60 secondes, en respirant normalement",
+          "Répétez l'exercice 3 à 5 fois, en augmentant progressivement la durée"
+        ],
+        "type": "ol"
+      },
+      {
+        "content": "N'oubliez pas de écouter votre corps et de ne pas forcer si vous ressentez des douleurs ou des désagréments. La planche peut être un exercice intense, il est donc important de bien vous échauffer avant de commencer.",
+        "type": "warning"
+      },
+      {
+        "content": "Variations de la planche pour des abdos en béton",
+        "type": "h2"
+      },
+      {
+        "content": "Il existe plusieurs variations de la planche qui peuvent aider à cibler différents groupes musculaires et à améliorer le gainage. Voici quelques exemples : la planche inclinée, la planche déclinée, la planche avec levée de jambe, etc.",
+        "type": "p"
+      },
+      {
+        "content": "Essayez de varier vos exercices de planche pour éviter la routine et maintenir votre motivation. Vous pouvez également essayer de combiner la planche avec d'autres exercices pour créer un programme de musculation complet.",
+        "type": "tip"
+      },
+      {
+        "content": "Conclusion et conseils pour des abdos en béton",
+        "type": "h2"
+      },
+      {
+        "content": "La planche est un exercice fondamental pour renforcer les abdos et améliorer le gainage. En suivant les conseils et les astuces présentés dans cet article, vous pouvez améliorer votre posture, prévenir les blessures et développer des abdos en béton. N'oubliez pas de bien vous échauffer avant de commencer et de écouter votre corps pour éviter les blessures.",
+        "type": "p"
+      }
+    ],
+    "datePublication": "2026-08-05",
+    "description": "Découvre les secrets de la planche pour renforcer tes abdos et améliorer ton gainage. Un guide complet pour des abdos en béton.",
+    "descriptionSeo": "Apprends à faire la planche pour des abdos solides et un gainage efficace. Conseils et astuces pour améliorer ta posture et prévenir les blessures.",
+    "image": "/blog/gainage-planche-abdos-bebeton.jpg",
+    "slug": "gainage-planche-abdos-bebeton",
+    "tags": [
+      "planche",
+      "gainage",
+      "abdos",
+      "musculation",
+      "posture",
+      "blessures"
+    ],
+    "tempsLecture": 8,
+    "titre": "Gainage : la planche pour des abdos en béton"
+  },
+  {
+    "categorie": "Technique",
+    "contenu": [
+      {
         "content": "Introduction au Pistol Squat",
         "type": "h2"
       },
