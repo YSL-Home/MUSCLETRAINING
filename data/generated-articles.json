@@ -1,5 +1,88 @@
 [
   {
+    "categorie": "Programmes",
+    "contenu": [
+      {
+        "content": "Introduction au challenge 30 jours au poids du corps",
+        "type": "h2"
+      },
+      {
+        "content": "Le challenge 30 jours au poids du corps est un programme de musculation qui te permet de transformer ton corps en un mois. Ce programme est conçu pour les hommes et les femmes de tous niveaux, du débutant au plus avancé. Les exercices au poids du corps sont une excellente façon de se muscler sans équipement, et peuvent être faits n'importe où. Dans cet article, nous allons te présenter un programme complet de 30 jours pour te aider à atteindre tes objectifs de fitness.",
+        "type": "p"
+      },
+      {
+        "content": "Avantages du challenge 30 jours au poids du corps",
+        "type": "h2"
+      },
+      {
+        "content": [
+          "Amélioration de la force et de l'endurance",
+          "Perte de poids et réduction de la graisse corporelle",
+          "Amélioration de la flexibilité et de la mobilité",
+          "Renforcement des os et des articulations",
+          "Amélioration de la confiance en soi et de l'estime de soi"
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Les exercices au poids du corps sont une excellente façon de se muscler sans équipement. Ils sont également très efficaces pour améliorer la force et l'endurance. De plus, les exercices au poids du corps peuvent être faits n'importe où, ce qui les rend parfaits pour les personnes qui ont des horaires chargés ou qui n'ont pas accès à une salle de sport.",
+        "type": "p"
+      },
+      {
+        "content": "Programme de 30 jours",
+        "type": "h2"
+      },
+      {
+        "content": [
+          "Semaine 1 : Exercices de base (fentes, pompes, planches, etc.)",
+          "Semaine 2 : Exercices de force (burpees, jump squats, etc.)",
+          "Semaine 3 : Exercices de cardio (sauts à la corde, course à pied, etc.)",
+          "Semaine 4 : Exercices de renforcement (exercices de force avec des variantes)"
+        ],
+        "type": "ol"
+      },
+      {
+        "content": "Il est important de commencer doucement et de progresser graduellement. N'oublie pas de t'échauffer avant de commencer les exercices et de t'étirer après.",
+        "type": "tip"
+      },
+      {
+        "content": "Conseils pour réussir le challenge 30 jours au poids du corps",
+        "type": "h2"
+      },
+      {
+        "content": "Pour réussir le challenge 30 jours au poids du corps, il est important de rester motivé et de ne pas abandonner. Voici quelques conseils pour t'aider à atteindre tes objectifs : reste hydraté, mange des aliments sains, dors suffisamment, et trouve un partenaire de travail pour te motiver.",
+        "type": "p"
+      },
+      {
+        "content": "Il est important de consulter un médecin avant de commencer tout programme de musculation, especialmente si tu as des problèmes de santé ou des blessures. Il est également important de écouter ton corps et de ne pas pousser trop fort, pour éviter les blessures.",
+        "type": "warning"
+      },
+      {
+        "content": "Conclusion",
+        "type": "h2"
+      },
+      {
+        "content": "Le challenge 30 jours au poids du corps est un programme de musculation qui peut t'aider à transformer ton corps en un mois. Avec des exercices au poids du corps, tu peux améliorer ta force, ta flexibilité et ta confiance en soi. N'oublie pas de rester motivé, de manger des aliments sains et de dormir suffisamment pour atteindre tes objectifs. Bonne chance !",
+        "type": "p"
+      }
+    ],
+    "datePublication": "2026-08-07",
+    "description": "Découvre comment transformer ton corps en 30 jours avec des exercices au poids du corps. Un programme complet pour une silhouette tonique et forte.",
+    "descriptionSeo": "Challenge 30 jours au poids du corps pour transformer ton corps. Exercices de musculation pour hommes et femmes. Programme de fitness pour une silhouette tonique.",
+    "image": "/blog/challenge-30-jours-au-poids-du-corps-k4oz.jpg",
+    "slug": "challenge-30-jours-au-poids-du-corps-k4oz",
+    "tags": [
+      "musculation",
+      "poids du corps",
+      "challenge 30 jours",
+      "fitness",
+      "programme de musculation",
+      "exercices de force"
+    ],
+    "tempsLecture": 8,
+    "titre": "Transforme ton corps en 30 jours avec le challenge au poids du corps"
+  },
+  {
     "categorie": "Technique",
     "contenu": [
       {
