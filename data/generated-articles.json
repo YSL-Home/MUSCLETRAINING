@@ -1,5 +1,110 @@
 [
   {
+    "categorie": "Technique",
+    "contenu": [
+      {
+        "content": "Introduction : pourquoi le développé couché est-il si important ?",
+        "type": "h2"
+      },
+      {
+        "content": "Le développé couché est l'un des exercices les plus populaires et les plus efficaces pour développer la force et la puissance de la poitrine, des épaules et des triceps. Cependant, de nombreuses personnes commettent des erreurs qui freinent leur progression et les empêchent de réaliser leur plein potentiel. Dans cet article, nous allons explorer les erreurs les plus courantes qui ruinent ta progression au développé couché et te donner des conseils pour les éviter.",
+        "type": "p"
+      },
+      {
+        "content": "Erreur n°1 : une mauvaise position sur le banc",
+        "type": "h2"
+      },
+      {
+        "content": "La position sur le banc est essentielle pour un développé couché efficace. Si tu es trop haut ou trop bas sur le banc, tu peux perdre de la force et de la stabilité, ce qui peut entraîner des blessures. Assure-toi de bien positionner tes pieds et tes épaules sur le banc pour avoir une base solide et stable.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Place tes pieds à plat sur le sol ou sur un repose-pieds",
+          "Assure-toi que tes épaules sont bien positionnées sur le banc",
+          "Garde tes genoux pliés à 90 degrés pour éviter de trop étirer tes ischio-jambiers"
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Erreur n°2 : une mauvaise technique de levage",
+        "type": "h2"
+      },
+      {
+        "content": "La technique de levage est cruciale pour un développé couché efficace. Si tu leves la barre trop vite ou trop lentement, tu peux perdre de la force et de la contrôle. Assure-toi de lever la barre de manière explosive et contrôlée, en utilisant tes jambes et tes hanches pour générer de la force.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Commence par prendre la barre avec une prise large et ferme",
+          "Expire et plie tes coudes pour abaisser la barre vers ta poitrine",
+          "Pousse la barre vers le haut en utilisant tes jambes et tes hanches",
+          "Étire tes bras et tes épaules pour terminer le mouvement"
+        ],
+        "type": "ol"
+      },
+      {
+        "content": "N'oublie pas de respirer correctement pendant le mouvement. Expire pendant la phase descendante et inspire pendant la phase ascendante.",
+        "type": "tip"
+      },
+      {
+        "content": "Erreur n°3 : un poids trop lourd ou trop léger",
+        "type": "h2"
+      },
+      {
+        "content": "Le poids que tu utilises pour le développé couché est crucial pour ta progression. Si tu utilises un poids trop lourd, tu peux te blesser ou perdre de la technique. Si tu utilises un poids trop léger, tu ne pourras pas développer suffisamment de force. Assure-toi de choisir un poids qui te permet de réaliser le mouvement avec une technique parfaite et une intensité suffisante.",
+        "type": "p"
+      },
+      {
+        "content": "N'essaie pas de lever un poids trop lourd pour impressionner tes amis ou tes pairs. La sécurité et la technique doivent toujours être prioritaires.",
+        "type": "warning"
+      },
+      {
+        "content": "Erreur n°4 : une mauvaise programmation d'entraînement",
+        "type": "h2"
+      },
+      {
+        "content": "La programmation d'entraînement est essentielle pour ta progression au développé couché. Si tu ne varies pas suffisamment ton entraînement, tu peux te heurter à un plateau et perdre de la motivation. Assure-toi de varier tes entraînements en changeant les poids, les répétitions et les exercices pour continuer à progresser.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Varie les poids et les répétitions pour éviter les plateaux",
+          "Incorpore des exercices de renforcement pour améliorer ta technique",
+          "Prends des jours de repos pour permettre à tes muscles de se récupérer"
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Conclusion : comment éviter les erreurs et progresser au développé couché",
+        "type": "h2"
+      },
+      {
+        "content": "Le développé couché est un exercice complexe qui nécessite une technique parfaite, une intensité suffisante et une programmation d'entraînement efficace. En évitant les erreurs courantes et en suivant les conseils présentés dans cet article, tu pourras améliorer ta technique, augmenter ta force et progresser au développé couché. N'oublie pas de toujours donner la priorité à la sécurité et à la technique, et de varier tes entraînements pour continuer à progresser.",
+        "type": "p"
+      },
+      {
+        "content": "N'hésite pas à demander l'aide d'un entraîneur ou d'un partenaire d'entraînement pour t'aider à améliorer ta technique et à progresser au développé couché.",
+        "type": "tip"
+      }
+    ],
+    "datePublication": "2026-08-12",
+    "description": "Découvrez les erreurs les plus courantes qui freinent ta progression au développé couché et apprenez à les corriger pour améliorer tes performances",
+    "descriptionSeo": "Évite les erreurs de technique et de programmation qui sabotent ta progression au développé couché. Apprends à développer une force et une puissance maximales",
+    "image": "/blog/erreurs-developpe-couche-9nig.jpg",
+    "slug": "erreurs-developpe-couche-9nig",
+    "tags": [
+      "developpe-couche-barre",
+      "developpe-couche",
+      "musculation",
+      "technique",
+      "erreur",
+      "progression"
+    ],
+    "tempsLecture": 8,
+    "titre": "Les erreurs qui ruinent ta progression au développé couché : comment les éviter"
+  },
+  {
     "categorie": "Conseils",
     "contenu": [
       {
