@@ -1,5 +1,85 @@
 [
   {
+    "categorie": "Technique",
+    "contenu": [
+      {
+        "content": "Introduction aux pompes",
+        "type": "h2"
+      },
+      {
+        "content": "Les pompes sont un exercice classique de musculation qui cible principalement les muscles du torse, ainsi que les épaules et les triceps. Cependant, pour obtenir des résultats optimaux et éviter les blessures, il est essentiel de maîtriser la technique de base. Commence par trouver une position stable avec les mains écartées à la largeur des épaules, les pieds joints et le corps en ligne droite de la tête aux talons.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Assure-toi que tes mains soient bien ancrées au sol pour une stabilité maximale.",
+          "Garde ton corps droit et ton ventre serré pour engager tes abdominaux.",
+          "Abaisse-toi lentement en pliant les coudes, en gardant les bras près du corps.",
+          "Pousse-toi vers le haut en étendant les bras, sans bloquer les coudes."
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Variantes de pompes pour une progression adaptée",
+        "type": "h2"
+      },
+      {
+        "content": "Une fois que tu as maîtrisé la pompe classique, il est temps de passer aux variantes pour augmenter l’intensité et cibler différents muscles. Les pompes inclinées, par exemple, mettent plus l’accent sur la partie supérieure du torse, tandis que les pompes déclinées ciblent la partie inférieure.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Pompes avec les pieds surélevés : Place tes pieds sur un banc ou une chaise pour augmenter la difficulté.",
+          "Pompes avec les mains rapprochées : Réduit la distance entre tes mains pour cibler davantage les triceps.",
+          "Pompes en diamant : Place tes mains plus près l’une de l’autre et forme un diamant avec tes doigts pour une variation plus intense."
+        ],
+        "type": "ol"
+      },
+      {
+        "content": "N’oublie pas de respirer naturellement pendant l’exercice. Inspire lorsque tu t’abaisse et expire lorsque tu te relèves.",
+        "type": "tip"
+      },
+      {
+        "content": "Conseils pour une progression efficace",
+        "type": "h2"
+      },
+      {
+        "content": "La progression dans les pompes est cruciale pour continuer à voir des améliorations dans ta force et ta musculature. Augmente progressivement le nombre de répétitions ou de séries à mesure que tu te sens plus à l’aise avec l’exercice. Tu peux également ajouter du poids à tes pompes en utilisant un harnais ou un gilet de musculation pour augmenter l’intensité.",
+        "type": "p"
+      },
+      {
+        "content": "Attention à ne pas sacrifier la forme pour le nombre de répétitions. Une mauvaise technique peut entraîner des blessures, notamment aux épaules et aux coudes.",
+        "type": "warning"
+      },
+      {
+        "content": "Intégration des pompes dans un programme d’entraînement",
+        "type": "h2"
+      },
+      {
+        "content": "Les pompes peuvent être intégrées dans différents types de programmes d’entraînement, que ce soit pour la force, l’endurance ou la musculature. Il est important de varier tes séances pour éviter la routine et maintenir la motivation. Alterne les jours de travail sur le torse avec d’autres groupes musculaires pour permettre une récupération adéquate.",
+        "type": "p"
+      },
+      {
+        "content": "N’hésite pas à consulter un professionnel de la musculation si tu as des questions ou des inquiétudes concernant ta technique ou ton programme d’entraînement.",
+        "type": "tip"
+      }
+    ],
+    "datePublication": "2026-08-26",
+    "description": "Apprends à maîtriser les pompes avec nos conseils et variantes pour un torse plus fort et plus sculpté.",
+    "descriptionSeo": "Découvrez les meilleures variantes de pompes et les méthodes de progression pour améliorer votre force et votre masse musculaire thoracique.",
+    "image": "/blog/maitriser-les-pompes-variantes-progression.jpg",
+    "slug": "maitriser-les-pompes-variantes-progression",
+    "tags": [
+      "pompes",
+      "musculation",
+      "torse",
+      "force",
+      "musculature"
+    ],
+    "tempsLecture": 8,
+    "titre": "Maîtriser les pompes : variantes et progression pour un torse puissant"
+  },
+  {
     "categorie": "Conseils",
     "contenu": [
       {
