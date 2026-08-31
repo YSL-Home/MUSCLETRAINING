@@ -1,5 +1,88 @@
 [
   {
+    "categorie": "Conseils",
+    "contenu": [
+      {
+        "content": "Introduction à la mobilité pour les pratiquants de musculation",
+        "type": "h2"
+      },
+      {
+        "content": "La mobilité est un aspect essentiel de la musculation, car elle permet d'améliorer la flexibilité, la souplesse et la qualité des mouvements. Les pratiquants de musculation qui négligent la mobilité peuvent rencontrer des problèmes de blessures, de douleurs et de performances diminuées. Dans cet article, nous allons explorer les bases de la mobilité pour les pratiquants de musculation et présenter une routine de mobilité spécialement conçue pour améliorer la flexibilité et la souplesse.",
+        "type": "p"
+      },
+      {
+        "content": "Les bénéfices de la mobilité pour les pratiquants de musculation",
+        "type": "h2"
+      },
+      {
+        "content": [
+          "Amélioration de la flexibilité et de la souplesse",
+          "Réduction du risque de blessures",
+          "Amélioration de la qualité des mouvements",
+          "Augmentation de la force et de la puissance",
+          "Meilleure récupération après l'entraînement"
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "La mobilité est essentielle pour les pratiquants de musculation, car elle permet de maintenir une bonne posture, de réduire les tensions musculaires et d'améliorer la qualité des mouvements. Les exercices de mobilité peuvent également aider à prévenir les blessures et à améliorer la récupération après l'entraînement.",
+        "type": "p"
+      },
+      {
+        "content": "La routine de mobilité pour les pratiquants de musculation",
+        "type": "h2"
+      },
+      {
+        "content": [
+          "Étirements des ischio-jambiers : 3 séries de 30 secondes par jambe",
+          "Étirements des quadriceps : 3 séries de 30 secondes par jambe",
+          "Étirements des hanches : 3 séries de 30 secondes par jambe",
+          "Étirements des épaules : 3 séries de 30 secondes par épaule",
+          "Étirements des poignets : 3 séries de 30 secondes par poignet"
+        ],
+        "type": "ol"
+      },
+      {
+        "content": "Il est important de bien écouter son corps et de ne pas forcer les étirements, car cela peut causer des blessures. Il est également recommandé de faire des étirements après l'entraînement, lorsque les muscles sont chauds et plus flexibles.",
+        "type": "tip"
+      },
+      {
+        "content": "Les erreurs à éviter lors de la pratique de la mobilité",
+        "type": "h2"
+      },
+      {
+        "content": "Il est important de ne pas faire des étirements de force, car cela peut causer des blessures. Il est également important de ne pas faire des étirements sans avoir bien chauffé les muscles, car cela peut également causer des blessures.",
+        "type": "warning"
+      },
+      {
+        "content": "La mobilité est un aspect essentiel de la musculation, et il est important de la pratiquer de manière régulière et consciencieuse. En suivant la routine de mobilité présentée dans cet article, vous pouvez améliorer votre flexibilité, votre souplesse et votre qualité de mouvement, et réduire le risque de blessures.",
+        "type": "p"
+      },
+      {
+        "content": "Conclusion",
+        "type": "h2"
+      },
+      {
+        "content": "La mobilité est un aspect essentiel de la musculation, et il est important de la pratiquer de manière régulière et consciencieuse. En suivant les conseils et la routine de mobilité présentés dans cet article, vous pouvez améliorer votre flexibilité, votre souplesse et votre qualité de mouvement, et réduire le risque de blessures. N'oubliez pas de bien écouter votre corps et de ne pas forcer les étirements, car cela peut causer des blessures.",
+        "type": "p"
+      }
+    ],
+    "datePublication": "2026-08-31",
+    "description": "Améliore ta flexibilité et ta mobilité avec notre routine spécialement conçue pour les pratiquants de musculation. Découvre les exercices et les conseils pour devenir plus souple.",
+    "descriptionSeo": "Routine de mobilité pour musculation, améliore ta flexibilité et ta souplesse avec des exercices spécifiques pour les pratiquants de musculation, conseils et astuces pour une meilleure mobilité",
+    "image": "/blog/devenir-plus-souple-routine-de-mobilite-w0mn.jpg",
+    "slug": "devenir-plus-souple-routine-de-mobilite-w0mn",
+    "tags": [
+      "mobilite",
+      "musculation",
+      "flexibilite",
+      "souplesse",
+      "exercices"
+    ],
+    "tempsLecture": 8,
+    "titre": "Devenir plus souple : la routine de mobilité ultime pour pratiquants de musculation"
+  },
+  {
     "categorie": "Technique",
     "contenu": [
       {
