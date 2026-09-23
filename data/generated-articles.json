@@ -3,6 +3,100 @@
     "categorie": "Technique",
     "contenu": [
       {
+        "content": "Introduction au Muscle-up : Comprendre les Bases",
+        "type": "h2"
+      },
+      {
+        "content": "Le muscle-up est un mouvement de musculation qui consiste à se hisser au-dessus d’une barre en utilisant uniquement les bras. C’est un exercice complet qui nécessite une combinaison de force, de technique et de condition physique. Avant de commencer, assure-toi d’avoir une bonne compréhension des bases : la position des mains, la flexion des coudes et l’extension des épaules.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Position des mains : les mains doivent être placées légèrement plus larges que les épaules, avec les paumes tournées vers l’arrière.",
+          "Flexion des coudes : les coudes doivent être fléchis à environ 90 degrés pour permettre une bonne extension des bras.",
+          "Extension des épaules : les épaules doivent être abaissées et les omoplates serrées pour maintenir une bonne posture."
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Étape 1 : Développer la Force Nécessaire",
+        "type": "h2"
+      },
+      {
+        "content": "Avant de tenter un muscle-up, il est essentiel de développer la force nécessaire. Cela implique de travailler les muscles des bras, des épaules et du dos. Les exercices tels que les tractions, les pompes et les extensions de bras sont excellents pour améliorer la force globale.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Traction : 3 séries de 8 à 12 répétitions",
+          "Pompes : 3 séries de 12 à 15 répétitions",
+          "Extensions de bras : 3 séries de 12 à 15 répétitions"
+        ],
+        "type": "ol"
+      },
+      {
+        "content": "N’oublie pas de varier tes exercices et de les adapter à ton niveau de force actuel. Il est préférable de commencer avec des poids plus légers et de progresser graduellement.",
+        "type": "tip"
+      },
+      {
+        "content": "Étape 2 : Améliorer la Technique",
+        "type": "h2"
+      },
+      {
+        "content": "Une fois que tu as développé la force nécessaire, il est temps de se concentrer sur la technique. La clé d’un muscle-up réussi est de maintenir une bonne posture et de coordonner les mouvements des bras et des épaules.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Maintenir une bonne posture : garde les épaules abaissées et les omoplates serrées.",
+          "Coordonner les mouvements : essaye de synchroniser les mouvements des bras et des épaules pour une transition fluide."
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "N’essaie pas de forcer le mouvement si tu ne te sens pas prêt. Un muscle-up mal exécuté peut entraîner des blessures, notamment aux épaules et aux bras.",
+        "type": "warning"
+      },
+      {
+        "content": "Étape 3 : Mettre en Pratique le Muscle-up",
+        "type": "h2"
+      },
+      {
+        "content": "Maintenant que tu as développé la force et amélioré la technique, il est temps de mettre en pratique le muscle-up. Commence par des essais avec une barre plus basse ou avec l’aide d’un partenaire pour te soutenir.",
+        "type": "p"
+      },
+      {
+        "content": "N’aie pas peur de l’échec. Chaque tentative, même si elle n’est pas réussie, t’aide à progresser et à améliorer ta technique.",
+        "type": "tip"
+      },
+      {
+        "content": "Conclusion : Persévère et Tu Réussiras",
+        "type": "h2"
+      },
+      {
+        "content": "Le muscle-up est un mouvement de musculation qui nécessite de la patience, de la persévérance et de la pratique. En suivant ces étapes et en restant motivé, tu seras capable de réaliser un muscle-up en un rien de temps. N’oublie pas de te concentrer sur la technique et de prendre soin de tes muscles pour éviter les blessures.",
+        "type": "p"
+      }
+    ],
+    "datePublication": "2026-09-23",
+    "description": "Apprends à réaliser un muscle-up avec notre guide de progression étape par étape. Améliore ta force et ta technique pour réussir ce mouvement emblématique.",
+    "descriptionSeo": "Découvre le guide ultime pour apprendre le muscle-up. Étapes progressives, conseils d'entraînement et astuces pour améliorer ta technique et réussir ce mouvement de musculation.",
+    "image": "/blog/muscle-up-guide-progression-etape-etape.jpg",
+    "slug": "muscle-up-guide-progression-etape-etape",
+    "tags": [
+      "muscle-up",
+      "musculation",
+      "technique",
+      "entraînement",
+      "force"
+    ],
+    "tempsLecture": 8,
+    "titre": "Maîtrise le Muscle-up : Le Guide de Progression Étape par Étape"
+  },
+  {
+    "categorie": "Technique",
+    "contenu": [
+      {
         "content": "Introduction aux dips : Pourquoi sont-ils importants ?",
         "type": "h2"
       },
