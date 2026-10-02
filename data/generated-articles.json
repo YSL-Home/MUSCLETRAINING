@@ -1,5 +1,111 @@
 [
   {
+    "categorie": "Programmes",
+    "contenu": [
+      {
+        "content": "Introduction : Pourquoi Choisir le Bon Programme ?",
+        "type": "h2"
+      },
+      {
+        "content": "Lorsque tu commences une routine de musculation, il est essentiel de choisir un programme qui correspond à ton niveau et à tes objectifs. Un programme mal adapté peut te mener à la frustration, aux blessures, ou simplement à l'échec de tes objectifs. Dans cet article, nous allons explorer les deux principaux types de programmes de musculation : full body et split, pour que tu puisses décider quel est le meilleur pour toi.",
+        "type": "p"
+      },
+      {
+        "content": "Qu'est-ce que le Full Body ?",
+        "type": "h2"
+      },
+      {
+        "content": "Le full body, comme son nom l'indique, consiste à travailler l'ensemble du corps en une seule séance d'entraînement. Cela signifie que tu vas effectuer des exercices qui ciblent différents groupes musculaires lors d'une même séance. Ce type de programme est idéal pour les débutants car il permet de développer une base solide et de comprendre comment fonctionne chaque muscle. De plus, le full body est excellent pour améliorer la condition physique générale et brûler des calories.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Avantages du full body pour les débutants :",
+          "Développement d'une base musculaire solide",
+          "Amélioration de la condition physique générale",
+          "Brûlage de calories efficace"
+        ],
+        "type": "ul"
+      },
+      {
+        "content": "Qu'est-ce que le Split ?",
+        "type": "h2"
+      },
+      {
+        "content": "Le split, au contraire, consiste à diviser ton entraînement en plusieurs jours, en ciblant des groupes musculaires spécifiques chaque jour. Par exemple, un jour pour les épaules et les triceps, un autre pour les jambes, etc. Ce type de programme est généralement recommandé pour les pratiquants plus avancés qui cherchent à développer des muscles plus spécifiques ou à améliorer leur forme physique de manière plus ciblée.",
+        "type": "p"
+      },
+      {
+        "content": [
+          "Exemple de programme split sur 4 jours :",
+          "Jour 1 : Poitrine et triceps",
+          "Jour 2 : Dos et biceps",
+          "Jour 3 : Jambes",
+          "Jour 4 : Épaules et abdominaux"
+        ],
+        "type": "ol"
+      },
+      {
+        "content": "Comment Choisir entre Full Body et Split ?",
+        "type": "h2"
+      },
+      {
+        "content": "La décision entre un programme full body et un programme split dépend de plusieurs facteurs, notamment de ton niveau de pratique, de tes objectifs, et de ton emploi du temps. Si tu es débutant, le full body est généralement une bonne option pour commencer. Si tu es plus avancé et que tu cherches à cibler des muscles spécifiques, le split pourrait être plus approprié.",
+        "type": "p"
+      },
+      {
+        "content": "N'oublie pas d'écouter ton corps et de t'adapter. Si tu trouves que ton programme actuel ne te convient pas, n'hésite pas à faire des ajustements ou à changer complètement de programme.",
+        "type": "tip"
+      },
+      {
+        "content": "Conseils pour les Débutants",
+        "type": "h2"
+      },
+      {
+        "content": "En tant que débutant, il est crucial de commencer avec des exercices de base qui travaillent plusieurs groupes musculaires à la fois. Les squats, les deadlifts, les bench press, et les rows sont des exemples d'exercices polyartculaires qui doivent figurer dans ton programme. N'oublie pas de commencer avec des poids légers et de progresser graduellement pour éviter les blessures.",
+        "type": "p"
+      },
+      {
+        "content": "Ne te lance pas dans des exercices trop intenses ou avec des poids trop lourds sans une bonne préparation. Les blessures musculaires ou articulaires peuvent être graves et te faire perdre du temps précieux.",
+        "type": "warning"
+      },
+      {
+        "content": "Conseils pour les Avancés",
+        "type": "h2"
+      },
+      {
+        "content": "Si tu es un pratiquant avancé, tu peux chercher à varier ton programme pour éviter le plateau et continuer à progresser. Cela peut inclure l'ajout de nouveaux exercices, l'augmentation du poids ou des répétitions, ou même l'expérimentation de méthodes d'entraînement différentes comme le HIIT (High-Intensity Interval Training) ou le travail en hypoxie.",
+        "type": "p"
+      },
+      {
+        "content": "N'oublie pas l'importance de la récupération. Même si tu es avancé, ton corps a besoin de temps pour se remettre des efforts intenses. Assure-toi de bien dormir, de manger équilibré, et de prendre des jours de repos actif lorsque nécessaire.",
+        "type": "tip"
+      },
+      {
+        "content": "Conclusion",
+        "type": "h2"
+      },
+      {
+        "content": "Choisir entre un programme full body et un programme split dépend de ton niveau, de tes objectifs, et de ce que tu préfères. Quel que soit ton choix, assure-toi de rester constant, d'écouter ton corps, et de t'adapter au fur et à mesure de ta progression. La musculation est un voyage, et avec de la patience, de la persévérance, et les bons conseils, tu atteindras tes objectifs et amélioreras ta santé et ta forme physique de manière significative.",
+        "type": "p"
+      }
+    ],
+    "datePublication": "2026-10-02",
+    "description": "Découvrez comment choisir le programme de musculation adapté à votre niveau, que vous soyez débutant ou avancé, pour atteindre vos objectifs de fitness.",
+    "descriptionSeo": "Programme de musculation pour débutants et avancés : full body ou split ? Conseils d'experts pour choisir le meilleur programme pour votre niveau et atteindre vos objectifs de fitness.",
+    "image": "/blog/full-body-ou-split-quel-programme-pour-quel-niveau-1m6n.jpg",
+    "slug": "full-body-ou-split-quel-programme-pour-quel-niveau-1m6n",
+    "tags": [
+      "musculation",
+      "fullbody",
+      "split",
+      "programme",
+      "niveau"
+    ],
+    "tempsLecture": 8,
+    "titre": "Full Body ou Split : Quel Programme pour Quel Niveau ?"
+  },
+  {
     "categorie": "Conseils",
     "contenu": [
       {
