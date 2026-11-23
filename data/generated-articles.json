@@ -1,5 +1,95 @@
 [
   {
+    "slug": "courbatures-musculation-douleur",
+    "titre": "Courbatures et Musculation : Faut-il S'entraîner Malgré la Douleur ?",
+    "description": "Les courbatures sont un phénomène courant chez les pratiquants de musculation. Mais faut-il s'entraîner malgré la douleur ? Découvrez les réponses dans cet article.",
+    "descriptionSeo": "Courbatures musculation douleur - Apprenez à gérer les courbatures pour continuer à vous entraîner efficacement sans compromettre votre santé.",
+    "categorie": "Conseils",
+    "tempsLecture": 8,
+    "datePublication": "2026-11-23",
+    "image": "/blog/courbatures-musculation-douleur.jpg",
+    "tags": [
+      "courbatures",
+      "musculation",
+      "douleur",
+      "entrainement",
+      "sante"
+    ],
+    "contenu": [
+      {
+        "type": "h2",
+        "content": "Qu'est-ce que les courbatures ?"
+      },
+      {
+        "type": "p",
+        "content": "Les courbatures sont des douleurs musculaires qui apparaissent généralement après une activité physique intense ou inhabituelle. Elles sont causées par des micro-lésions dans les fibres musculaires, qui entraînent une inflammation et une douleur. Les courbatures peuvent être très invalidantes et rendre difficile la pratique de la musculation ou d'autres activités physiques."
+      },
+      {
+        "type": "h2",
+        "content": "Pourquoi les courbatures apparaissent-elles ?"
+      },
+      {
+        "type": "p",
+        "content": "Les courbatures apparaissent pour plusieurs raisons. Tout d'abord, lorsque vous commencez une nouvelle activité physique ou augmentez l'intensité de votre entraînement, vos muscles doivent s'adapter à ces nouvelles sollicitations. Cela peut entraîner des micro-lésions dans les fibres musculaires, qui provoquent des courbatures. De plus, si vous n'êtes pas habitué à faire de l'exercice ou si vous avez des déficits de flexibilité ou de force, vous êtes plus susceptible de ressentir des courbatures."
+      },
+      {
+        "type": "ul",
+        "content": [
+          "Début d'une nouvelle activité physique",
+          "Augmentation de l'intensité de l'entraînement",
+          "Manque d'habitude à l'exercice",
+          "Déficits de flexibilité ou de force"
+        ]
+      },
+      {
+        "type": "h2",
+        "content": "Faut-il s'entraîner malgré la douleur ?"
+      },
+      {
+        "type": "p",
+        "content": "La réponse à cette question dépend de plusieurs facteurs. Si les courbatures sont légères et ne vous empêchent pas de vous entraîner, vous pouvez continuer à faire de la musculation en adaptant votre programme pour éviter d'aggraver la situation. Cependant, si les courbatures sont sévères et vous empêchent de vous entraîner correctement, il est préférable de prendre un jour de repos ou de modifier votre programme pour éviter de vous blesser davantage."
+      },
+      {
+        "type": "tip",
+        "content": "Si vous ressentez des courbatures, essayez de réduire l'intensité de votre entraînement et augmentez progressivement la charge ou le volume d'entraînement."
+      },
+      {
+        "type": "h2",
+        "content": "Comment gérer les courbatures ?"
+      },
+      {
+        "type": "p",
+        "content": "Il existe plusieurs façons de gérer les courbatures. Tout d'abord, il est important de bien s'échauffer avant de commencer l'entraînement et de faire des étirements après l'entraînement pour aider à réduire les courbatures. De plus, vous pouvez utiliser des techniques de récupération active comme la marche ou le vélo pour aider à réduire les courbatures. Il est également important de bien vous hydrater et de consommer des aliments riches en protéines pour aider à réparer les muscles endommagés."
+      },
+      {
+        "type": "ol",
+        "content": [
+          "Bien s'échauffer avant l'entraînement",
+          "Faire des étirements après l'entraînement",
+          "Utiliser des techniques de récupération active",
+          "Bien se hydrater",
+          "Consommer des aliments riches en protéines"
+        ]
+      },
+      {
+        "type": "warning",
+        "content": "Si les courbatures sont sévères ou persistent, il est important de consulter un médecin pour éliminer toute possibilité de blessure plus grave."
+      },
+      {
+        "type": "h2",
+        "content": "Conclusion"
+      },
+      {
+        "type": "p",
+        "content": "Les courbatures sont un phénomène courant chez les pratiquants de musculation, mais il est possible de les gérer en adaptant son programme d'entraînement et en utilisant des techniques de récupération active. Il est important de bien écouter son corps et de ne pas pousser trop fort pour éviter les blessures. En suivant ces conseils, vous pourrez continuer à vous entraîner efficacement et à atteindre vos objectifs de musculation."
+      },
+      {
+        "type": "tip",
+        "content": "N'oubliez pas de vous écouter et de vous adapter pour éviter les blessures et continuer à progresser dans votre entraînement de musculation."
+      }
+    ]
+  },
+  {
     "slug": "erreurs-developpe-couche-fcwu",
     "titre": "Les erreurs qui ruinent ta progression au développé couché : comment les éviter",
     "description": "Découvrez les erreurs les plus courantes qui freinent ta progression au développé couché et apprenez à les corriger pour améliorer tes performances",
